@@ -1,0 +1,25 @@
+
+
+AnchorPane
+{
+    -fx-background-color: #242830;
+}
+
+AnchorPane AnchorPane AnchorPane JFXTextField, JFXPasswordField
+{
+    -fx-prompt-text-fill: white;
+    -fx-text-fill: white;
+}
+
+AnchorPane AnchorPane JFXButton
+{
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-font-size: 18;
+}
+
+AnchorPane AnchorPane AnchorPane JFXButton
+{
+    -fx-background-color: #e8102d;
+}
+

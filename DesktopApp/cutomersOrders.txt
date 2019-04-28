@@ -1,0 +1,5 @@
+3=[3/1/Razor Electra V2/2/440/Karol/Nowak/18-400 Lomza/oczekujace, 3/3/Razor Kraken PRO/1/300/Karol/Nowak/18-400 Lomza/oczekujace, 3/7/ThreadRipper/1/4000/Karol/Nowak/18-400 Lomza/oczekujace]
+5=[5/43/CORsair oc/1/120/Adam/Piaseczny/67-800 Ciechanow/oczekujace]
+6=[6/127/order 66 v2/4/14/Kamil/Namek/23-450 Miastkowo/oczekujace, 6/178/order 66/4/14/Kamil/Namek/23-450 Miastkowo/oczekujace]
+13=[13/216/AMD Ryzen 7/1/1223/Kazimierz/Wiesiek/45-24 Mielno/oczekujace, 13/257/GTX 1050Ti/1/721/Kazimierz/Wiesiek/45-24 Mielno/oczekujace, 13/314/Intel Core i7/1/1223/Kazimierz/Wiesiek/45-24 Mielno/oczekujace]
+15=[15/6/Dell/3/5/Linkin/Park/90-300 Prochowice/oczekujace]

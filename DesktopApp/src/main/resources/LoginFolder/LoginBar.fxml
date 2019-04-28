@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="loginMainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="557.0" prefWidth="1107.0" style="-fx-background-color: #1d222b;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="desktopApp.controlers.LoginBarController">
+   <children>
+      <ImageView fitHeight="661.0" fitWidth="559.0" opacity="0.17" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../Components_To_Project/LoginImage2.jpg" />
+         </image>
+      </ImageView>
+      <Label layoutX="73.0" layoutY="205.0" prefHeight="131.0" prefWidth="451.0" text="Welcome to PreWare Management System" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="21.0" />
+         </font>
+      </Label>
+      <AnchorPane layoutX="560.0" prefHeight="557.0" prefWidth="547.0">
+         <children>
+            <AnchorPane layoutX="83.0" layoutY="44.0" prefHeight="468.0" prefWidth="401.0" style="-fx-background-color: #912421;" AnchorPane.bottomAnchor="44.0" AnchorPane.leftAnchor="83.0" AnchorPane.rightAnchor="83.0" AnchorPane.topAnchor="44.0">
+               <children>
+                  <Label alignment="CENTER" layoutX="94.0" layoutY="21.0" prefHeight="78.0" prefWidth="144.0" text="Sign In" textFill="WHITE" AnchorPane.bottomAnchor="370.0" AnchorPane.leftAnchor="94.0" AnchorPane.rightAnchor="94.0" AnchorPane.topAnchor="21.0">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="29.0" />
+                     </font>
+                  </Label>
+                  <JFXTextField fx:id="loginField" focusColor="#1a3b9e" promptText="username" style="-fx-prompt-text-fill: #c59e9e;" unFocusColor="#eee9e9" AnchorPane.bottomAnchor="315.0" AnchorPane.leftAnchor="97.0" AnchorPane.rightAnchor="97.0" AnchorPane.topAnchor="123.0" />
+                  <JFXPasswordField fx:id="passwordField" focusColor="#1a3b9e" layoutX="97.0" layoutY="197.0" promptText="password" style="-fx-prompt-text-fill: #c59e9e;" unFocusColor="#eee9e9" AnchorPane.leftAnchor="97.0" AnchorPane.rightAnchor="97.0" />
+                  <JFXButton buttonType="RAISED" layoutX="97.0" layoutY="282.0" onAction="#openBoardScene" prefHeight="32.0" prefWidth="193.0" ripplerFill="#2d2f32" text="LogIn">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </JFXButton>
+               </children>
+            </AnchorPane>
+            <JFXButton layoutX="485.0" layoutY="14.0" minWidth="38.0" onAction="#closeWindow" prefHeight="30.0" prefWidth="15.0" text="X" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></JFXButton>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
