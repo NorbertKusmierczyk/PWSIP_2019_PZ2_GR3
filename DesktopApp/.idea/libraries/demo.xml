@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="demo">
+    <CLASSES />
+    <JAVADOC>
+      <root url="jar://$PROJECT_DIR$/MailSenderLibrary/jaf-1_1_1.zip!/jaf-1.1.1/docs/javadocs" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/MailSenderLibrary/jaf-1_1_1.zip!/jaf-1.1.1/demo" />
+    </SOURCES>
+  </library>
+</component>

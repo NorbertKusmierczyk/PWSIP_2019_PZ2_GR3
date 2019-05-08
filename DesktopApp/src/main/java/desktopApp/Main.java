@@ -53,8 +53,8 @@ public class Main extends Application {
         });
     }
 
-    @Autowired
-    LoaderFXML loaderFXML;
+    //@Autowired
+    //LoaderFXML loaderFXML;
 
     public void setLoginBoard(final Stage primaryStage) throws Exception {
 

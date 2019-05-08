@@ -195,37 +195,6 @@
          <children>
             <StackPane prefWidth="1064.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <GridPane fx:id="sentMessageContentPane" prefHeight="843.0" prefWidth="1656.0" style="-fx-background-color: #fff;">
-                     <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
-                     </columnConstraints>
-                     <rowConstraints>
-                        <RowConstraints maxHeight="183.0" minHeight="10.0" prefHeight="183.0" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="456.0" vgrow="ALWAYS" />
-                     </rowConstraints>
-                     <children>
-                        <HBox alignment="CENTER" prefHeight="116.0" prefWidth="1076.0">
-                           <children>
-                              <JFXButton prefHeight="186.0" prefWidth="209.0" style="-fx-border-color: red;">
-                                 <cursor>
-                                    <Cursor fx:constant="HAND" />
-                                 </cursor>
-                              </JFXButton>
-                              <JFXButton prefHeight="186.0" prefWidth="209.0" style="-fx-border-color: blue;">
-                                 <cursor>
-                                    <Cursor fx:constant="HAND" />
-                                 </cursor>
-                              </JFXButton>
-                              <JFXButton prefHeight="186.0" prefWidth="209.0" style="-fx-border-color: black;">
-                                 <cursor>
-                                    <Cursor fx:constant="HAND" />
-                                 </cursor>
-                              </JFXButton>
-                           </children>
-                        </HBox>
-                        <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1" />
-                     </children>
-                  </GridPane>
                   <GridPane fx:id="sentMerchandiseContentPane" prefHeight="843.0" prefWidth="1656.0" style="-fx-background-color: #fff;">
                      <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
@@ -593,7 +562,7 @@
                                     </Pane>
                                  </children>
                               </VBox>
-                              <VBox layoutX="1094.0" layoutY="149.0" prefHeight="293.0" prefWidth="537.0" style="-fx-background-color: #fff;">
+                              <VBox layoutX="1094.0" layoutY="149.0" prefHeight="355.0" prefWidth="537.0" style="-fx-background-color: #fff;">
                                  <opaqueInsets>
                                     <Insets />
                                  </opaqueInsets>
@@ -606,11 +575,6 @@
                                              </HBox.margin>
                                           </Label>
                                           <TextField prefHeight="31.0" prefWidth="264.0" />
-                                          <JFXButton prefHeight="31.0" prefWidth="83.0" ripplerFill="WHITE" styleClass="manageTab" text="Sprawdź">
-                                             <HBox.margin>
-                                                <Insets left="12.0" />
-                                             </HBox.margin>
-                                          </JFXButton>
                                        </children>
                                        <VBox.margin>
                                           <Insets top="30.0" />
@@ -630,11 +594,6 @@
                                              </HBox.margin>
                                           </Label>
                                           <TextField prefHeight="31.0" prefWidth="264.0" />
-                                          <JFXButton prefHeight="31.0" prefWidth="95.0" styleClass="manageTab" text="Zatwierdź">
-                                             <HBox.margin>
-                                                <Insets left="12.0" />
-                                             </HBox.margin>
-                                          </JFXButton>
                                        </children>
                                     </HBox>
                                     <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #fff;">
@@ -645,20 +604,57 @@
                                              </HBox.margin>
                                           </Label>
                                           <TextField prefHeight="31.0" prefWidth="264.0" />
-                                          <JFXButton prefHeight="31.0" prefWidth="98.0" styleClass="manageTab" text="Zatwierdź">
-                                             <HBox.margin>
-                                                <Insets left="10.0" />
-                                             </HBox.margin>
-                                          </JFXButton>
                                        </children>
                                        <padding>
                                           <Insets left="72.0" />
                                        </padding>
                                     </HBox>
+                                    <Pane prefHeight="66.0" prefWidth="437.0">
+                                       <VBox.margin>
+                                          <Insets left="100.0" />
+                                       </VBox.margin>
+                                       <children>
+                                          <Button layoutY="7.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="335.0" style="-fx-background-color: #eadada;" text="Zatwierdź">
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor></Button>
+                                       </children>
+                                    </Pane>
                                  </children>
                               </VBox>
                            </children>
                         </AnchorPane>
+                     </children>
+                  </GridPane>
+                  <GridPane fx:id="sentMessageContentPane" prefHeight="843.0" prefWidth="1656.0" style="-fx-background-color: #fff;">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints maxHeight="183.0" minHeight="10.0" prefHeight="183.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="456.0" vgrow="ALWAYS" />
+                     </rowConstraints>
+                     <children>
+                        <HBox alignment="CENTER" prefHeight="116.0" prefWidth="1076.0">
+                           <children>
+                              <JFXButton onAction="#sendMessage" prefHeight="186.0" prefWidth="209.0" style="-fx-border-color: red;">
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </JFXButton>
+                              <JFXButton prefHeight="186.0" prefWidth="209.0" style="-fx-border-color: blue;">
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </JFXButton>
+                              <JFXButton prefHeight="186.0" prefWidth="209.0" style="-fx-border-color: black;">
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </JFXButton>
+                           </children>
+                        </HBox>
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1" />
                      </children>
                   </GridPane>
                </children>

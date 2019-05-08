@@ -2,6 +2,7 @@ package desktopApp.controlers;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
+import desktopApp.MailSender.SendEmail;
 import desktopApp.api.IServer;
 import desktopApp.config.Config;
 import desktopApp.implementation.Orders;
@@ -30,7 +31,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
-
 import java.io.*;
 import java.util.*;
 
@@ -38,7 +38,14 @@ import java.util.*;
 public class Controller{
 
 
+    //private Session
 
+    @Autowired
+    SendEmail sendEmail;
+
+    public void sendMessage(){
+       //sendEmail.sendEmail();
+    }
 
     //kolor tla #558ae0
 
@@ -144,6 +151,7 @@ public class Controller{
         ID.setCellValueFactory(new PropertyValueFactory<User, Integer>("id"));
         Username.setCellValueFactory(new PropertyValueFactory<User, String>("userName"));
         Email.setCellValueFactory(new PropertyValueFactory<User, String>("email"));
+        usersList.clear();
         usersList.addAll(server.getAllUsers());
         usersTableView.setItems(usersList);
     }
@@ -185,7 +193,7 @@ public class Controller{
         productsList.add(new Products(1, "Razor Electra V2", 500, 440));
         productsList.add(new Products(2, "Razor Kraken PRO", 52, 300));
         productsList.add(new Products(3, "ThreadRipper", 500, 4000));
-        productsList.add(new Products(4, "GTX 1050Ti", 500, 721));
+        productsList.add(new Products(4, "GTX 1050Ti", 400, 721));
         productsList.add(new Products(5, "Intel Core i7", 500, 1223));
         productsList.add(new Products(6, "AMD Ryzen 7", 500, 1223));
         productsList.add(new Products(7, "CORsair oc", 500, 120));

@@ -65,7 +65,7 @@ public class LoginBarController {
                     loginMainPane.getScene().getWindow().hide();
 
                 }catch (Exception e){
-                    System.out.println(e.getMessage());
+                    e.printStackTrace();
                 }
             }
         });
