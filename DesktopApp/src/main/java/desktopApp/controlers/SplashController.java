@@ -44,7 +44,7 @@ public class SplashController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
 
         setRotation(circ1, true, 240, 5);
-        setRotation(circ2, true, 180, 3);
+        setRotation(circ2, true, 180, 4);
         new SplashScreen().start();
     }
 

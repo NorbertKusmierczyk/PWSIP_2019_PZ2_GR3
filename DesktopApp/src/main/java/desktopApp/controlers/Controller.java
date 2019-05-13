@@ -8,6 +8,10 @@ import desktopApp.config.Config;
 import desktopApp.implementation.Orders;
 import desktopApp.implementation.Products;
 import desktopApp.implementation.User;
+import eu.hansolo.medusa.Gauge;
+import eu.hansolo.medusa.GaugeBuilder;
+import eu.hansolo.medusa.skins.SpaceXSkin;
+import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
@@ -25,6 +29,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +41,7 @@ import java.util.*;
 
 @Component
 public class Controller{
+
 
 
     //private Session
@@ -53,7 +59,7 @@ public class Controller{
     ProgressIndicator prog;
 
     @FXML
-    AnchorPane mainPane;
+    AnchorPane mainPane, dashBoardInformation;
 
     @FXML
     Label topLabel; // tabs tilted label
@@ -62,19 +68,19 @@ public class Controller{
    Button availability, manageProducts, sentMessage, sentProducts; // sub menu buttons
 
    @FXML
-    JFXButton orders, dataSet, users; // menu buttons
+    JFXButton orders, dataSet, users, dashBoard; // menu buttons
 
     @FXML
     JFXTextField usersSearchTextField;
 
     @FXML
-    VBox vbox2, vbox3; // hidden menu bar
+    VBox menuVBox, vbox2, vbox3; // hidden menu bar
 
     @FXML
     GridPane usersContentPane, availabilityContentPane, takeSupplyContentPane, sentMessageContentPane, sentMerchandiseContentPane, dataSetContentPane, gridRecipe, recipeProductsGridPane;
 
     @FXML
-    Pane innerGridPaneTiltedPanel; // Customer Recipe pane, contain info about seller
+    Pane innerGridPaneTiltedPanel, dashBoardGaugePane; // Customer Recipe pane, contain info about seller
 
     @FXML
     private Pane manegeProductNamePane,manegeProductIDPane,manegeProductPricePane; //manage product wraped panes
@@ -86,7 +92,7 @@ public class Controller{
     ScrollPane ordersContentPane; //main container of orders tab
 
     @FXML
-    TableView usersTableView, ordersTableView, productsTableView; // user table view
+    TableView usersTableView, ordersTableView, productsTableView;
 
     @FXML
     TableView<Products> manageProductsTableView;
@@ -123,7 +129,7 @@ public class Controller{
     //variable collect rolling vboxes
     ObservableList<VBox> panes = FXCollections.observableArrayList();
 
-    //variables responsible for get and gather users orders
+    //-----------------------variables responsible for get and gather users orders
 
     Map<Integer, List<String[]>> productsDetailsMapper;
 
@@ -135,7 +141,7 @@ public class Controller{
 
     ObservableList<Orders> ol = FXCollections.observableArrayList();
 
-    //variables responsible for get and gather users orders END
+    //---------------------variables responsible for get and gather users orders END
 
     // #1264d1 users list
     ObservableList<User> usersList = FXCollections.observableArrayList();
@@ -424,6 +430,7 @@ public class Controller{
     List<String> l;
     List<String[]> ban;
     int utterCoastInt = 0;
+    Label productNumber;
     public void setFormula(){
 
         utterCoastInt = 0; //count complete coast of order of single customer
@@ -459,21 +466,30 @@ public class Controller{
 
             String[] js = pom.split(","); //details of single products of customer
 
-            recipeProductsGridPane.getRowConstraints().add(new RowConstraints(50));
+            recipeProductsGridPane.getRowConstraints().add(new RowConstraints(65));
+            productNumber = new Label(i+1+"");
+            productNumber.setPrefWidth(50);
+            productNumber.setAlignment(Pos.CENTER);
+            recipeProductsGridPane.add(productNumber, 0, i + 1);
+
             for (int j = 0; j < 4; j++) {
                 Label l = new Label(js[j]);
-                l.setPrefWidth(recipeProductsGridPane.getColumnConstraints().get(j+1).getPrefWidth() + 20);
+                l.setPrefWidth(recipeProductsGridPane.getColumnConstraints().get(j + 1).getPrefWidth() + 20);
                 l.setAlignment(Pos.CENTER);
-                recipeProductsGridPane.add(l, j+1, i+1);
+                recipeProductsGridPane.add(l, j + 1, i + 1);
                 if (j == 3)
-                   utterCoastInt += Integer.parseInt(l.getText().trim());
-            }
-            pom = "";
-            utterCoast.setText(String.valueOf(utterCoastInt));
+                    utterCoastInt += Integer.parseInt(l.getText().trim());
+                }
+                pom = "";
+                productNumber = null;
+                utterCoast.setText(String.valueOf(utterCoastInt));
+
         }
 
-        for (Map.Entry entry : setWholeOrders)
-            System.out.println(entry);
+        recipeProductsGridPane.getRowConstraints().remove(recipeProductsGridPane.getRowConstraints().size()-1);
+
+        //for (Map.Entry entry : setWholeOrders)
+        //    System.out.println(entry);
     }
 
     public void loadDataFromFile(){
@@ -507,7 +523,7 @@ public class Controller{
                 str.trim();
 
                 String[] ord = str.split(",");
-                List<String> l = new ArrayList();
+                List<String> l = new ArrayList<>();
 
                 for (int i=0; i<ord.length; i++)
                     l.add(ord[i]);
@@ -601,19 +617,46 @@ public class Controller{
 
     // procedure set beginning settings of software
 
-
+    Gauge gauge;
     @FXML
     public void initialize() {
 
+        gauge = GaugeBuilder.create().skinType(Gauge.SkinType.SPACE_X).maxValue(500)
+                .barColor(Color.rgb(46, 68, 140))
+                .threshold(340)
+                .thresholdColor(Color.rgb(224, 55, 47))
+                .barBackgroundColor(Color.rgb(39, 52, 81))
+                .prefSize(428,293)
+                .animated(true)
+                .animationDuration(1000)
+                .build();
+
+        dashBoardGaugePane.getChildren().add(gauge);
+        dashBoardGaugePane.getChildren().get(dashBoardGaugePane.getChildren().size()-1).setLayoutX(168);
+        dashBoardGaugePane.getChildren().get(dashBoardGaugePane.getChildren().size()-1).setLayoutY(65);
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(1500);
+                    gauge.setValue(420);
+                }catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+
         //serwer.getAllUsers();
-        usersContentPane.toFront();
+        dashBoardInformation.toFront();
+        topLabel.setText(dashBoard.getText());
         loadUsers(); //add users to user tab to userTableView
         addProducts(); //add products to warehouse tab to availability to productsTableView
         addManageProducts(); ////add products to warehouse tab to manage products to manageproductsTableView
         initOrderTable(); //initialize orderTableView
 
         Label title = new Label();
-        title.setGraphic(new Label("Dealer  "));
+        title.setGraphic(new Label("Sprzedawca  "));
         title.setPadding(new Insets(-10, 10, 0, 20));
         title.getGraphic().setStyle("-fx-background-color: #fff");
 
@@ -721,6 +764,7 @@ public class Controller{
                 }
             }
         });
+
     }
 
 
@@ -751,6 +795,7 @@ public class Controller{
                 if (click) {
                     p.setVisible(true);
                     p.setPrefHeight(100);
+                    p.setPrefWidth(200);
                     click = false;
                 }else{
                     p.setVisible(false);
@@ -765,10 +810,40 @@ public class Controller{
     }
     // hide roll down sub bar lists  END
 
+
+    public ArrayList<Node> getAllNodes(VBox root) {
+        ArrayList<Node> nodes = new ArrayList<Node>();
+        addAllNodes(root, nodes);
+        return nodes;
+    }
+
+
+    //get all sub nodes of components
+    public void addAllNodes(Parent parent, ArrayList<Node> nodes) {
+        for (Node node : parent.getChildrenUnmodifiable()) {
+            if (node instanceof Button || node instanceof JFXButton)
+            nodes.add(node);
+            if (node instanceof Parent)
+              addAllNodes((Parent)node, nodes);
+        }
+    }
+
+    //ArrayList<Node> m = getAllNodes(menuVBox);
+    public void changeFocusedButtonBackgroundColor(Object object){
+
+        for(Node node : getAllNodes(menuVBox)){
+            if (node == object){ node.getStyleClass().clear(); node.getStyleClass().add("selectedButton"); }
+            else{ node.getStyleClass().clear(); node.getStyleClass().add("subMenuHover"); }
+        }
+    }
+
     //switching between menu bar cards
 
     @FXML
     private void handleAction(MouseEvent event){
+
+        changeFocusedButtonBackgroundColor(event.getSource());
+        gauge.setValue(0);
 
         if (event.getSource() == orders){
             setOrderHeaderLabel(orders.getText());
@@ -816,6 +891,15 @@ public class Controller{
             usersContentPane.toFront();
             hideLists();
             click = true;
+        }
+
+        if (event.getSource() == dashBoard){
+            setOrderHeaderLabel(dashBoard.getText());
+            topLabel.textProperty().bind(orderHeaderLabelProperty());
+            hideLists();
+            click = true;
+            gauge.setValue(420);
+            dashBoardInformation.toFront();
         }
     }
 

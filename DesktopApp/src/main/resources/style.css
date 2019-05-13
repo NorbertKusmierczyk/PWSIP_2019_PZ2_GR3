@@ -12,15 +12,7 @@ Button
 
 .menuBar
 {
-    -fx-background-color: #0850af;
-
-}
-
-//hover na menu
-.subMenuHover:hover
-{
-
-    -fx-background-color: #c9cfd8;
+    -fx-background-color: #3a3c5e;
 }
 
 //przycisk na manu

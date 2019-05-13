@@ -1,0 +1,17 @@
+
+
+.selectedButton
+{
+    -fx-background-color: #586170;
+}
+
+.subMenuHover:hover
+{
+
+    -fx-background-color: #8a96a8;
+}
+
+.subMenuHover
+{
+    -fx-background-color: #3a3c5e;
+}
