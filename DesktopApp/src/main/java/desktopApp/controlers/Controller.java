@@ -2,12 +2,14 @@ package desktopApp.controlers;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
+import com.sun.javafx.css.Style;
 import desktopApp.MailSender.SendEmail;
 import desktopApp.api.IServer;
 import desktopApp.config.Config;
 import desktopApp.implementation.Orders;
 import desktopApp.implementation.Products;
 import desktopApp.implementation.User;
+import desktopApp.implementation.UserOrderDate;
 import eu.hansolo.medusa.Gauge;
 import eu.hansolo.medusa.GaugeBuilder;
 import eu.hansolo.medusa.skins.SpaceXSkin;
@@ -17,6 +19,7 @@ import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.SortedList;
+import javafx.concurrent.Task;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -25,11 +28,17 @@ import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.chart.CategoryAxis;
+import javafx.scene.chart.LineChart;
+import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +46,10 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
 import java.io.*;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.*;
 
 @Component
@@ -50,7 +63,14 @@ public class Controller{
     SendEmail sendEmail;
 
     public void sendMessage(){
-       //sendEmail.sendEmail();
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                sendEmail.sendEmail();
+            }
+        }).start();
+
     }
 
     //kolor tla #558ae0
@@ -59,7 +79,7 @@ public class Controller{
     ProgressIndicator prog;
 
     @FXML
-    AnchorPane mainPane, dashBoardInformation;
+    AnchorPane mainPane, dashBoardInformation, subUsersContentPane;
 
     @FXML
     Label topLabel; // tabs tilted label
@@ -77,28 +97,31 @@ public class Controller{
     VBox menuVBox, vbox2, vbox3; // hidden menu bar
 
     @FXML
-    GridPane usersContentPane, availabilityContentPane, takeSupplyContentPane, sentMessageContentPane, sentMerchandiseContentPane, dataSetContentPane, gridRecipe, recipeProductsGridPane;
+    GridPane availabilityContentPane, takeSupplyContentPane, sentMessageContentPane, sentMerchandiseContentPane, dataSetContentPane, gridRecipe, recipeProductsGridPane;
 
     @FXML
     Pane innerGridPaneTiltedPanel, dashBoardGaugePane; // Customer Recipe pane, contain info about seller
 
     @FXML
-    private Pane manegeProductNamePane,manegeProductIDPane,manegeProductPricePane; //manage product wraped panes
+    private Pane dashBoardLineChartPane, manegeProductNamePane,manegeProductIDPane,manegeProductPricePane; //manage product wraped panes
 
     @FXML
     private Label manegeProductIDLabel,manegeProductNameLabel,manegeProductPriceLabel; //manage products wraped panes labels
 
     @FXML
-    ScrollPane ordersContentPane; //main container of orders tab
+    ScrollPane ordersContentPane, usersContentPane; //main container of orders tab
 
     @FXML
-    TableView usersTableView, ordersTableView, productsTableView;
+    TableView<User> usersTableView;
+
+    @FXML
+    TableView ordersTableView, productsTableView;
 
     @FXML
     TableView<Products> manageProductsTableView;
 
     @FXML
-    TableColumn OrderNumber, Location, ProductID, ProductName, Amount, Price, Name, Surname, State, Action; // table columns of orders table in orders tab
+    TableColumn OrderNumber, Town, TownCode, Street, HouseNumber, ProductID, ProductName, Amount, Price, Name, Surname, orderDate,/*State*/ Action; // table columns of orders table in orders tab
 
     @FXML
     TableColumn ID, Username, Email; // users table columns
@@ -115,6 +138,13 @@ public class Controller{
 
     @FXML
     private Label nameSurnameLabel, addressLabel, streetLabel, utterCoast; //label of Cutomer Recipe panel
+
+    @FXML
+    private Label userLabelID, userLabelUsername, userLabelEmail;
+
+
+    //@FXML
+    //LineChart dashBoardLineChart;
 
     // tabs topLabel set methods //
 
@@ -143,6 +173,10 @@ public class Controller{
 
     //---------------------variables responsible for get and gather users orders END
 
+    //variable used in usersContentPane to line chart
+    Map<Integer, List> userShoppingPeriodMap; //collect information about months when user bought products
+    Map<Integer, Integer> amountOfBoughtItems;
+
     // #1264d1 users list
     ObservableList<User> usersList = FXCollections.observableArrayList();
 
@@ -162,29 +196,31 @@ public class Controller{
         usersTableView.setItems(usersList);
     }
 
-    //check orders button action for tests -- change to data from database
+    //check orders button action download data from database
     //*
     // *
 
     public void addRecord(){
 
-        ol.add(new Orders(3,1, "Razor Electra V2", 2, 440, "Karol", "Nowak", "18-400 Lomza", "oczekujace"));
-        ol.add(new Orders(3,3, "Razor Kraken PRO", 1, 300, "Karol", "Nowak", "18-400 Lomza", "oczekujace"));
-        ol.add(new Orders(3,7, "ThreadRipper", 1, 4000, "Karol", "Nowak", "18-400 Lomza", "oczekujace"));
-        ol.add(new Orders(6,127, "order 66 v2", 4, 14, "Kamil", "Namek", "23-450 Miastkowo", "oczekujace"));
-        ol.add(new Orders(13,257, "GTX 1050Ti", 1, 721, "Kazimierz", "Wiesiek", "45-24 Mielno", "oczekujace"));
-        ol.add(new Orders(13,314, "Intel Core i7", 1, 1223, "Kazimierz", "Wiesiek", "45-24 Mielno", "oczekujace"));
-        ol.add(new Orders(6,178, "order 66", 4, 14, "Kamil", "Namek", "23-450 Miastkowo", "oczekujace"));
-        ol.add(new Orders(13,216, "AMD Ryzen 7", 1, 1223, "Kazimierz", "Wiesiek", "45-24 Mielno", "oczekujace"));
-        ol.add(new Orders(5,43, "CORsair oc", 1, 120, "Adam", "Piaseczny", "67-800 Ciechanow", "oczekujace"));
-        ol.add(new Orders(15,6,"Dell",3,5,"Linkin","Park","90-300 Prochowice","oczekujace"));
+//        ol.add(new Orders(3,1, "Razor Electra V2", 2, 440, "Karol", "Nowak", "18-400 Lomza", date));
+//        ol.add(new Orders(3,3, "Razor Kraken PRO", 1, 300, "Karol", "Nowak", "18-400 Lomza", date));
+//        ol.add(new Orders(3,7, "ThreadRipper", 1, 4000, "Karol", "Nowak", "18-400 Lomza", date));
+//        ol.add(new Orders(6,127, "order 66 v2", 4, 14, "Kamil", "Namek", "23-450 Miastkowo", date));
+//        ol.add(new Orders(13,257, "GTX 1050Ti", 1, 721, "Kazimierz", "Wiesiek", "45-24 Mielno", date));
+//        ol.add(new Orders(13,314, "Intel Core i7", 1, 1223, "Kazimierz", "Wiesiek", "45-24 Mielno", date));
+//        ol.add(new Orders(6,178, "order 66", 4, 14, "Kamil", "Namek", "23-450 Miastkowo", date));
+//        ol.add(new Orders(13,216, "AMD Ryzen 7", 1, 1223, "Kazimierz", "Wiesiek", "45-24 Mielno", date));
+//        ol.add(new Orders(5,43, "CORsair oc", 1, 120, "Adam", "Piaseczny", "67-800 Ciechanow", date));
+//        ol.add(new Orders(15,6,"Dell",3,5,"Linkin","Park","90-300 Prochowice",date));
+
+        ol.addAll(server.getAllOrders());
 
         ordersTableView.setItems(ol);
     }
 
     //*
     // *
-    //check orders button action for tests -- change to data from database END
+    //check orders button action download data from database END
 
     //check products button action for tests -- change to data from database
     //*
@@ -294,6 +330,7 @@ public class Controller{
         //mapping orders to suitable list, if key do not exist map create it or add element to accurate list
         List<Orders> list;
 
+
         //if table contain only one order
         if (recipe.size() == 1) {
             list = new ArrayList();
@@ -301,6 +338,7 @@ public class Controller{
             ordersGatheredList.put(recipe.get(0).getOrderNumber(), list);
         }
         else{
+
         for (int i=0; i<recipe.size()-1; i++) {
 
             if (recipe.get(i).getOrderNumber() == recipe.get(i + 1).getOrderNumber()) {
@@ -309,15 +347,22 @@ public class Controller{
                 list.add(recipe.get(i));
                 list.add(recipe.get(i + 1));
 
+
                 if (keys.isEmpty() || !keys.contains(recipe.get(i).getOrderNumber())) {
                     ordersGatheredList.put(recipe.get(i).getOrderNumber(), list);
                 } else {
                     ordersGatheredList.get(list.get(0).getOrderNumber()).add(list.get(1));
                 }
             } else {
+
                 list = new ArrayList();
-                list.add(recipe.get(i + 1));
-                ordersGatheredList.put(recipe.get(i + 1).getOrderNumber(), list);
+                if (i == 0){
+                    list.add(recipe.get(i));
+                    ordersGatheredList.put(recipe.get(i).getOrderNumber(), list);
+                }else {
+                    list.add(recipe.get(i + 1));
+                    ordersGatheredList.put(recipe.get(i + 1).getOrderNumber(), list);
+                }
             }
         }
         }
@@ -339,6 +384,7 @@ public class Controller{
             orderDetailListView.getItems().add("Order "+c.getKey()); //set value of listView
             setDetailsOnce = true; //next customer unlock blockade
             productsDetailsMapper.put((Integer) c.getKey(), new ArrayList<>()); //set new ArrayList<String[]> under loop key
+            userShoppingPeriodMap.put((Integer)c.getKey(), new ArrayList()); // set new ArrayList<List> under loop key
 
             mainTab = c.getValue().toString().split(","); //divide elements of list and assign to string table  = 1/3/2/"vb"/"gh", 1/3/2/"vb"/"gh", 1/3/2/"vb"/"gh"
 
@@ -357,28 +403,48 @@ public class Controller{
                         }
                         if (j == 6)
                             personalDetailsMapper.get(c.getKey()).add(buff[j]);
-                        if (j == 7) {
+
+                        if (j == 7)
+                            personalDetailsMapper.get(c.getKey()).add(buff[j]);
+
+                        if (j == 8)
+                            personalDetailsMapper.get(c.getKey()).add(buff[j]);
+
+                        if (j == 9)
+                            personalDetailsMapper.get(c.getKey()).add(buff[j]);
+
+                        if (j == 10){
                             personalDetailsMapper.get(c.getKey()).add(buff[j]);
                             setDetailsOnce = false;
                         }
-
                     }
 
                     //gather only information about customer from first row then active lock END
 
                     //gather information about products  //
 
-                    if (j % 9 == 1)
+                    if (j % 14 == 1)
                         productsDetails.add(buff[j]);
-                    if (j % 9 == 2)
+                    if (j % 14 == 2)
                         productsDetails.add(buff[j]);
-                    if (j % 9 == 3)
+                    if (j % 14 == 3)
                         productsDetails.add(buff[j]);
-                    if (j % 9 == 4) {
+                    if (j % 14 == 4) {
                         productsDetails.add(buff[j]);
                         man = new String[]{productsDetails.toString()}; //convert list to string[]
                        productsDetailsMapper.get(c.getKey()).add(man);  //add string[] to suitable list - Map<Integer, List<String[]>>
                        productsDetails.removeAll(productsDetails); //clear all list
+                    }
+                    if (j % 11 == 0){
+                        if (buff[j].contains("-")) {
+                            if (buff[j].contains("]") || buff[j].contains("[")) {
+                                buff[j] = buff[j].replace(']', '\0');
+                                buff[j] = buff[j].replace('[', '\0');
+                            }
+                            userShoppingPeriodMap.get(c.getKey()).add(buff[j]);
+                        }
+
+                        //date.add(buff[j]);
                     }
 
                     //gather information about products END //
@@ -397,7 +463,11 @@ public class Controller{
 //        for (Map.Entry v : productsDetailsMapper.entrySet())
 //            System.out.println(v.getKey()+" = "+v.getValue());
 
+//        for (Map.Entry v : userShoppingPeriodMap.entrySet())
+//            System.out.println(v.getKey()+" = "+v.getValue());
+
         //lopps to watch map collections END----------------------------------------------------------
+
 
         ol.removeAll(toSort); // clear TableView
     }
@@ -444,13 +514,15 @@ public class Controller{
         //get element from map Map<Integer, List<String>>
         l = personalDetailsMapper.get(Integer.parseInt(String.valueOf(((String) orderDetailListView.getSelectionModel().getSelectedItem()).substring(6))));
 
+
         //set customer details
         nameSurnameLabel.setText(l.get(0)+" "+l.get(1));
-        addressLabel.setText(l.get(2)+"");
-        //streetLabel.setText(buff[4]);
+        addressLabel.setText(l.get(2)+" "+l.get(3));
+        streetLabel.setText(l.get(4)+" "+l.get(5));
 
         // get element from map Map<Integer, List<String[]>>, there is list only products : idProduct, productName, amount, price
         ban = productsDetailsMapper.get(Integer.parseInt(String.valueOf(orderDetailListView.getSelectionModel().getSelectedItem()).substring(6)));
+
 
         String pom = "";
         for (int i=0; i<ban.size(); i++) {
@@ -458,7 +530,7 @@ public class Controller{
             String[] s1 = ban.get(i); // ban.get return String table from List : [idProduct, productName, amount, price]
 
             for (int p=0; p<s1.length; p++)
-            pom += s1[p];
+                pom += s1[p];
 
             pom = pom.replace('[', '\0');
             pom = pom.replace(']', '\0');
@@ -487,9 +559,6 @@ public class Controller{
         }
 
         recipeProductsGridPane.getRowConstraints().remove(recipeProductsGridPane.getRowConstraints().size()-1);
-
-        //for (Map.Entry entry : setWholeOrders)
-        //    System.out.println(entry);
     }
 
     public void loadDataFromFile(){
@@ -618,6 +687,24 @@ public class Controller{
     // procedure set beginning settings of software
 
     Gauge gauge;
+    Products products;
+    User user;
+    List<String> dateStringTab;
+    List<UserOrderDate> dateAndOrderNumberList;
+    Map<Integer, Map<String, Integer>> idUserMonthsAmount;
+    Set keys;
+    String[] months = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
+    Integer[] digitMonths = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ,11, 12};
+    String[] splitedMonths = null;
+    String singleDate = "";
+    int amountOfItems = 0;
+    LineChart<String, Number> userLineChart;
+    XYChart.Series series2;
+    CategoryAxis xAxis2 = new CategoryAxis();
+    NumberAxis yAxis2 = new NumberAxis();
+    int maxYChart = 0;
+    Map<String, Integer> pastOrders;
+
     @FXML
     public void initialize() {
 
@@ -646,6 +733,38 @@ public class Controller{
                 }
             }
         }).start();
+
+        CategoryAxis xAxis = new CategoryAxis();
+        NumberAxis yAxis = new NumberAxis();
+
+        LineChart<String, Number> lineChart = new LineChart<>(xAxis, yAxis);
+
+        XYChart.Series series = new XYChart.Series();
+        series.getData().add(new XYChart.Data("Jan",23));
+        series.getData().add(new XYChart.Data("Feb",3));
+        series.getData().add(new XYChart.Data("Mar",14));
+        series.getData().add(new XYChart.Data("Apr",30));
+        series.getData().add(new XYChart.Data("May",25));
+        series.getData().add(new XYChart.Data("Jun",29));
+        series.getData().add(new XYChart.Data("Jul",23));
+        series.getData().add(new XYChart.Data("Aug",20));
+        series.getData().add(new XYChart.Data("Sep",27));
+        series.getData().add(new XYChart.Data("Oct",34));
+        series.getData().add(new XYChart.Data("Nov",19));
+        series.getData().add(new XYChart.Data("Dec",24));
+        lineChart.getData().add(series);
+        lineChart.setLegendVisible(false);
+
+        lineChart.setPrefSize(799, 307);
+        dashBoardLineChartPane.getChildren().add(lineChart);
+        dashBoardLineChartPane.getChildren().get(dashBoardLineChartPane.getChildren().size()-1).setLayoutX(0);
+        dashBoardLineChartPane.getChildren().get(dashBoardLineChartPane.getChildren().size()-1).setLayoutY(86);
+
+
+
+        // x, y = 0 , 86
+
+        // w, h = 799, 307
 
         //serwer.getAllUsers();
         dashBoardInformation.toFront();
@@ -684,23 +803,154 @@ public class Controller{
         manegeProductPricePane.getChildren().add(priceProduct);
         manegeProductPricePane.setStyle("-fx-border-style: solid inside;");
 
-
         manageProductsTableView.setOnMouseClicked(event -> {
 
-            Products products = manageProductsTableView.getSelectionModel().getSelectedItem();
+            products = manageProductsTableView.getSelectionModel().getSelectedItem();
             manegeProductIDLabel.setText(""+products.getId());
             manegeProductNameLabel.setText(products.getProductName());
             manegeProductPriceLabel.setText(""+products.getPrice());
         });
 
-
         innerGridPaneTiltedPanel.getChildren().add(title);
         innerGridPaneTiltedPanel.setStyle("-fx-border-style: solid inside;");
+
+
+        usersTableView.setOnMouseClicked(event -> {
+
+            if (subUsersContentPane.getChildren().get(subUsersContentPane.getChildren().size()-1) instanceof LineChart || subUsersContentPane.getChildren().get(subUsersContentPane.getChildren().size()-1) instanceof Label)
+            subUsersContentPane.getChildren().remove(subUsersContentPane.getChildren().size()-1);
+
+            userLineChart = null;
+            series2 = null;
+            idUserMonthsAmount = null;
+            yAxis2 = null;
+            xAxis2 = null;
+            maxYChart = 0;
+
+
+            user = usersTableView.getSelectionModel().getSelectedItem();
+            userLabelID.setText(""+user.getId());
+            userLabelUsername.setText(""+user.getUserName());
+            userLabelEmail.setText(""+user.getEmail());
+            user = null;
+
+            idUserMonthsAmount = new HashMap<>();
+            keys = idUserMonthsAmount.keySet();
+
+
+
+             //System.out.println(idUserMonthsAmount.keySet().contains(dateAndOrderNumberList.get(usersTableView.getSelectionModel().getSelectedIndex()).getOrderID()));
+
+                 for (UserOrderDate us : dateAndOrderNumberList) {
+
+                     if (keys.isEmpty() || !keys.contains(us.getOrderID()))
+                         idUserMonthsAmount.put(us.getOrderID(), new HashMap<>());
+
+                     singleDate = us.getLocalDate().toString();
+                     splitedMonths = singleDate.split("-");
+                     singleDate = splitedMonths[1];
+                     if (singleDate.indexOf("0") == 0)
+                         singleDate.replace('0', '\0');
+
+                     for (Integer m : digitMonths) {
+                         if (m == Integer.parseInt(singleDate)) {
+                             if (idUserMonthsAmount.get(us.getOrderID()).keySet().isEmpty() || !idUserMonthsAmount.get(us.getOrderID()).keySet().contains(months[m - 1]))
+                                 idUserMonthsAmount.get(us.getOrderID()).put(months[m - 1], us.getIlosc());
+                             else {
+                                 amountOfItems = idUserMonthsAmount.get(us.getOrderID()).get(months[m - 1]);
+                                 amountOfItems += us.getIlosc();
+                                 idUserMonthsAmount.get(us.getOrderID()).put(months[m - 1], amountOfItems);
+                             }
+                         }
+                     }
+
+                 }
+
+                 //dziala
+//            for (Map.Entry<Integer, Map<String, Integer>> map : idUserMonthsAmount.entrySet()){
+//                System.out.println(map.getKey()+"------------------------");
+//                for (Map.Entry<String, Integer> subMap : map.getValue().entrySet()){
+//                        System.out.println(subMap.getKey()+ "   "+subMap.getValue());
+//                }
+//            }
+
+            //System.out.println(idUserMonthsAmount.get(usersTableView.getSelectionModel().getSelectedItem().getId()));
+
+            if (idUserMonthsAmount.get(usersTableView.getSelectionModel().getSelectedItem().getId()) != null) {
+
+                 series2 = new XYChart.Series<>();
+                 pastOrders = new LinkedHashMap<>();
+
+                 for (Map.Entry<Integer, Map<String, Integer>> map : idUserMonthsAmount.entrySet()) {
+                     if (usersTableView.getSelectionModel().getSelectedItem().getId() == map.getKey()) {
+                         for (Map.Entry<String, Integer> subMap : map.getValue().entrySet()) {
+                             for (int i = 0; i < 12; i++) {
+                                 if (subMap.getKey().equals(months[i])) {
+
+                                     if (pastOrders.containsKey(subMap.getKey())) {
+
+                                         if (pastOrders.get(subMap.getKey()) < subMap.getValue()) {
+
+                                             pastOrders.put(subMap.getKey(), subMap.getValue());
+                                         }
+                                     } else {
+                                         pastOrders.put(subMap.getKey(), subMap.getValue());
+                                     }
+                                 } else {
+                                     if (!pastOrders.containsKey(months[i])) {
+                                         pastOrders.put(months[i], 0);
+                                     }
+                                 }
+                             }
+                         }
+                     }
+                 }
+
+
+                 for (Map.Entry kl : pastOrders.entrySet()) {
+                     series2.getData().add(new XYChart.Data<>(kl.getKey(), kl.getValue()));
+                 }
+
+                 ((ObservableList<XYChart.Data>) series2.getData()).forEach(e -> {
+                     if ((int) e.getYValue() < maxYChart) ;
+                     else maxYChart = (int) e.getYValue();
+                 });
+
+                 xAxis2 = new CategoryAxis();
+                 yAxis2 = new NumberAxis(0, maxYChart + 1, 1);
+                 userLineChart = new LineChart<>(xAxis2, yAxis2);
+
+                 userLineChart.getData().addAll(series2);
+                 userLineChart.setLegendVisible(false);
+                 userLineChart.setPrefSize(812, 239);
+                 subUsersContentPane.getChildren().add(userLineChart);
+                 subUsersContentPane.getChildren().get(subUsersContentPane.getChildren().size() - 1).setLayoutX(805);
+                 subUsersContentPane.getChildren().get(subUsersContentPane.getChildren().size() - 1).setLayoutY(610);
+
+             }else{
+
+                if (subUsersContentPane.getChildren().get(subUsersContentPane.getChildren().size()-1) instanceof LineChart || subUsersContentPane.getChildren().get(subUsersContentPane.getChildren().size()-1) instanceof Label)
+                    subUsersContentPane.getChildren().remove(subUsersContentPane.getChildren().size()-1);
+
+                subUsersContentPane.getChildren().add(new Label("Brak danych"));
+                ((Label)subUsersContentPane.getChildren().get(subUsersContentPane.getChildren().size() - 1)).setPrefSize(812,239);
+                ((Label)subUsersContentPane.getChildren().get(subUsersContentPane.getChildren().size() - 1)).setAlignment(Pos.CENTER);
+                ((Label)subUsersContentPane.getChildren().get(subUsersContentPane.getChildren().size() - 1)).setFont(Font.font("Arial", FontWeight.BOLD,45));
+                subUsersContentPane.getChildren().get(subUsersContentPane.getChildren().size() - 1).setLayoutX(805);
+                subUsersContentPane.getChildren().get(subUsersContentPane.getChildren().size() - 1).setLayoutY(610);
+            }
+
+        });
+
+
 
         productsDetailsMapper = new HashMap<>();
         personalDetailsMapper = new HashMap<>();
         panes.add(vbox2);
         panes.add(vbox3);
+
+        userShoppingPeriodMap = new HashMap<>();
+        amountOfBoughtItems = new HashMap<>();
 
         orderDetailListView.setOnMouseClicked(event -> setFormula());
 
@@ -748,8 +998,12 @@ public class Controller{
         Price.setCellValueFactory(new PropertyValueFactory<Orders, Integer>("price"));
         Name.setCellValueFactory(new PropertyValueFactory<Orders, String>("name"));
         Surname.setCellValueFactory(new PropertyValueFactory<Orders, String>("surname"));
-        Location.setCellValueFactory(new PropertyValueFactory<Orders, String>("location"));
-        State.setCellValueFactory(new PropertyValueFactory<Orders, Integer>("state"));
+        Town.setCellValueFactory(new PropertyValueFactory<Orders, String>("town"));
+        TownCode.setCellValueFactory(new PropertyValueFactory<Orders, String>("townCode"));
+        Street.setCellValueFactory(new PropertyValueFactory<Orders, String>("street"));
+        HouseNumber.setCellValueFactory(new PropertyValueFactory<Orders, String>("houseNumber"));
+        //State.setCellValueFactory(new PropertyValueFactory<Orders, Integer>("state"));
+        orderDate.setCellValueFactory(new PropertyValueFactory<Orders, Date>("date"));
         Action.setCellValueFactory(new PropertyValueFactory<Orders, String>("checkBox"));
 
         ordersTableView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
@@ -889,6 +1143,8 @@ public class Controller{
             setOrderHeaderLabel(users.getText());
             topLabel.textProperty().bind(orderHeaderLabelProperty());
             usersContentPane.toFront();
+            dateAndOrderNumberList = server.getAllOrdersDate();
+            loadUsers();
             hideLists();
             click = true;
         }

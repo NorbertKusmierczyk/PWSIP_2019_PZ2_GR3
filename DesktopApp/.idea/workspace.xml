@@ -65,7 +65,7 @@
     <session id="-129971035">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="81" />
+          <entry key="project.closed" value="89" />
           <entry key="project.open.time.0" value="1" />
           <entry key="project.open.time.1" value="3" />
           <entry key="project.open.time.10" value="1" />
@@ -73,46 +73,47 @@
           <entry key="project.open.time.12" value="3" />
           <entry key="project.open.time.13" value="3" />
           <entry key="project.open.time.14" value="10" />
-          <entry key="project.open.time.15" value="11" />
-          <entry key="project.open.time.16" value="10" />
-          <entry key="project.open.time.17" value="3" />
+          <entry key="project.open.time.15" value="12" />
+          <entry key="project.open.time.16" value="11" />
+          <entry key="project.open.time.17" value="5" />
           <entry key="project.open.time.18" value="3" />
           <entry key="project.open.time.19" value="4" />
           <entry key="project.open.time.2" value="3" />
-          <entry key="project.open.time.20" value="3" />
+          <entry key="project.open.time.20" value="4" />
           <entry key="project.open.time.21" value="2" />
           <entry key="project.open.time.22" value="2" />
           <entry key="project.open.time.23" value="1" />
-          <entry key="project.open.time.24" value="4" />
+          <entry key="project.open.time.24" value="5" />
           <entry key="project.open.time.25" value="3" />
           <entry key="project.open.time.26" value="2" />
           <entry key="project.open.time.27" value="3" />
-          <entry key="project.open.time.3" value="1" />
+          <entry key="project.open.time.3" value="2" />
           <entry key="project.open.time.30" value="1" />
+          <entry key="project.open.time.32" value="1" />
           <entry key="project.open.time.34" value="1" />
           <entry key="project.open.time.36" value="1" />
           <entry key="project.open.time.7" value="1" />
-          <entry key="project.opened" value="81" />
+          <entry key="project.opened" value="89" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="css" value="15" />
+          <entry key="css" value="16" />
           <entry key="fxml" value="13" />
           <entry key="iml" value="2" />
-          <entry key="java" value="83" />
-          <entry key="properties" value="4" />
+          <entry key="java" value="102" />
+          <entry key="properties" value="5" />
           <entry key="txt" value="3" />
           <entry key="xml" value="8" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="CSS" value="15" />
+          <entry key="CSS" value="16" />
           <entry key="IDEA_MODULE" value="2" />
-          <entry key="JAVA" value="83" />
+          <entry key="JAVA" value="102" />
           <entry key="PLAIN_TEXT" value="3" />
-          <entry key="Properties" value="4" />
+          <entry key="Properties" value="5" />
           <entry key="XML" value="21" />
         </counts>
       </usages-collector>
@@ -120,9 +121,9 @@
         <counts>
           <entry key="css" value="1103" />
           <entry key="dummy" value="26" />
-          <entry key="fxml" value="324" />
-          <entry key="java" value="30113" />
-          <entry key="properties" value="155" />
+          <entry key="fxml" value="346" />
+          <entry key="java" value="38900" />
+          <entry key="properties" value="167" />
           <entry key="txt" value="2" />
           <entry key="xml" value="104" />
         </counts>
@@ -130,10 +131,10 @@
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="CSS" value="1103" />
-          <entry key="JAVA" value="30113" />
+          <entry key="JAVA" value="38900" />
           <entry key="PLAIN_TEXT" value="28" />
-          <entry key="Properties" value="155" />
-          <entry key="XML" value="428" />
+          <entry key="Properties" value="167" />
+          <entry key="XML" value="450" />
         </counts>
       </usages-collector>
     </session>
@@ -146,51 +147,83 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/desktopApp/controlers/Controller.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-3452">
-              <caret line="642" column="40" selection-start-line="642" selection-start-column="40" selection-end-line="642" selection-end-column="40" />
+            <state relative-caret-position="-4863">
+              <caret line="852" column="55" lean-forward="true" selection-start-line="852" selection-start-column="55" selection-end-line="852" selection-end-column="55" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#28739#28740#0" expanded="true" />
-                <element signature="e#28774#28775#0" expanded="true" />
-                <element signature="e#28796#28797#0" expanded="true" />
-                <element signature="e#28831#28832#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/desktopApp/controlers/SplashController.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/desktopApp/api/IUserDAO.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="79" column="49" lean-forward="true" selection-start-line="79" selection-start-column="49" selection-end-line="79" selection-end-column="49" />
+            <state relative-caret-position="119">
+              <caret line="12" selection-start-line="12" selection-end-line="12" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pom.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="28" column="30" selection-start-line="28" selection-start-column="24" selection-end-line="28" selection-end-column="30" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/style.css">
+        <entry file="file://$PROJECT_DIR$/src/main/java/desktopApp/implementation/UserDAO.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="255">
-              <caret line="15" column="1" selection-start-line="15" selection-start-column="1" selection-end-line="15" selection-end-column="1" />
+              <caret line="25" column="162" selection-start-line="25" selection-start-column="162" selection-end-line="25" selection-end-column="162" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/menuHover.css">
+        <entry file="file://$PROJECT_DIR$/src/main/java/desktopApp/api/IServer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="16" column="1" selection-start-line="16" selection-start-column="1" selection-end-line="16" selection-end-column="1" />
+            <state relative-caret-position="170">
+              <caret line="14" column="50" selection-start-line="14" selection-start-column="50" selection-end-line="14" selection-end-column="50" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/desktopApp/implementation/Server.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="306">
+              <caret line="27" column="59" selection-start-line="27" selection-start-column="59" selection-end-line="27" selection-end-column="59" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/desktopApp/api/IUserOrderDate.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="221">
+              <caret line="13" selection-start-line="13" selection-end-line="13" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/desktopApp/implementation/UserOrderDate.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="455">
+              <caret line="27" column="48" selection-start-line="27" selection-start-column="48" selection-end-line="27" selection-end-column="48" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/desktopApp/implementation/Orders.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="238">
+              <caret line="20" column="63" selection-start-line="20" selection-start-column="63" selection-end-line="20" selection-end-column="63" />
             </state>
           </provider>
         </entry>
@@ -198,8 +231,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/sample.fxml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="148">
-              <caret line="740" column="108" selection-start-line="740" selection-start-column="103" selection-end-line="740" selection-end-column="109" />
+            <state relative-caret-position="-1976">
+              <caret line="691" column="151" selection-start-line="691" selection-start-column="151" selection-end-line="691" selection-end-column="151" />
             </state>
           </provider>
           <provider editor-type-id="JavaFX-Scene-Builder" />
@@ -217,36 +250,36 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>content</find>
-      <find>usersC</find>
-      <find>grid</find>
-      <find>genera</find>
-      <find>check</find>
-      <find>recipe</find>
-      <find>recipeProductsGridPane</find>
-      <find>nabyw</find>
-      <find>addC</find>
-      <find>orderstab</find>
-      <find>ordernu</find>
-      <find>searchUser</find>
-      <find>generate</find>
-      <find>loadusers</find>
-      <find>al</find>
-      <find>manage</find>
-      <find>close</find>
-      <find>closeWindow</find>
-      <find>pare</find>
-      <find>new</find>
-      <find>prod</find>
-      <find>use</find>
-      <find>topLa</find>
-      <find>set</find>
       <find>setF</find>
       <find>order</find>
       <find>rec</find>
       <find>sent</find>
       <find>ilo</find>
       <find>gau</find>
+      <find>gaug</find>
+      <find>chart</find>
+      <find>cha</find>
+      <find>das</find>
+      <find>pane</find>
+      <find>usersCont</find>
+      <find>usersTa</find>
+      <find>usersConte</find>
+      <find>users</find>
+      <find>orders</find>
+      <find>loca</find>
+      <find>Location</find>
+      <find>OrderNumber</find>
+      <find>Surname</find>
+      <find>ol</find>
+      <find>init</find>
+      <find>Sta</find>
+      <find>dateStr</find>
+      <find>System.out</find>
+      <find>dateS</find>
+      <find>LineCh</find>
+      <find>ser</find>
+      <find>series2</find>
+      <find>Username</find>
     </findStrings>
     <dirStrings>
       <dir>C:\Users\groun\.m2\repository\com\jfoenix\jfoenix\8.0.7\jfoenix-8.0.7.jar</dir>
@@ -280,31 +313,34 @@
         <option value="$PROJECT_DIR$/src/main/java/electra/Main.java" />
         <option value="$PROJECT_DIR$/src/main/java/electra/controlers/SplashController.java" />
         <option value="$PROJECT_DIR$/src/main/java/electra/controlers/Controller.java" />
-        <option value="$PROJECT_DIR$/src/main/java/desktopApp/implementation/Orders.java" />
         <option value="$PROJECT_DIR$/cutomersOrders.txt" />
         <option value="$PROJECT_DIR$/src/main/java/desktopApp/api/IUser.java" />
         <option value="$PROJECT_DIR$/src/main/java/desktopApp/implementation/User.java" />
-        <option value="$PROJECT_DIR$/src/main/java/desktopApp/api/IServer.java" />
         <option value="$PROJECT_DIR$/src/main/java/desktopApp/implementation/Serwer.java" />
         <option value="$PROJECT_DIR$/src/main/java/desktopApp/api/IProducts.java" />
         <option value="$PROJECT_DIR$/src/main/java/desktopApp/implementation/Products.java" />
-        <option value="$PROJECT_DIR$/src/connection/connection.properties" />
-        <option value="$PROJECT_DIR$/src/main/java/desktopApp/implementation/Server.java" />
-        <option value="$PROJECT_DIR$/src/main/java/desktopApp/implementation/UserDAO.java" />
-        <option value="$PROJECT_DIR$/src/main/java/desktopApp/api/IUserDAO.java" />
         <option value="$PROJECT_DIR$/src/main/java/desktopApp/api/IClose.java" />
         <option value="$PROJECT_DIR$/src/main/java/desktopApp/config/Config.java" />
         <option value="$PROJECT_DIR$/src/main/java/desktopApp/LoaderFXML.java" />
-        <option value="$PROJECT_DIR$/src/main/java/desktopApp/MailSender/SendEmail.java" />
         <option value="$PROJECT_DIR$/src/main/java/desktopApp/controlers/CloseWindowController.java" />
         <option value="$PROJECT_DIR$/src/main/resources/style.css" />
         <option value="$PROJECT_DIR$/src/main/resources/menuHover.css" />
         <option value="$PROJECT_DIR$/src/main/java/desktopApp/Main.java" />
         <option value="$PROJECT_DIR$/src/main/java/desktopApp/controlers/LoginBarController.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/src/main/resources/sample.fxml" />
+        <option value="$PROJECT_DIR$/src/main/java/desktopApp/MailSender/SendEmail.java" />
         <option value="$PROJECT_DIR$/src/main/java/desktopApp/controlers/SplashController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/desktopApp/api/IOrders.java" />
+        <option value="$PROJECT_DIR$/src/connection/connection.properties" />
+        <option value="$PROJECT_DIR$/src/main/java/desktopApp/api/IUserDAO.java" />
+        <option value="$PROJECT_DIR$/src/main/java/desktopApp/api/IServer.java" />
+        <option value="$PROJECT_DIR$/src/main/java/desktopApp/implementation/Server.java" />
+        <option value="$PROJECT_DIR$/src/main/java/desktopApp/implementation/Orders.java" />
+        <option value="$PROJECT_DIR$/src/main/java/desktopApp/api/IUserOrderDate.java" />
+        <option value="$PROJECT_DIR$/src/main/java/desktopApp/implementation/UserOrderDate.java" />
         <option value="$PROJECT_DIR$/src/main/java/desktopApp/controlers/Controller.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/sample.fxml" />
+        <option value="$PROJECT_DIR$/src/main/java/desktopApp/implementation/UserDAO.java" />
       </list>
     </option>
   </component>
@@ -328,8 +364,8 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
-    <option name="x" value="62" />
-    <option name="y" value="33" />
+    <option name="x" value="57" />
+    <option name="y" value="47" />
     <option name="width" value="1820" />
     <option name="height" value="965" />
   </component>
@@ -340,65 +376,7 @@
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
-    <panes>
-      <pane id="Scope" />
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="ElectraCodeSystem" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ElectraCodeSystem" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ElectraCodeSystem" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ElectraCodeSystem" type="462c0819:PsiDirectoryNode" />
-              <item name="MedusaGuage" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ElectraCodeSystem" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ElectraCodeSystem" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ElectraCodeSystem" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ElectraCodeSystem" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ElectraCodeSystem" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ElectraCodeSystem" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ElectraCodeSystem" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ElectraCodeSystem" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="desktopApp" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ElectraCodeSystem" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ElectraCodeSystem" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="desktopApp" type="462c0819:PsiDirectoryNode" />
-              <item name="controlers" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ElectraCodeSystem" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="PackagesPane" />
-    </panes>
+    <panes />
   </component>
   <component name="PropertiesComponent">
     <property name="Downloaded.Files.Path.Enabled" value="false" />
@@ -414,7 +392,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="dynamic.classpath" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/MedusaGuage/Medusa-master/Medusa-master/gradle/wrapper/gradle-wrapper.jar!/" />
-    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.21226415" />
     <property name="recentsLimit" value="5" />
@@ -541,9 +519,40 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="50" y="27" width="1456" height="772" extended-state="0" />
+    <frame x="46" y="38" width="1456" height="772" extended-state="0" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6703755" weight="0.2637584" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6703755" weight="0.2624161" />
+      <window_info id="Structure" order="1" weight="0.25" />
+      <window_info id="Favorites" order="2" />
+      <window_info id="Designer" order="3" />
+      <window_info id="UI Designer" order="4" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.31789136" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.28794992" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.39148936" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32854864" />
+      <window_info anchor="bottom" id="Application Servers" order="7" />
+      <window_info anchor="bottom" id="Version Control" order="8" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Problems" order="9" />
+      <window_info anchor="bottom" id="Changes" order="10" />
+      <window_info anchor="bottom" id="Profiler" order="11" />
+      <window_info anchor="bottom" id="Event Log" order="12" weight="0.3255086" />
+      <window_info anchor="bottom" id="Messages" order="13" weight="0.29503545" />
+      <window_info anchor="bottom" id="Terminal" order="14" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.24946237" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="JetGradle" order="3" />
+      <window_info anchor="right" id="Database" order="4" />
+      <window_info anchor="right" id="Palette" order="5" />
+      <window_info anchor="right" id="Palette&#9;" order="6" />
+      <window_info anchor="right" id="Coverage" order="7" side_tool="true" weight="0.32941988" />
+      <window_info anchor="right" id="Maven Projects" order="8" weight="0.32808024" />
+    </layout>
+    <layout-to-restore>
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.26289397" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Favorites" order="2" />
       <window_info id="Designer" order="3" />
@@ -561,7 +570,7 @@
       <window_info anchor="bottom" id="Changes" order="10" />
       <window_info anchor="bottom" id="Profiler" order="11" />
       <window_info anchor="bottom" id="Event Log" order="12" weight="0.3255086" />
-      <window_info anchor="bottom" id="Messages" order="13" weight="0.29787233" />
+      <window_info anchor="bottom" id="Messages" order="13" weight="0.2973396" />
       <window_info anchor="bottom" id="Terminal" order="14" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.24946237" />
@@ -572,37 +581,6 @@
       <window_info anchor="right" id="Palette&#9;" order="6" />
       <window_info anchor="right" id="Coverage" order="7" side_tool="true" weight="0.32941988" />
       <window_info anchor="right" id="Maven Projects" order="8" weight="0.32808024" />
-    </layout>
-    <layout-to-restore>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.25322813" />
-      <window_info id="Structure" order="1" weight="0.25" />
-      <window_info id="Favorites" order="2" />
-      <window_info id="Designer" order="3" />
-      <window_info id="UI Designer" order="4" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.31897926" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.34130782" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.3965245" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Application Servers" order="7" />
-      <window_info anchor="bottom" id="Version Control" order="8" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Problems" order="9" />
-      <window_info anchor="bottom" id="Changes" order="10" />
-      <window_info anchor="bottom" id="Profiler" order="11" />
-      <window_info anchor="bottom" id="Event Log" order="12" weight="0.3269565" />
-      <window_info anchor="bottom" id="Messages" order="13" weight="0.3014354" />
-      <window_info anchor="bottom" id="Terminal" order="14" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="JetGradle" order="3" />
-      <window_info anchor="right" id="Database" order="4" />
-      <window_info anchor="right" id="Palette" order="5" />
-      <window_info anchor="right" id="Palette&#9;" order="6" />
-      <window_info anchor="right" id="Coverage" order="7" side_tool="true" weight="0.32941988" />
-      <window_info anchor="right" id="Maven Projects" order="8" weight="0.32902297" />
     </layout-to-restore>
   </component>
   <component name="VcsContentAnnotationSettings">
@@ -640,67 +618,11 @@
     <entry file="file://$PROJECT_DIR$/src/main/resources/cutomersOrders.txt">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/desktopApp/api/IUser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/desktopApp/api/IOrders.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="21" selection-start-line="2" selection-start-column="21" selection-end-line="2" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/desktopApp/api/IOrder.java" />
     <entry file="file://$PROJECT_DIR$/cutomersOrders.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
           <caret line="5" selection-start-line="5" selection-end-line="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/desktopApp/api/IServer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="22" selection-start-line="8" selection-start-column="22" selection-end-line="8" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/desktopApp/implementation/Orders.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/desktopApp/implementation/Products.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="188">
-          <caret line="17" column="52" selection-start-line="17" selection-start-column="52" selection-end-line="17" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/desktopApp/api/IProducts.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="20" selection-start-line="4" selection-start-column="20" selection-end-line="4" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/desktopApp/api/IUserDAO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/desktopApp/implementation/User.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="205">
-          <caret line="23" column="5" selection-start-line="23" selection-start-column="5" selection-end-line="23" selection-end-column="5" />
         </state>
       </provider>
     </entry>
@@ -712,13 +634,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/desktopApp/api/IClose.java" />
-    <entry file="file://$PROJECT_DIR$/src/connection/connection.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="14" lean-forward="true" selection-start-line="4" selection-start-column="14" selection-end-line="4" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/desktopApp/config/Config.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="181">
@@ -726,31 +641,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/desktopApp/implementation/UserDAO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="21" column="20" selection-start-line="21" selection-start-column="20" selection-end-line="21" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/desktopApp/implementation/Server.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="191">
-          <caret line="15" column="29" selection-start-line="15" selection-start-column="29" selection-end-line="15" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/desktopApp/controlers/CloseWindowController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="361">
           <caret line="35" column="40" selection-start-line="35" selection-start-column="40" selection-end-line="35" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/desktopApp/MailSender/SendEmail.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -775,10 +669,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/style.css">
+    <entry file="file://$PROJECT_DIR$/src/main/java/desktopApp/controlers/SplashController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="1" selection-start-line="15" selection-start-column="1" selection-end-line="15" selection-end-column="1" />
+        <state relative-caret-position="302">
+          <caret line="71" column="39" lean-forward="true" selection-start-line="71" selection-start-column="39" selection-end-line="71" selection-end-column="39" />
         </state>
       </provider>
     </entry>
@@ -789,38 +683,141 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/desktopApp/MailSender/SendEmail.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="14" column="46" selection-start-line="14" selection-start-column="46" selection-end-line="14" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" column="1" selection-start-line="15" selection-start-column="1" selection-end-line="15" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/desktopApp/api/IProducts.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="20" selection-start-line="4" selection-start-column="20" selection-end-line="4" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/desktopApp/implementation/User.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="23" column="5" selection-start-line="23" selection-start-column="5" selection-end-line="23" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/desktopApp/api/IUser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="17" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="28" column="30" selection-start-line="28" selection-start-column="24" selection-end-line="28" selection-end-column="30" />
+        <state relative-caret-position="374">
+          <caret line="22" selection-start-line="22" selection-end-line="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/connection/connection.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="49" selection-start-line="2" selection-start-column="49" selection-end-line="2" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/desktopApp/implementation/Products.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="17" column="52" selection-start-line="17" selection-start-column="52" selection-end-line="17" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/desktopApp/api/IOrders.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="21" selection-start-line="6" selection-start-column="21" selection-end-line="6" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/desktopApp/api/IUserDAO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="12" selection-start-line="12" selection-end-line="12" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/sample.fxml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="148">
-          <caret line="740" column="108" selection-start-line="740" selection-start-column="103" selection-end-line="740" selection-end-column="109" />
+        <state relative-caret-position="-1976">
+          <caret line="691" column="151" selection-start-line="691" selection-start-column="151" selection-end-line="691" selection-end-column="151" />
         </state>
       </provider>
       <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/desktopApp/controlers/SplashController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/desktopApp/api/IUserOrderDate.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="79" column="49" lean-forward="true" selection-start-line="79" selection-start-column="49" selection-end-line="79" selection-end-column="49" />
+        <state relative-caret-position="221">
+          <caret line="13" selection-start-line="13" selection-end-line="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/desktopApp/implementation/UserOrderDate.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="455">
+          <caret line="27" column="48" selection-start-line="27" selection-start-column="48" selection-end-line="27" selection-end-column="48" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/desktopApp/api/IServer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="14" column="50" selection-start-line="14" selection-start-column="50" selection-end-line="14" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/desktopApp/implementation/Server.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="27" column="59" selection-start-line="27" selection-start-column="59" selection-end-line="27" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/desktopApp/implementation/Orders.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="20" column="63" selection-start-line="20" selection-start-column="63" selection-end-line="20" selection-end-column="63" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/desktopApp/implementation/UserDAO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="25" column="162" selection-start-line="25" selection-start-column="162" selection-end-line="25" selection-end-column="162" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/desktopApp/controlers/Controller.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3452">
-          <caret line="642" column="40" selection-start-line="642" selection-start-column="40" selection-end-line="642" selection-end-column="40" />
+        <state relative-caret-position="-4863">
+          <caret line="852" column="55" lean-forward="true" selection-start-line="852" selection-start-column="55" selection-end-line="852" selection-end-column="55" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#28739#28740#0" expanded="true" />
-            <element signature="e#28774#28775#0" expanded="true" />
-            <element signature="e#28796#28797#0" expanded="true" />
-            <element signature="e#28831#28832#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -890,7 +887,7 @@
       </state>
       <state key="ProjectLibrariesConfigurable.UI">
         <settings>
-          <last-edited>gradle-wrapper</last-edited>
+          <last-edited>demo</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>

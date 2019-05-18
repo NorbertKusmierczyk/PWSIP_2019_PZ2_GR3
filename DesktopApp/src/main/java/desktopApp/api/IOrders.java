@@ -2,9 +2,15 @@ package desktopApp.api;
 
 public interface IOrders {
 
-    String getState();
+    //String getState();
 
-    String getLocation();
+    String getTown();
+
+    String getTownCode();
+
+    String getStreet();
+
+    String getHouseNumber();
 
     int getProductID();
 

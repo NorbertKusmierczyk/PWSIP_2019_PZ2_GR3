@@ -20,4 +20,10 @@ public class Server implements IServer {
     public List<User> getAllUsers() {
         return userDAO.setAllUsers();
     }
+
+    @Override
+    public List<Orders> getAllOrders() { return userDAO.getAllOrders(); }
+
+    @Override
+    public List<UserOrderDate> getAllOrdersDate() { return userDAO.getAllOrdersDate(); }
 }

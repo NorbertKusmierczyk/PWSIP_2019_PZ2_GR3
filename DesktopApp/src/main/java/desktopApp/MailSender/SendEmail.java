@@ -12,7 +12,7 @@ import java.util.Properties;
 @Component
 public class SendEmail {
 
-    String to = "groundgk@gmail.com";
+    String to = "norbert.kusmierczyk@gmail.com";
 
     String from = "prewarecompany@gamil.com";
 
@@ -22,7 +22,6 @@ public class SendEmail {
 
     String host = "smtp.gmail.com";
 
-    String message = "twoja stara";
 
     Properties properties = System.getProperties();
 
@@ -35,6 +34,7 @@ public class SendEmail {
         properties.setProperty("mail.smtp.starttls.required", "true");
 
         Session session = Session.getDefaultInstance(properties);
+        int a = 420495;
 
         try {
 
@@ -44,9 +44,9 @@ public class SendEmail {
 
             message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
 
-            message.setSubject("test line");
+            message.setSubject("PreWare.cba.pl - sklep komputerowy");
 
-            message.setText("body test message");
+            message.setText("Twoje zamówienie nr "+a+" zostało wysłane z magazynu");
 
             Transport transport = session.getTransport("smtp");
             transport.connect(user, password);

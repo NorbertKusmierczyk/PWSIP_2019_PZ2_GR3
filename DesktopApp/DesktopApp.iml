@@ -15,7 +15,6 @@
     <orderEntry type="library" name="javax.mail" level="project" />
     <orderEntry type="library" name="demo" level="project" />
     <orderEntry type="library" name="medusa" level="project" />
-    <orderEntry type="library" name="gradle-wrapper" level="project" />
     <orderEntry type="library" name="Maven: eu.hansolo:Medusa:7.9" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-context:4.3.6.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-aop:4.3.6.RELEASE" level="project" />
