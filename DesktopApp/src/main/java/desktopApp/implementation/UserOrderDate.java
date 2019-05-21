@@ -2,9 +2,6 @@ package desktopApp.implementation;
 
 import desktopApp.api.IUserOrderDate;
 import javafx.beans.property.SimpleIntegerProperty;
-
-import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.Date;
 
 public class UserOrderDate implements IUserOrderDate {

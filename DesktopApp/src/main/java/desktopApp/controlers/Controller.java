@@ -34,6 +34,8 @@ import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
@@ -59,19 +61,6 @@ public class Controller{
 
     //private Session
 
-    @Autowired
-    SendEmail sendEmail;
-
-    public void sendMessage(){
-
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                sendEmail.sendEmail();
-            }
-        }).start();
-
-    }
 
     //kolor tla #558ae0
 
@@ -88,7 +77,7 @@ public class Controller{
    Button availability, manageProducts, sentMessage, sentProducts; // sub menu buttons
 
    @FXML
-    JFXButton orders, dataSet, users, dashBoard; // menu buttons
+    JFXButton orders, dataSet, users, dashBoard, email1, email2; // menu buttons
 
     @FXML
     JFXTextField usersSearchTextField;
@@ -142,6 +131,15 @@ public class Controller{
     @FXML
     private Label userLabelID, userLabelUsername, userLabelEmail;
 
+    @FXML
+    private TextField subject_textField;
+
+    @FXML
+    private TextArea content_areaField;
+
+    @FXML
+    private HBox xBoxMessageFormSet;
+
 
     //@FXML
     //LineChart dashBoardLineChart;
@@ -182,6 +180,101 @@ public class Controller{
 
     // products list
     ObservableList<Products> productsList = FXCollections.observableArrayList();
+
+    @Autowired
+    SendEmail sendEmail;
+    Scanner scanner;
+    File file;
+
+    public void addNewMailForm(){
+        JFXButton jfxButton = new JFXButton();
+        jfxButton.setId("email"+xBoxMessageFormSet.getChildren().size());
+        jfxButton.setPrefSize(135,163);
+        jfxButton.setAlignment(Pos.CENTER);
+        jfxButton.setPadding(new Insets(0,0,0,2));
+        ImageView imageView = new ImageView();
+        imageView.setImage(new Image("file:\\E:\\InteliJ\\ElectraCodeSystem\\src\\main\\resources\\sendMessageTextImage.png"));
+        imageView.setFitWidth(107);
+        imageView.setFitHeight(137);
+        jfxButton.setGraphic(imageView);
+        jfxButton.getStyleClass().add("emailPressed");
+        xBoxMessageFormSet.getChildren().add(xBoxMessageFormSet.getChildren().size()-1, jfxButton);
+        jfxButton.setOnMouseClicked(event -> sendMessage(event));
+
+    }
+
+    @FXML
+    public void sendMessage(MouseEvent event) {
+
+        subject_textField.setText("");
+        content_areaField.setText("");
+        scanner = null;
+        file = null;
+
+        for (Node b : xBoxMessageFormSet.getChildren()) {
+
+            if (b.getId() != null) {
+
+                if (event.getSource() == b) {
+
+                    b.getStyleClass().add("emailPressedBack");
+                    System.out.println(event.getSource());
+                    try {
+                        file = new File("E:\\InteliJ\\ElectraCodeSystem\\email_version" + b.getId().substring(b.getId().length() - 1) + ".txt");
+                        if (!file.exists()) file.createNewFile();
+                        else {
+                            scanner = new Scanner(new BufferedReader(new FileReader(file)));
+                            if (scanner.hasNext()) {
+                                subject_textField.setText(scanner.nextLine());
+                                while (scanner.hasNext()) {
+                                    content_areaField.setText(scanner.nextLine());
+                                }
+                                scanner = null;
+                            }
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+
+                } else {
+                    System.out.println("usuwam klase przyciskom "+b.getId());
+                    b.getStyleClass().remove("emailPressedBack");
+                }
+            }
+        }
+
+//        new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                //sendEmail.sendEmail();
+//            }
+//        }).start();
+    }
+
+    public void saveNewEmail(){
+        try {
+            BufferedWriter wr = new BufferedWriter(new FileWriter(file.getPath()));
+            wr.write(subject_textField.getText());
+            wr.append("\n");
+            wr.append(content_areaField.getText());
+            wr.flush();
+            wr.close();
+            scanner = new Scanner(new BufferedReader(new FileReader(file)));
+        }catch (Exception e){ e.printStackTrace();}
+
+        subject_textField.setText("");
+        content_areaField.setText("");
+        subject_textField.setText(scanner.nextLine());
+        while (scanner.hasNext()) {
+            content_areaField.setText(scanner.nextLine());
+        }
+        scanner = null;
+    }
+
+    public void setSavedTemplates(){
+        File file = new File("E:\\InteliJ\\ElectraCodeSystem" );
+        System.out.println(this.getClass().getResource("/style.css").getPath());
+    }
 
     @Autowired
     IServer server;
@@ -1123,6 +1216,9 @@ public class Controller{
             setOrderHeaderLabel(sentMessage.getText());
             topLabel.textProperty().bind(orderHeaderLabelProperty());
             sentMessageContentPane.toFront();
+            subject_textField.setText("");
+            content_areaField.setText("");
+            setSavedTemplates();
         }
 
         if (event.getSource() == sentProducts){
@@ -1142,7 +1238,8 @@ public class Controller{
         if (event.getSource() == users){
             setOrderHeaderLabel(users.getText());
             topLabel.textProperty().bind(orderHeaderLabelProperty());
-            usersContentPane.toFront();
+            //usersContentPane.toFront();
+            subUsersContentPane.toFront();
             dateAndOrderNumberList = server.getAllOrdersDate();
             loadUsers();
             hideLists();

@@ -14,7 +14,7 @@
    <children>
       <ImageView fitHeight="661.0" fitWidth="559.0" opacity="0.17" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../Components_To_Project/LoginImage2.jpg" />
+            <Image url="@../LoginImage2.jpg" />
          </image>
       </ImageView>
       <Label layoutX="73.0" layoutY="205.0" prefHeight="131.0" prefWidth="451.0" text="Welcome to PreWare Management System" textFill="WHITE">

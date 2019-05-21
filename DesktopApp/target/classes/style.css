@@ -35,19 +35,29 @@ VBox VBox Button: hover
 }
 
 //wlasciwosci do przycisku zamykajacego program--------------------------
-HBox
+HBoxj
 {
     -fx-background-color: #b0b3b7;
 }
 
-HBox JFXButton:pressed
+hHBox JFXButton:pressed
 {
     -fx-background-color: #912421;
 }
 
-HBox JFXButton:hover
+.emailPressed
 {
-    -fx-background-color: #ff0000;
+    -fx-background-color: #fff;
+}
+
+.emailPressed:hover
+{
+    -fx-background-color: #e0d4d4;
+}
+
+.emailPressedBack
+{
+    -fx-background-color: #b19999;
 }
 //-----------------------------------------------------
 
