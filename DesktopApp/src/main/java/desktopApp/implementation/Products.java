@@ -11,6 +11,22 @@ public class Products implements IProducts {
     private IntegerProperty id, amount, price;
     private StringProperty productName;
 
+    public StringProperty searchProducts = new SimpleStringProperty(this, "products", "");
+
+    public String getSearchProducts() {
+        return searchProducts.get();
+    }
+
+    public StringProperty searchProductsProperty() {
+        return searchProducts;
+    }
+
+    public void setSearchProducts(String searchProducts) {
+        this.searchProducts.set(searchProducts);
+    }
+
+    public Products(){ }
+
     public Products(int id, String productName, int amount, int price) {
         this.id = new SimpleIntegerProperty(id);
         this.productName = new SimpleStringProperty(productName);

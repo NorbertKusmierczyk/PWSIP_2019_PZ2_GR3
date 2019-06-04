@@ -4,6 +4,8 @@ public interface IOrders {
 
     //String getState();
 
+    String getEmail();
+
     String getTown();
 
     String getTownCode();

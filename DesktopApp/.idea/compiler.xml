@@ -20,7 +20,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="DesktopApp" target="8" />
+      <module name="DesktopApp" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

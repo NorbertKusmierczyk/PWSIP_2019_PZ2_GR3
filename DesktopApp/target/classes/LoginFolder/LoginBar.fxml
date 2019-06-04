@@ -33,7 +33,7 @@
                   </Label>
                   <JFXTextField fx:id="loginField" focusColor="#1a3b9e" promptText="username" style="-fx-prompt-text-fill: #c59e9e;" unFocusColor="#eee9e9" AnchorPane.bottomAnchor="315.0" AnchorPane.leftAnchor="97.0" AnchorPane.rightAnchor="97.0" AnchorPane.topAnchor="123.0" />
                   <JFXPasswordField fx:id="passwordField" focusColor="#1a3b9e" layoutX="97.0" layoutY="197.0" promptText="password" style="-fx-prompt-text-fill: #c59e9e;" unFocusColor="#eee9e9" AnchorPane.leftAnchor="97.0" AnchorPane.rightAnchor="97.0" />
-                  <JFXButton buttonType="RAISED" layoutX="97.0" layoutY="282.0" onAction="#openBoardScene" prefHeight="32.0" prefWidth="193.0" ripplerFill="#2d2f32" text="LogIn">
+                  <JFXButton buttonType="RAISED" layoutX="97.0" layoutY="282.0" onAction="#openBoardScene" prefHeight="32.0" prefWidth="193.0" ripplerFill="#2d2f32" text="Zaloguj">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
