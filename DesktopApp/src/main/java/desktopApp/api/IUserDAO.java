@@ -10,17 +10,23 @@ import java.util.List;
 
 public interface IUserDAO {
 
-    public List<User> setAllUsers();
+      List<User> setAllUsers();
 
-    public List<Orders> getAllOrders();
+      List<Orders> getAllOrders();
 
-    public List<UserOrderDate> getAllOrdersDate();
+      List<UserOrderDate> getAllOrdersDate();
 
-    public List<Products> getAllProducts();
+      List<Products> getAllProducts();
 
-    public void editProduct(int id, String name, int price, int oldId);
+      void editProduct(int id, String name, int price, int oldId);
 
-    public String findUser(String name);
+      String findUser(String name);
 
+      int countAllUsers();
 
+      int countAllProducts();
+
+      int countCurrentOrders();
+
+      int setDashBoardGauge();
 }

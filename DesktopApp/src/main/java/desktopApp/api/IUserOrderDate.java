@@ -10,4 +10,6 @@ public interface IUserOrderDate {
     public Date getLocalDate();
 
     public int getIlosc();
+
+    public String getSupply();
 }

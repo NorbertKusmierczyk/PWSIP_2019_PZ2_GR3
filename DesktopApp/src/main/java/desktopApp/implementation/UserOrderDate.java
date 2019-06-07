@@ -8,15 +8,20 @@ public class UserOrderDate implements IUserOrderDate {
 
     private SimpleIntegerProperty id, ilosc;
     private Date date;
+    private String supply;
 
-    public UserOrderDate(int id, Date date, int ilosc) {
+    public UserOrderDate(int id, Date date, String supply, int ilosc) {
         this.id = new SimpleIntegerProperty(id);
         this.date = date;
+        this.supply = supply;
         this.ilosc = new SimpleIntegerProperty(ilosc);
     }
 
     @Override
     public int getOrderID() { return id.get();}
+
+    @Override
+    public String getSupply() { return supply; }
 
     @Override
     public Date getLocalDate() { return date;}

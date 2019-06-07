@@ -1,6 +1,7 @@
 package desktopApp.controlers;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTextField;
 import com.sun.javafx.css.Style;
 import desktopApp.MailSender.SendEmail;
@@ -28,10 +29,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.chart.CategoryAxis;
-import javafx.scene.chart.LineChart;
-import javafx.scene.chart.NumberAxis;
-import javafx.scene.chart.XYChart;
+import javafx.scene.chart.*;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
@@ -39,6 +37,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import org.hibernate.query.Query;
@@ -50,6 +50,7 @@ import org.springframework.stereotype.Component;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.swing.text.Position;
 import java.io.*;
 import java.time.LocalDate;
 import java.util.*;
@@ -64,14 +65,12 @@ public class Controller{
 
     //kolor tla #558ae0
 
-    @FXML
-    ProgressIndicator prog;
 
     @FXML
     AnchorPane mainPane, dashBoardInformation, subUsersContentPane, setPaneGuage1, setPaneGuage2, setPaneGuage3, sentMerchandiseContentPane;
 
     @FXML
-    Label topLabel; // tabs tilted label
+    Label topLabel, dashBoardUserCountLabel, dashBoardProductsCountLabel, dashBoardOrdersCountLabel; // tabs tilted label
 
    @FXML
    Button availability, manageProducts, sentMessage, sentProducts; // sub menu buttons
@@ -192,10 +191,438 @@ public class Controller{
     // products list
     ObservableList<Products> productsList = FXCollections.observableArrayList();
 
+    // procedure set beginning settings of software
+    /*
+    *
+    *
+    *
+    *
+    *
+     */
+
+    private Gauge gauge;
+    private Products products;
+    private User user;
+    List<String> dateStringTab;
+    private List<UserOrderDate> dateAndOrderNumberList;
+    private List<UserOrderDate> dataSetSaleData;
+    private Map<Integer, Map<String, Integer>> idUserMonthsAmount;
+    private Set keys;
+    private String[] months = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
+    private Integer[] digitMonths = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ,11, 12};
+    private String[] splitedMonths = null;
+    private String singleDate = "";
+    private int amountOfItems = 0;
+    private LineChart<String, Number> userLineChart;
+    private XYChart.Series series2;
+    private CategoryAxis xAxis2 = new CategoryAxis();
+    private NumberAxis yAxis2 = new NumberAxis();
+    private int maxYChart = 0;
+    private Map<String, Integer> pastOrders;
+    Map<String, Integer> holeSellment;
+    int innerValue = 0;
+
+    @FXML
+    private JFXTextField availabilityTextField;
+
+    @FXML
+    public void initialize() {
+
+        dashBoardUserCountLabel.setText(""+server.countAllUsers());
+        dashBoardProductsCountLabel.setText(""+server.countAllProducts());
+        dashBoardOrdersCountLabel.setText(""+server.countCurrentOrders());
+
+        gauge = GaugeBuilder.create().skinType(Gauge.SkinType.SPACE_X).maxValue(304)
+                .barColor(Color.rgb(46, 68, 140))
+                .threshold(290)
+                .thresholdColor(Color.rgb(224, 55, 47))
+                .barBackgroundColor(Color.rgb(39, 52, 81))
+                .prefSize(428,293)
+                .animated(true)
+                .animationDuration(1000)
+                .build();
+
+        dashBoardGaugePane.getChildren().add(gauge);
+        dashBoardGaugePane.getChildren().get(dashBoardGaugePane.getChildren().size()-1).setLayoutX(168);
+        dashBoardGaugePane.getChildren().get(dashBoardGaugePane.getChildren().size()-1).setLayoutY(65);
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(1500);
+                    gauge.setValue(server.setDashBoardGauge());
+                }catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+
+
+
+        setGauge1 = GaugeBuilder.create().skinType(Gauge.SkinType.SLIM)
+                .prefSize(285,246)
+                .barColor(Color.rgb(57,47,47))
+                .valueColor(Color.rgb(57,47,47))
+                .barBackgroundColor(Color.rgb(25,120,168))
+                .animated(true)
+                .animationDuration(600)
+                .build();
+
+        setPaneGuage1.getChildren().add(setGauge1);
+        setPaneGuage1.getChildren().get(setPaneGuage1.getChildren().size()-1).setLayoutX(25);
+        setPaneGuage1.getChildren().get(setPaneGuage1.getChildren().size()-1).setLayoutY(116);
+
+        setGauge2 = GaugeBuilder.create().skinType(Gauge.SkinType.SLIM)
+                .prefSize(285,246)
+                .barColor(Color.rgb(57,47,47))
+                .valueColor(Color.rgb(57,47,47))
+                .barBackgroundColor(Color.rgb(224,55,47))
+                .animated(true)
+                .animationDuration(600)
+                .build();
+
+        setPaneGuage2.getChildren().add(setGauge2);
+        setPaneGuage2.getChildren().get(setPaneGuage2.getChildren().size()-1).setLayoutX(25);
+        setPaneGuage2.getChildren().get(setPaneGuage2.getChildren().size()-1).setLayoutY(116);
+
+        setGauge3 = GaugeBuilder.create().skinType(Gauge.SkinType.SLIM)
+                .prefSize(285,246)
+                .barColor(Color.rgb(57,47,47))
+                .valueColor(Color.rgb(57,47,47))
+                .barBackgroundColor(Color.rgb(20,181,18))
+                .animated(true)
+                .animationDuration(600)
+                .build();
+
+        setPaneGuage3.getChildren().add(setGauge3);
+        setPaneGuage3.getChildren().get(setPaneGuage3.getChildren().size()-1).setLayoutX(25);
+        setPaneGuage3.getChildren().get(setPaneGuage3.getChildren().size()-1).setLayoutY(116);
+
+
+
+        // x, y = 0 , 86
+
+        // w, h = 799, 307
+
+        //serwer.getAllUsers();
+        dashBoardInformation.toFront();
+        topLabel.setText(dashBoard.getText());
+        try {
+            loadUsers(); //add users to user tab to userTableView and check if connection with database is settled down
+        }catch (Exception e){
+            globalAlert = new Alert(Alert.AlertType.ERROR);
+            globalAlert.dialogPaneProperty().get();
+            globalAlert.setTitle("Błąd");
+            globalAlert.setHeaderText("Nie można nawiązać połączenia z bazą danych");
+            globalAlert.setResizable(false);
+            globalAlert.showAndWait();
+            if (globalAlert.getResult() == ButtonType.OK){
+                globalAlert = null;
+                System.exit(0);
+            }
+        }
+        addProducts(); //add products to warehouse tab to availability to productsTableView
+        addManageProducts(); ////add products to warehouse tab to manage products to manageproductsTableView
+        initOrderTable(); //initialize orderTableView
+
+        Label title = new Label();
+        title.setGraphic(new Label("Sprzedawca  "));
+        title.setPadding(new Insets(-10, 10, 0, 20));
+        title.getGraphic().setStyle("-fx-background-color: #fff");
+
+        Label idProduct = new Label();
+        idProduct.setGraphic(new Label("ID produktu  "));
+        idProduct.setPadding(new Insets(-10, 10, 0, 20));
+        idProduct.getGraphic().setStyle("-fx-background-color: #fff");
+
+        manegeProductIDPane.getChildren().add(idProduct);
+        manegeProductIDPane.setStyle("-fx-border-style: solid inside;");
+
+        Label nameProduct = new Label();
+        nameProduct.setGraphic(new Label("Nazwa produktu  "));
+        nameProduct.setPadding(new Insets(-10, 10, 0, 20));
+        nameProduct.getGraphic().setStyle("-fx-background-color: #fff");
+
+        manegeProductNamePane.getChildren().add(nameProduct);
+        manegeProductNamePane.setStyle("-fx-border-style: solid inside;");
+
+        Label priceProduct = new Label();
+        priceProduct.setGraphic(new Label("Cena produktu  "));
+        priceProduct.setPadding(new Insets(-10, 10, 0, 20));
+        priceProduct.getGraphic().setStyle("-fx-background-color: #fff");
+
+        manegeProductPricePane.getChildren().add(priceProduct);
+        manegeProductPricePane.setStyle("-fx-border-style: solid inside;");
+
+        manageNewID.setEditable(false);
+        manageNewName.setEditable(false);
+        manageNewPrice.setEditable(false);
+
+        manageProductsTableView.setOnMouseClicked(event -> {
+
+            products = manageProductsTableView.getSelectionModel().getSelectedItem();
+            manegeProductIDLabel.setText(""+products.getId());
+            manegeProductNameLabel.setText(products.getProductName());
+            manegeProductPriceLabel.setText(""+products.getPrice());
+
+            idOldProduct.setText(""+products.getId());
+            nameOldProduct.setText(products.getProductName());
+            priceOldProduct.setText(""+products.getPrice());
+
+            manageNewID.setEditable(true);
+            manageNewName.setEditable(true);
+            manageNewPrice.setEditable(true);
+        });
+
+        OldNewProductData oldNewProductData = new OldNewProductData();
+
+        manageNewID.textProperty().bindBidirectional(oldNewProductData.newIDProperty());
+        idNewProduct.textProperty().bind(oldNewProductData.newIDProperty());
+        manageNewName.textProperty().bindBidirectional(oldNewProductData.newNameProperty());
+        nameNewProduct.textProperty().bind(oldNewProductData.newNameProperty());
+        manageNewPrice.textProperty().bindBidirectional(oldNewProductData.newPriceProperty());
+        priceNewProduct.textProperty().bind(oldNewProductData.newPriceProperty());
+
+        innerGridPaneTiltedPanel.getChildren().add(title);
+        innerGridPaneTiltedPanel.setStyle("-fx-border-style: solid inside;");
+
+
+        usersTableView.setOnMouseClicked(event -> {
+
+            if (subUsersContentPane.getChildren().get(subUsersContentPane.getChildren().size()-1) instanceof LineChart || subUsersContentPane.getChildren().get(subUsersContentPane.getChildren().size()-1) instanceof Label)
+                subUsersContentPane.getChildren().remove(subUsersContentPane.getChildren().size()-1);
+
+            userLineChart = null;
+            series2 = null;
+            idUserMonthsAmount = null;
+            yAxis2 = null;
+            xAxis2 = null;
+            maxYChart = 0;
+
+
+            user = usersTableView.getSelectionModel().getSelectedItem();
+            userLabelID.setText(""+user.getId());
+            userLabelUsername.setText(""+user.getUserName());
+            userLabelEmail.setText(""+user.getEmail());
+            user = null;
+
+            idUserMonthsAmount = new HashMap<>();
+            keys = idUserMonthsAmount.keySet();
+
+
+
+            //System.out.println(idUserMonthsAmount.keySet().contains(dateAndOrderNumberList.get(usersTableView.getSelectionModel().getSelectedIndex()).getOrderID()));
+
+            for (UserOrderDate us : dateAndOrderNumberList) {
+
+                if (keys.isEmpty() || !keys.contains(us.getOrderID()))
+                    idUserMonthsAmount.put(us.getOrderID(), new HashMap<>());
+
+                singleDate = us.getLocalDate().toString();
+                splitedMonths = singleDate.split("-");
+                singleDate = splitedMonths[1];
+                if (singleDate.indexOf("0") == 0)
+                    singleDate.replace('0', '\0');
+
+                for (Integer m : digitMonths) {
+                    if (m == Integer.parseInt(singleDate)) {
+                        if (idUserMonthsAmount.get(us.getOrderID()).keySet().isEmpty() || !idUserMonthsAmount.get(us.getOrderID()).keySet().contains(months[m - 1]))
+                            idUserMonthsAmount.get(us.getOrderID()).put(months[m - 1], us.getIlosc());
+                        else {
+                            amountOfItems = idUserMonthsAmount.get(us.getOrderID()).get(months[m - 1]);
+                            amountOfItems += us.getIlosc();
+                            idUserMonthsAmount.get(us.getOrderID()).put(months[m - 1], amountOfItems);
+                        }
+                    }
+                }
+
+            }
+
+            //dziala
+//            for (Map.Entry<Integer, Map<String, Integer>> map : idUserMonthsAmount.entrySet()){
+//                System.out.println(map.getKey()+"------------------------");
+//                for (Map.Entry<String, Integer> subMap : map.getValue().entrySet()){
+//                        System.out.println(subMap.getKey()+ "   "+subMap.getValue());
+//                }
+//            }
+
+            //System.out.println(idUserMonthsAmount.get(usersTableView.getSelectionModel().getSelectedItem().getId()));
+
+            if (idUserMonthsAmount.get(usersTableView.getSelectionModel().getSelectedItem().getId()) != null) {
+
+                series2 = new XYChart.Series<>();
+                pastOrders = new LinkedHashMap<>();
+
+                for (Map.Entry<Integer, Map<String, Integer>> map : idUserMonthsAmount.entrySet()) {
+                    if (usersTableView.getSelectionModel().getSelectedItem().getId() == map.getKey()) {
+                        for (Map.Entry<String, Integer> subMap : map.getValue().entrySet()) {
+                            for (int i = 0; i < 12; i++) {
+                                if (subMap.getKey().equals(months[i])) {
+
+                                    if (pastOrders.containsKey(subMap.getKey())) {
+
+                                        if (pastOrders.get(subMap.getKey()) < subMap.getValue()) {
+
+                                            pastOrders.put(subMap.getKey(), subMap.getValue());
+                                        }
+                                    } else {
+                                        pastOrders.put(subMap.getKey(), subMap.getValue());
+                                    }
+                                } else {
+                                    if (!pastOrders.containsKey(months[i])) {
+                                        pastOrders.put(months[i], 0);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+
+                for (Map.Entry kl : pastOrders.entrySet()) {
+                    series2.getData().add(new XYChart.Data<>(kl.getKey(), kl.getValue()));
+                }
+
+                ((ObservableList<XYChart.Data>) series2.getData()).forEach(e -> {
+                    if ((int) e.getYValue() < maxYChart) ;
+                    else maxYChart = (int) e.getYValue();
+                });
+
+                xAxis2 = new CategoryAxis();
+                yAxis2 = new NumberAxis(0, maxYChart + 1, 1);
+                userLineChart = new LineChart<>(xAxis2, yAxis2);
+
+                userLineChart.getData().addAll(series2);
+                userLineChart.setLegendVisible(false);
+                userLineChart.setPrefSize(812, 239);
+                subUsersContentPane.getChildren().add(userLineChart);
+                subUsersContentPane.getChildren().get(subUsersContentPane.getChildren().size() - 1).setLayoutX(805);
+                subUsersContentPane.getChildren().get(subUsersContentPane.getChildren().size() - 1).setLayoutY(610);
+
+            }else{
+
+                if (subUsersContentPane.getChildren().get(subUsersContentPane.getChildren().size()-1) instanceof LineChart || subUsersContentPane.getChildren().get(subUsersContentPane.getChildren().size()-1) instanceof Label)
+                    subUsersContentPane.getChildren().remove(subUsersContentPane.getChildren().size()-1);
+
+                subUsersContentPane.getChildren().add(new Label("Brak danych"));
+                ((Label)subUsersContentPane.getChildren().get(subUsersContentPane.getChildren().size() - 1)).setPrefSize(812,239);
+                ((Label)subUsersContentPane.getChildren().get(subUsersContentPane.getChildren().size() - 1)).setAlignment(Pos.CENTER);
+                ((Label)subUsersContentPane.getChildren().get(subUsersContentPane.getChildren().size() - 1)).setFont(Font.font("Arial", FontWeight.BOLD,45));
+                subUsersContentPane.getChildren().get(subUsersContentPane.getChildren().size() - 1).setLayoutX(805);
+                subUsersContentPane.getChildren().get(subUsersContentPane.getChildren().size() - 1).setLayoutY(610);
+            }
+
+            singleDate = null;
+            splitedMonths = null;
+
+        });
+
+
+
+        productsDetailsMapper = new HashMap<>();
+        personalDetailsMapper = new HashMap<>();
+        panes.add(vbox2);
+        panes.add(vbox3);
+
+        userShoppingPeriodMap = new HashMap<>();
+        amountOfBoughtItems = new HashMap<>();
+
+        setMostPopularProductList = new ArrayList<>();
+
+        orderDetailListView.setOnMouseClicked(event -> setFormula());
+
+
+        //find users //
+        //*
+        // *
+
+        User u = new User();
+        usersSearchTextField.textProperty().bindBidirectional(u.searchUsersProperty());
+
+        ObservableList<User> typedUsersTableViewCollections = FXCollections.observableArrayList();
+        Comparator<User> userComparator = Comparator.comparing(User::getId);
+        usersSearchTextField.setOnKeyTyped(event -> {
+
+            usersList.forEach(users -> {
+
+                if (users.getUserName().contains(usersSearchTextField.getText())) {
+                    if (!typedUsersTableViewCollections.contains(users))
+                        typedUsersTableViewCollections.add(users);
+                }
+                else typedUsersTableViewCollections.remove(users);
+            });
+
+
+            FXCollections.sort(typedUsersTableViewCollections, userComparator);
+            usersTableView.setItems(typedUsersTableViewCollections);
+        });
+        //*
+        // *
+        //find users END //
+
+        ObservableList<Products> typedProductsTableViewCollections = FXCollections.observableArrayList();
+        Comparator<Products> productsComparator = Comparator.comparing(Products::getId);
+
+        availabilityTextField.setOnKeyTyped(event -> {
+
+            productsList.forEach(pro -> {
+
+                if (pro.getProductName().contains(availabilityTextField.getText().toUpperCase())) {
+                    if (!typedProductsTableViewCollections.contains(pro))
+                        typedProductsTableViewCollections.add(pro);
+                }
+                else typedProductsTableViewCollections.remove(pro);
+            });
+
+
+            FXCollections.sort(typedProductsTableViewCollections, productsComparator);
+            productsTableView.setItems(typedProductsTableViewCollections);
+
+        });
+
+        sendProductDataPicker.setValue(LocalDate.now());
+
+        emailList.setOnMouseClicked(event ->{
+
+            // do testow nie usuwac
+            setMessage();
+
+        });
+
+        nodes = FXCollections.observableArrayList();
+        for (Node n : dataSetGaugesHBox.getChildren()){
+            nodes.add(n);
+            System.out.println(n);
+        }
+
+        dataSetActivityInnerVBox = new VBox();
+
+        emailContentFinder = new LinkedHashMap<>();
+
+    }
+    /*
+     *
+     *
+     *
+     *
+     *
+     */
+    // procedure set beginning settings of software END
+
     @Autowired
     SendEmail sendEmail;
+
+
+    /*
+    *
+    *  MESSAGES FUNCTIONS CATEGORY
+    *
+    *
+     */
     Scanner scannerRead, scannerWrite;
-    File file;
+
+    File file; //using while reading( sendMessage ) and send mails( sendMesssages )
     StringBuilder sb;
 
     int idButtonsCounter = 1;
@@ -372,6 +799,18 @@ public class Controller{
             globalAlert.setResizable(false);
             globalAlert.show();
             globalAlert = null;
+
+        Label lab = new Label("\t Edytowano wiadomość");
+        lab.setPrefSize(dataSetActivityScrollPane.getPrefWidth()-10,50);
+        lab.setPadding(new Insets(0,0,0,20));
+        Rectangle rec = new Rectangle();
+        rec.setHeight(16); rec.setWidth(16); rec.setFill(Paint.valueOf("green"));
+        lab.setGraphic(rec);
+
+        dataSetActivityInnerVBox.getChildren().add(lab);
+        dataSetActivityInnerVBox.getChildren().add(new Separator());
+        dataSetActivityScrollPane.setContent(null);
+        dataSetActivityScrollPane.setContent(dataSetActivityInnerVBox);
     }
 
     boolean lock = true;
@@ -390,8 +829,22 @@ public class Controller{
         }
     }
 
+    /*
+     *
+     *  MESSAGES FUNCTIONS CATEGORY END
+     *
+     *
+     */
+
     @Autowired
     IServer server;
+
+    /*
+     *
+     *  DOWNLOAD DATA FROM DATABASE ABOUT USERS -- USERS CATEGORY
+     *
+     *
+     */
 
     public void loadUsers(){
 
@@ -402,10 +855,40 @@ public class Controller{
         usersList.addAll(server.getAllUsers());
         usersTableView.setItems(usersList);
     }
+    /*
+     *
+     *  DOWNLOAD DATA FROM DATABASE ABOUT USERS -- USERS CATEGORY END
+     *
+     *
+     */
 
-    //check orders button action download data from database
-    //*
-    // *
+    /*
+     *
+     *  DOWNLOAD DATA FROM DATABASE ABOUT ORDERS -- ORDERS CATEGORY-------------------------------
+     *
+     *
+     */
+
+    public void initOrderTable()
+    {
+
+        OrderNumber.setCellValueFactory(new PropertyValueFactory<Orders, Integer>("orderNumber"));
+        ProductID.setCellValueFactory(new PropertyValueFactory<Orders, Integer>("productID"));
+        ProductName.setCellValueFactory(new PropertyValueFactory<Orders, String>("productName"));
+        Amount.setCellValueFactory(new PropertyValueFactory<Orders, Integer>("amount"));
+        Price.setCellValueFactory(new PropertyValueFactory<Orders, Integer>("price"));
+        Name.setCellValueFactory(new PropertyValueFactory<Orders, String>("name"));
+        Surname.setCellValueFactory(new PropertyValueFactory<Orders, String>("surname"));
+        OrderEmail.setCellValueFactory(new PropertyValueFactory<Orders, String>("email"));
+        Town.setCellValueFactory(new PropertyValueFactory<Orders, String>("town"));
+        TownCode.setCellValueFactory(new PropertyValueFactory<Orders, String>("townCode"));
+        Street.setCellValueFactory(new PropertyValueFactory<Orders, String>("street"));
+        HouseNumber.setCellValueFactory(new PropertyValueFactory<Orders, String>("houseNumber"));
+        //State.setCellValueFactory(new PropertyValueFactory<Orders, Integer>("state"));
+        orderDate.setCellValueFactory(new PropertyValueFactory<Orders, Date>("date"));
+        Action.setCellValueFactory(new PropertyValueFactory<Orders, String>("checkBox"));
+
+    }
 
     public void addRecord(){
 
@@ -413,13 +896,40 @@ public class Controller{
         ordersTableView.setItems(ol);
     }
 
-    //*
-    // *
-    //check orders button action download data from database END
+    /*
+     *
+     *  CHANGE ALL CHECKBOXES TO BE SELECTED
+     *
+     *
+     */
 
-    //check products button action for tests -- change to data from database
-    //*
-    // *
+    public void selectAll(){
+
+        for (Orders ord : ol)
+            ord.getCheckBox().setSelected(true);
+
+    }
+
+    /*
+     *
+     *  CHANGE ALL CHECKBOXES TO BE SELECTED END
+     *
+     *
+     */
+    /*
+     *
+     *  DOWNLOAD DATA FROM DATABASE ABOUT ORDERS -- ORDERS CATEGORY END--------------------------------
+     *
+     *
+     */
+
+
+    /*
+     *
+     *  DOWNLOAD DATA FROM DATABASE ABOUT PRODUCTS -- WAREHOUSE - ONLY ID,PRODUCT NAME , AMOUNT
+     *
+     *
+     */
 
     public void addProducts(){
 
@@ -450,6 +960,20 @@ public class Controller{
 
         productsTableView.setItems(productsList);
     }
+    /*
+     *
+     *  DOWNLOAD DATA FROM DATABASE ABOUT PRODUCTS -- WAREHOUSE - ONLY ID,PRODUCT NAME , AMOUNT END
+     *
+     *
+     */
+
+
+    /*
+     *
+     *  DOWNLOAD DATA FROM DATABASE ABOUT PRODUCTS -- WAREHOUSE - MANIPULATE DATA
+     *
+     *
+     */
 
     public void addManageProducts(){
 
@@ -469,31 +993,87 @@ public class Controller{
         });
     }
 
-    //*
-    // *
-    //check products button action for tests -- chande to data from database END
+    public void submitEditProductData(){
+
+        try {
+            if (manageNewName.getText().trim().length() <= 0) throw new NumberFormatException();
+            int k = Integer.parseInt(manageNewID.getText());
+            System.out.println(k);
+            int l = Integer.parseInt(manageNewPrice.getText());
+            System.out.println(l);
 
 
-    //changed all checkboxes to selected
-    //*
-    // *
+            productsList.forEach(event ->{
+                if(event.getId() == k && manageProductsTableView.getSelectionModel().getSelectedItem().getId() != k) throw new IllegalAccessError();
+                if (event.getProductName().equals(manageNewName.getText()) && !manageProductsTableView.getSelectionModel().getSelectedItem().getProductName().equals(manageNewName.getText())) throw new IllegalAccessError();
 
-    public void selectAll(){
+            });
 
-        for (Orders ord : ol)
-            ord.getCheckBox().setSelected(true);
+            server.editProduct(k, manageNewName.getText(), l, manageProductsTableView.getSelectionModel().getSelectedItem().getId());
 
+
+            globalAlert = new Alert(Alert.AlertType.INFORMATION);
+            globalAlert.dialogPaneProperty().get();
+            globalAlert.setTitle("Potwierdzenie");
+            globalAlert.setHeaderText("Dane edytowano pomyślnie");
+            globalAlert.setResizable(false);
+            globalAlert.show();
+            globalAlert = null;
+
+            manageProductsTableView.getItems().removeAll(productsList);
+            manageProductsTableView.getItems().addAll(server.getAllProducts());
+            manageNewID.setText("");
+            manageNewName.setText("");
+            manageNewPrice.setText("");
+
+            Label lab = new Label("\t Edytowano produkt o id: "+k);
+            lab.setPrefSize(dataSetActivityScrollPane.getPrefWidth()-10,50);
+            lab.setPadding(new Insets(0,0,0,20));
+            Rectangle rec = new Rectangle();
+            rec.setHeight(16); rec.setWidth(16); rec.setFill(Paint.valueOf("red"));
+            lab.setGraphic(rec);
+
+            dataSetActivityInnerVBox.getChildren().add(lab);
+            dataSetActivityInnerVBox.getChildren().add(new Separator());
+            dataSetActivityScrollPane.setContent(null);
+            dataSetActivityScrollPane.setContent(dataSetActivityInnerVBox);
+
+
+        }catch (NumberFormatException nfe){
+            globalAlert = new Alert(Alert.AlertType.ERROR);
+            globalAlert.dialogPaneProperty().get();
+            globalAlert.setTitle("Błąd danych");
+            globalAlert.setHeaderText("Podano niewłaściwe dane");
+            globalAlert.setResizable(false);
+            globalAlert.show();
+            globalAlert = null;
+
+        }catch (IllegalAccessError iae){
+            globalAlert = new Alert(Alert.AlertType.ERROR);
+            globalAlert.dialogPaneProperty().get();
+            globalAlert.setTitle("Błąd danych");
+            globalAlert.setHeaderText("Produkt o podanym danych już istnieje");
+            globalAlert.setResizable(false);
+            globalAlert.show();
+            globalAlert = null;
+        }
     }
 
-    //*
-    // *
-    //changed all checkboxes to selected END
+    /*
+     *
+     *  DOWNLOAD DATA FROM DATABASE ABOUT PRODUCTS -- WAREHOUSE - MANIPULATE DATA END
+     *
+     *
+     */
 
 
 
-    //generate recipies for customers
-    //*
-    // *
+    /*
+     *
+     *  GENERATED RECIPE FOR CUSTOMERS
+     *
+     *
+     */
 
     public void generateRecipe(){
 
@@ -613,8 +1193,10 @@ public class Controller{
 
                     if (j % 14 == 1)
                         productsDetails.add(buff[j]);
-                    if (j % 14 == 2)
+                    if (j % 14 == 2) {
                         productsDetails.add(buff[j]);
+                        setMostPopularProductList.add(buff[j]);
+                    }
                     if (j % 14 == 3)
                         productsDetails.add(buff[j]);
                     if (j % 14 == 4) {
@@ -658,19 +1240,36 @@ public class Controller{
 
 
         ol.removeAll(toSort); // clear TableView
+
+
+        Label l = new Label("\t Pobrano oczekujące zamówienia");
+        l.setPrefSize(dataSetActivityScrollPane.getPrefWidth()-10,50);
+        l.setPadding(new Insets(0,0,0,20));
+        Rectangle rec = new Rectangle();
+        rec.setHeight(16); rec.setWidth(16); rec.setFill(Paint.valueOf("blue"));
+        l.setGraphic(rec);
+
+        dataSetActivityInnerVBox.getChildren().add(l);
+        dataSetActivityInnerVBox.getChildren().add(new Separator());
+        dataSetActivityScrollPane.setContent(null);
+        dataSetActivityScrollPane.setContent(dataSetActivityInnerVBox);
     }
 
-    //*
-    // *
-    //generate recipies for customers
+    /*
+     *
+     *  GENERATED RECIPE FOR CUSTOMERS END
+     *
+     *
+     */
 
 
 
-    //set all Customer Recipe site
-    // *
-    // *
-    // *
-    // *
+    /*
+     *
+     *  SET ALL CUSTOMERS RECIPE FUNCTIONS
+     *
+     *
+     */
 
     // delete all Labels of GridPane
 
@@ -747,6 +1346,13 @@ public class Controller{
 
         recipeProductsGridPane.getRowConstraints().remove(recipeProductsGridPane.getRowConstraints().size()-1);
     }
+
+    /*
+     *
+     *  SET ALL CUSTOMERS RECIPE FUNCTIONS END
+     *
+     *
+     */
 
     public void loadDataFromFile(){
 
@@ -871,500 +1477,209 @@ public class Controller{
     //set all Customer Recipe site END
 
 
-    // procedure set beginning settings of software
+    /*
+     *
+     *  SEND MAILS TO CUSTOMERS CATEGORY FUNCTIONS
+     *
+     *
+     */
 
-    private Gauge gauge;
-    private Products products;
-    private User user;
-    List<String> dateStringTab;
-    private List<UserOrderDate> dateAndOrderNumberList;
-    private List<UserOrderDate> dataSetSaleData;
-    private Map<Integer, Map<String, Integer>> idUserMonthsAmount;
-    private Set keys;
-    private String[] months = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
-    private Integer[] digitMonths = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ,11, 12};
-    private String[] splitedMonths = null;
-    private String singleDate = "";
-    private int amountOfItems = 0;
-    private LineChart<String, Number> userLineChart;
-    private XYChart.Series series2;
-    private CategoryAxis xAxis2 = new CategoryAxis();
-    private NumberAxis yAxis2 = new NumberAxis();
-    private int maxYChart = 0;
-    private Map<String, Integer> pastOrders;
-    Map<String, Integer> holeSellment;
-    int innerValue = 0;
-
+    Map<Integer, String> emailMapper;
     @FXML
-    private JFXTextField availabilityTextField;
-
+    JFXDatePicker sendProductDataPicker;
     @FXML
-    public void initialize() {
+    ComboBox<String> chooseMailComboBox;
+    @FXML
+    Label sendProductsMessageLabel;
+    @FXML
+    TableView<EmailList> emailList;
+    @FXML
+    TableColumn Mail, Supply, mailTemplate;
+    ObservableList<String> idSelectedEmailList;
+    ObservableList<EmailList> emailListObservableList;
+    Map<Integer,String> set;
+    public void sendProductsCategory(){
 
-        gauge = GaugeBuilder.create().skinType(Gauge.SkinType.SPACE_X).maxValue(500)
-                .barColor(Color.rgb(46, 68, 140))
-                .threshold(340)
-                .thresholdColor(Color.rgb(224, 55, 47))
-                .barBackgroundColor(Color.rgb(39, 52, 81))
-                .prefSize(428,293)
-                .animated(true)
-                .animationDuration(1000)
-                .build();
+        emailMapper = null;
+        emailMapper = new LinkedHashMap<>();
+        int tw;
 
-        dashBoardGaugePane.getChildren().add(gauge);
-        dashBoardGaugePane.getChildren().get(dashBoardGaugePane.getChildren().size()-1).setLayoutX(168);
-        dashBoardGaugePane.getChildren().get(dashBoardGaugePane.getChildren().size()-1).setLayoutY(65);
-
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    Thread.sleep(1500);
-                    gauge.setValue(420);
-                }catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        }).start();
+        idSelectedEmailList = null;
+        emailListObservableList = null;
+        emailList.getItems().clear();
+        chooseMailComboBox.getItems().clear();
+        emailListObservableList = FXCollections.observableArrayList();
+        idSelectedEmailList = FXCollections.observableArrayList();
 
 
+        Mail.setCellValueFactory(new PropertyValueFactory<EmailList, String>("idUserMailUser"));
+        Supply.setCellValueFactory(new PropertyValueFactory<EmailList, String>("supply"));
+        mailTemplate.setCellValueFactory(new PropertyValueFactory<EmailList, String>("comboBox"));
 
-        setGauge1 = GaugeBuilder.create().skinType(Gauge.SkinType.SLIM)
-                .prefSize(285,246)
-                .barColor(Color.rgb(57,47,47))
-                .valueColor(Color.rgb(57,47,47))
-                .barBackgroundColor(Color.rgb(25,120,168))
-                .animated(true)
-                .animationDuration(600)
-                .build();
+        Iterator<Integer> itr = personalDetailsMapper.keySet().iterator();
+        while (itr.hasNext()){
+            tw = itr.next();
+            emailMapper.put(tw, personalDetailsMapper.get(tw).get(2));
+        }
 
-        setPaneGuage1.getChildren().add(setGauge1);
-        setPaneGuage1.getChildren().get(setPaneGuage1.getChildren().size()-1).setLayoutX(25);
-        setPaneGuage1.getChildren().get(setPaneGuage1.getChildren().size()-1).setLayoutY(116);
+        for (Node id : xBoxMessageFormSet.getChildren()){
+            if (id.getId() != null) idSelectedEmailList.add(id.getId());
+        }
 
-        setGauge2 = GaugeBuilder.create().skinType(Gauge.SkinType.SLIM)
-                .prefSize(285,246)
-                .barColor(Color.rgb(57,47,47))
-                .valueColor(Color.rgb(57,47,47))
-                .barBackgroundColor(Color.rgb(224,55,47))
-                .animated(true)
-                .animationDuration(600)
-                .build();
+        set = new LinkedHashMap<>();
+        dateAndOrderNumberList.forEach(e -> {
+            set.put(e.getOrderID(), e.getSupply());
+        });
 
-        setPaneGuage2.getChildren().add(setGauge2);
-        setPaneGuage2.getChildren().get(setPaneGuage2.getChildren().size()-1).setLayoutX(25);
-        setPaneGuage2.getChildren().get(setPaneGuage2.getChildren().size()-1).setLayoutY(116);
+        set.forEach((e1,e2)-> System.out.println(e1+"   "+e2));
 
-        setGauge3 = GaugeBuilder.create().skinType(Gauge.SkinType.SLIM)
-                .prefSize(285,246)
-                .barColor(Color.rgb(57,47,47))
-                .valueColor(Color.rgb(57,47,47))
-                .barBackgroundColor(Color.rgb(20,181,18))
-                .animated(true)
-                .animationDuration(600)
-                .build();
+        emailMapper.forEach((e,f) -> {
+            emailListObservableList.add(new EmailList(e+"/"+f, set.get(e)));
+        });
 
-        setPaneGuage3.getChildren().add(setGauge3);
-        setPaneGuage3.getChildren().get(setPaneGuage3.getChildren().size()-1).setLayoutX(25);
-        setPaneGuage3.getChildren().get(setPaneGuage3.getChildren().size()-1).setLayoutY(116);
+        chooseMailComboBox.getItems().add("brak");
+        chooseMailComboBox.getItems().addAll(idSelectedEmailList);
+        chooseMailComboBox.getSelectionModel().selectFirst();
+
+        emailListObservableList.forEach(e -> {e.getComboBox().getItems().addAll(idSelectedEmailList); e.getComboBox().getSelectionModel().selectFirst(); });
+        emailList.getItems().addAll(emailListObservableList);
+    }
 
 
+    public void changeDate(){
+        sendProductDataPicker.setValue(sendProductDataPicker.getValue());
+        setMessage();
+    }
 
-        CategoryAxis xAxis = new CategoryAxis();
-        NumberAxis yAxis = new NumberAxis();
+    public void setMessage(){
 
-        LineChart<String, Number> lineChart = new LineChart<>(xAxis, yAxis);
-
-        XYChart.Series series = new XYChart.Series();
-        series.getData().add(new XYChart.Data("Jan",23));
-        series.getData().add(new XYChart.Data("Feb",3));
-        series.getData().add(new XYChart.Data("Mar",14));
-        series.getData().add(new XYChart.Data("Apr",30));
-        series.getData().add(new XYChart.Data("May",25));
-        series.getData().add(new XYChart.Data("Jun",29));
-        series.getData().add(new XYChart.Data("Jul",23));
-        series.getData().add(new XYChart.Data("Aug",20));
-        series.getData().add(new XYChart.Data("Sep",27));
-        series.getData().add(new XYChart.Data("Oct",34));
-        series.getData().add(new XYChart.Data("Nov",19));
-        series.getData().add(new XYChart.Data("Dec",24));
-        lineChart.getData().add(series);
-        lineChart.setLegendVisible(false);
-
-        lineChart.setPrefSize(799, 307);
-        dashBoardLineChartPane.getChildren().add(lineChart);
-        dashBoardLineChartPane.getChildren().get(dashBoardLineChartPane.getChildren().size()-1).setLayoutX(0);
-        dashBoardLineChartPane.getChildren().get(dashBoardLineChartPane.getChildren().size()-1).setLayoutY(86);
-
-
-
-        // x, y = 0 , 86
-
-        // w, h = 799, 307
-
-        //serwer.getAllUsers();
-        dashBoardInformation.toFront();
-        topLabel.setText(dashBoard.getText());
+        sb = null;
+        System.out.println(emailList.getSelectionModel().getSelectedItem().getComboBox().getSelectionModel().getSelectedItem());
+        file = new File(this.getClass().getResource("/style.css").getPath().substring(0, this.getClass().getResource("/style.css").getPath().lastIndexOf(
+                "/") + 1) + "/email_version"+ emailList.getSelectionModel().getSelectedItem().getComboBox().getSelectionModel().getSelectedItem().toString().substring(5)+
+                ".txt");
         try {
-            loadUsers(); //add users to user tab to userTableView
+            scannerRead = new Scanner(new BufferedReader(new FileReader(file)));
+            sb = new StringBuilder();
+            while(scannerRead.hasNext()) {
+                sb.append(scannerRead.nextLine());
+                sb.append("\n\n");
+            }
+            System.out.println(sb.toString());
+            sendProductsMessageLabel.setAlignment(Pos.TOP_LEFT);
+            sendProductsMessageLabel.setFont(Font.font("Arial",FontWeight.NORMAL, 20));
+            sendProductsMessageLabel.setPadding(new Insets(0,0,0,20));
+            if (sb.toString().contains("*") || sb.toString().contains("-") || sb.toString().contains("/"))
+                sb.replace(sb.indexOf("*"), sb.indexOf("*")+1, ""+emailList.getSelectionModel().getSelectedItem().getIdUserMailUser().substring(0,emailList.getSelectionModel().getSelectedItem().getIdUserMailUser().indexOf("/")));
+
+            List<String> list = personalDetailsMapper.get(Integer.parseInt(emailList.getSelectionModel().getSelectedItem().getIdUserMailUser().substring(0,emailList.getSelectionModel().getSelectedItem().getIdUserMailUser().indexOf("/"))));
+            sb.append("Dzień wysłania towaru: "+sendProductDataPicker.getValue()+", sposob dostawy: "+emailList.getSelectionModel().getSelectedItem().getSupply()+",\n"+
+                    "na adres: "+list.get(3)+" "+list.get(4)+" "+list.get(5)+" "+list.get(6));
+            sendProductsMessageLabel.setText(sb.toString());
+            scannerRead.close();
+            scannerRead = null;
+            //sb = null;
+
         }catch (Exception e){
-            globalAlert = new Alert(Alert.AlertType.CONFIRMATION);
+            globalAlert = new Alert(Alert.AlertType.ERROR);
             globalAlert.dialogPaneProperty().get();
             globalAlert.setTitle("Błąd");
-            globalAlert.setHeaderText("Nie można nawiązać połączenia z bazą danych");
+            globalAlert.setHeaderText("Nie można odczytać wiadomości");
             globalAlert.setResizable(false);
-            if (globalAlert.getResult() == ButtonType.OK){
-                System.exit(0);
-            }
+            globalAlert.show();
+            globalAlert = null;
         }
-        addProducts(); //add products to warehouse tab to availability to productsTableView
-        addManageProducts(); ////add products to warehouse tab to manage products to manageproductsTableView
-        initOrderTable(); //initialize orderTableView
-
-        Label title = new Label();
-        title.setGraphic(new Label("Sprzedawca  "));
-        title.setPadding(new Insets(-10, 10, 0, 20));
-        title.getGraphic().setStyle("-fx-background-color: #fff");
-
-        Label idProduct = new Label();
-        idProduct.setGraphic(new Label("ID produktu  "));
-        idProduct.setPadding(new Insets(-10, 10, 0, 20));
-        idProduct.getGraphic().setStyle("-fx-background-color: #fff");
-
-        manegeProductIDPane.getChildren().add(idProduct);
-        manegeProductIDPane.setStyle("-fx-border-style: solid inside;");
-
-        Label nameProduct = new Label();
-        nameProduct.setGraphic(new Label("Nazwa produktu  "));
-        nameProduct.setPadding(new Insets(-10, 10, 0, 20));
-        nameProduct.getGraphic().setStyle("-fx-background-color: #fff");
-
-        manegeProductNamePane.getChildren().add(nameProduct);
-        manegeProductNamePane.setStyle("-fx-border-style: solid inside;");
-
-        Label priceProduct = new Label();
-        priceProduct.setGraphic(new Label("Cena produktu  "));
-        priceProduct.setPadding(new Insets(-10, 10, 0, 20));
-        priceProduct.getGraphic().setStyle("-fx-background-color: #fff");
-
-        manegeProductPricePane.getChildren().add(priceProduct);
-        manegeProductPricePane.setStyle("-fx-border-style: solid inside;");
-
-        manageNewID.setEditable(false);
-        manageNewName.setEditable(false);
-        manageNewPrice.setEditable(false);
-
-        manageProductsTableView.setOnMouseClicked(event -> {
-
-            products = manageProductsTableView.getSelectionModel().getSelectedItem();
-            manegeProductIDLabel.setText(""+products.getId());
-            manegeProductNameLabel.setText(products.getProductName());
-            manegeProductPriceLabel.setText(""+products.getPrice());
-
-            idOldProduct.setText(""+products.getId());
-            nameOldProduct.setText(products.getProductName());
-            priceOldProduct.setText(""+products.getPrice());
-
-            manageNewID.setEditable(true);
-            manageNewName.setEditable(true);
-            manageNewPrice.setEditable(true);
-        });
-
-        OldNewProductData oldNewProductData = new OldNewProductData();
-
-        manageNewID.textProperty().bindBidirectional(oldNewProductData.newIDProperty());
-        idNewProduct.textProperty().bind(oldNewProductData.newIDProperty());
-        manageNewName.textProperty().bindBidirectional(oldNewProductData.newNameProperty());
-        nameNewProduct.textProperty().bind(oldNewProductData.newNameProperty());
-        manageNewPrice.textProperty().bindBidirectional(oldNewProductData.newPriceProperty());
-        priceNewProduct.textProperty().bind(oldNewProductData.newPriceProperty());
-
-        innerGridPaneTiltedPanel.getChildren().add(title);
-        innerGridPaneTiltedPanel.setStyle("-fx-border-style: solid inside;");
-
-
-        usersTableView.setOnMouseClicked(event -> {
-
-            if (subUsersContentPane.getChildren().get(subUsersContentPane.getChildren().size()-1) instanceof LineChart || subUsersContentPane.getChildren().get(subUsersContentPane.getChildren().size()-1) instanceof Label)
-            subUsersContentPane.getChildren().remove(subUsersContentPane.getChildren().size()-1);
-
-            userLineChart = null;
-            series2 = null;
-            idUserMonthsAmount = null;
-            yAxis2 = null;
-            xAxis2 = null;
-            maxYChart = 0;
-
-
-            user = usersTableView.getSelectionModel().getSelectedItem();
-            userLabelID.setText(""+user.getId());
-            userLabelUsername.setText(""+user.getUserName());
-            userLabelEmail.setText(""+user.getEmail());
-            user = null;
-
-            idUserMonthsAmount = new HashMap<>();
-            keys = idUserMonthsAmount.keySet();
-
-
-
-             //System.out.println(idUserMonthsAmount.keySet().contains(dateAndOrderNumberList.get(usersTableView.getSelectionModel().getSelectedIndex()).getOrderID()));
-
-                 for (UserOrderDate us : dateAndOrderNumberList) {
-
-                     if (keys.isEmpty() || !keys.contains(us.getOrderID()))
-                         idUserMonthsAmount.put(us.getOrderID(), new HashMap<>());
-
-                     singleDate = us.getLocalDate().toString();
-                     splitedMonths = singleDate.split("-");
-                     singleDate = splitedMonths[1];
-                     if (singleDate.indexOf("0") == 0)
-                         singleDate.replace('0', '\0');
-
-                     for (Integer m : digitMonths) {
-                         if (m == Integer.parseInt(singleDate)) {
-                             if (idUserMonthsAmount.get(us.getOrderID()).keySet().isEmpty() || !idUserMonthsAmount.get(us.getOrderID()).keySet().contains(months[m - 1]))
-                                 idUserMonthsAmount.get(us.getOrderID()).put(months[m - 1], us.getIlosc());
-                             else {
-                                 amountOfItems = idUserMonthsAmount.get(us.getOrderID()).get(months[m - 1]);
-                                 amountOfItems += us.getIlosc();
-                                 idUserMonthsAmount.get(us.getOrderID()).put(months[m - 1], amountOfItems);
-                             }
-                         }
-                     }
-
-                 }
-
-                 //dziala
-//            for (Map.Entry<Integer, Map<String, Integer>> map : idUserMonthsAmount.entrySet()){
-//                System.out.println(map.getKey()+"------------------------");
-//                for (Map.Entry<String, Integer> subMap : map.getValue().entrySet()){
-//                        System.out.println(subMap.getKey()+ "   "+subMap.getValue());
-//                }
-//            }
-
-            //System.out.println(idUserMonthsAmount.get(usersTableView.getSelectionModel().getSelectedItem().getId()));
-
-            if (idUserMonthsAmount.get(usersTableView.getSelectionModel().getSelectedItem().getId()) != null) {
-
-                 series2 = new XYChart.Series<>();
-                 pastOrders = new LinkedHashMap<>();
-
-                 for (Map.Entry<Integer, Map<String, Integer>> map : idUserMonthsAmount.entrySet()) {
-                     if (usersTableView.getSelectionModel().getSelectedItem().getId() == map.getKey()) {
-                         for (Map.Entry<String, Integer> subMap : map.getValue().entrySet()) {
-                             for (int i = 0; i < 12; i++) {
-                                 if (subMap.getKey().equals(months[i])) {
-
-                                     if (pastOrders.containsKey(subMap.getKey())) {
-
-                                         if (pastOrders.get(subMap.getKey()) < subMap.getValue()) {
-
-                                             pastOrders.put(subMap.getKey(), subMap.getValue());
-                                         }
-                                     } else {
-                                         pastOrders.put(subMap.getKey(), subMap.getValue());
-                                     }
-                                 } else {
-                                     if (!pastOrders.containsKey(months[i])) {
-                                         pastOrders.put(months[i], 0);
-                                     }
-                                 }
-                             }
-                         }
-                     }
-                 }
-
-
-                 for (Map.Entry kl : pastOrders.entrySet()) {
-                     series2.getData().add(new XYChart.Data<>(kl.getKey(), kl.getValue()));
-                 }
-
-                 ((ObservableList<XYChart.Data>) series2.getData()).forEach(e -> {
-                     if ((int) e.getYValue() < maxYChart) ;
-                     else maxYChart = (int) e.getYValue();
-                 });
-
-                 xAxis2 = new CategoryAxis();
-                 yAxis2 = new NumberAxis(0, maxYChart + 1, 1);
-                 userLineChart = new LineChart<>(xAxis2, yAxis2);
-
-                 userLineChart.getData().addAll(series2);
-                 userLineChart.setLegendVisible(false);
-                 userLineChart.setPrefSize(812, 239);
-                 subUsersContentPane.getChildren().add(userLineChart);
-                 subUsersContentPane.getChildren().get(subUsersContentPane.getChildren().size() - 1).setLayoutX(805);
-                 subUsersContentPane.getChildren().get(subUsersContentPane.getChildren().size() - 1).setLayoutY(610);
-
-             }else{
-
-                if (subUsersContentPane.getChildren().get(subUsersContentPane.getChildren().size()-1) instanceof LineChart || subUsersContentPane.getChildren().get(subUsersContentPane.getChildren().size()-1) instanceof Label)
-                    subUsersContentPane.getChildren().remove(subUsersContentPane.getChildren().size()-1);
-
-                subUsersContentPane.getChildren().add(new Label("Brak danych"));
-                ((Label)subUsersContentPane.getChildren().get(subUsersContentPane.getChildren().size() - 1)).setPrefSize(812,239);
-                ((Label)subUsersContentPane.getChildren().get(subUsersContentPane.getChildren().size() - 1)).setAlignment(Pos.CENTER);
-                ((Label)subUsersContentPane.getChildren().get(subUsersContentPane.getChildren().size() - 1)).setFont(Font.font("Arial", FontWeight.BOLD,45));
-                subUsersContentPane.getChildren().get(subUsersContentPane.getChildren().size() - 1).setLayoutX(805);
-                subUsersContentPane.getChildren().get(subUsersContentPane.getChildren().size() - 1).setLayoutY(610);
-            }
-
-            singleDate = null;
-            splitedMonths = null;
-
-        });
-
-
-
-        productsDetailsMapper = new HashMap<>();
-        personalDetailsMapper = new HashMap<>();
-        panes.add(vbox2);
-        panes.add(vbox3);
-
-        userShoppingPeriodMap = new HashMap<>();
-        amountOfBoughtItems = new HashMap<>();
-
-        orderDetailListView.setOnMouseClicked(event -> setFormula());
-
-
-        //find users //
-        //*
-        // *
-
-        User u = new User();
-        usersSearchTextField.textProperty().bindBidirectional(u.searchUsersProperty());
-
-        ObservableList<User> typedUsersTableViewCollections = FXCollections.observableArrayList();
-        Comparator<User> userComparator = Comparator.comparing(User::getId);
-        usersSearchTextField.setOnKeyTyped(event -> {
-
-            usersList.forEach(users -> {
-
-                if (users.getUserName().contains(usersSearchTextField.getText())) {
-                    if (!typedUsersTableViewCollections.contains(users))
-                        typedUsersTableViewCollections.add(users);
-                }
-                else typedUsersTableViewCollections.remove(users);
-            });
-
-
-            FXCollections.sort(typedUsersTableViewCollections, userComparator);
-            usersTableView.setItems(typedUsersTableViewCollections);
-        });
-        //*
-        // *
-        //find users END //
-
-        ObservableList<Products> typedProductsTableViewCollections = FXCollections.observableArrayList();
-        Comparator<Products> productsComparator = Comparator.comparing(Products::getId);
-
-        availabilityTextField.setOnKeyTyped(event -> {
-
-            productsList.forEach(pro -> {
-
-                if (pro.getProductName().contains(availabilityTextField.getText().toUpperCase())) {
-                    if (!typedProductsTableViewCollections.contains(pro))
-                        typedProductsTableViewCollections.add(pro);
-                }
-                else typedProductsTableViewCollections.remove(pro);
-            });
-
-
-            FXCollections.sort(typedProductsTableViewCollections, productsComparator);
-            productsTableView.setItems(typedProductsTableViewCollections);
-
-        });
-
     }
-    // procedure set beginning settings of software END
 
-    public void submitEditProductData(){
+    public void setDisableSetEnable(){
+        System.out.println(chooseMailComboBox.getSelectionModel().getSelectedItem());
+        if (!chooseMailComboBox.getSelectionModel().getSelectedItem().equals("brak")) {
+            emailList.getItems().forEach(e -> e.getComboBox().getSelectionModel().select(chooseMailComboBox.getSelectionModel().getSelectedItem()));
+            emailListObservableList.forEach(e -> e.getComboBox().setDisable(true));
+        }else{
+            emailListObservableList.forEach(e -> e.getComboBox().setDisable(false));
+        }
+    }
+
+
+
+    Map<String, String> emailContentFinder;
+    String[] header;
+    String content;
+    public void sendMessages(){
+
+        ObservableList<EmailList> ol = emailList.getItems();
+
+        for (EmailList l : ol){
+            emailList.getSelectionModel().select(l);
+            setMessage();
+            emailContentFinder.put(emailList.getSelectionModel().getSelectedItem().getIdUserMailUser().substring(
+                    emailList.getSelectionModel().getSelectedItem().getIdUserMailUser().indexOf("/")+1), sb.toString());
+        }
 
         try {
-            if (manageNewName.getText().trim().length() <= 0) throw new NumberFormatException();
-            int k = Integer.parseInt(manageNewID.getText());
-            System.out.println(k);
-            int l = Integer.parseInt(manageNewPrice.getText());
-            System.out.println(l);
+            emailContentFinder.forEach((e, e2) -> {
 
+                header = emailContentFinder.get(e).split("\n\n");
+                content = emailContentFinder.get(e).replaceFirst(header[0], "");
 
-            productsList.forEach(event ->{
-                if(event.getId() == k && manageProductsTableView.getSelectionModel().getSelectedItem().getId() != k) throw new IllegalAccessError();
-                if (event.getProductName().equals(manageNewName.getText()) && !manageProductsTableView.getSelectionModel().getSelectedItem().getProductName().equals(manageNewName.getText())) throw new IllegalAccessError();
-
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        sendEmail.sendEmail(e, header[0], content);
+                    }
+                }).start();
+                try {
+                    Thread.sleep(1000);
+                }catch (Exception e9){
+                    e9.printStackTrace();
+                }
             });
 
-            server.editProduct(k, manageNewName.getText(), l, manageProductsTableView.getSelectionModel().getSelectedItem().getId());
-
-
-            globalAlert = new Alert(Alert.AlertType.INFORMATION);
-            globalAlert.dialogPaneProperty().get();
-            globalAlert.setTitle("Potwierdzenie");
-            globalAlert.setHeaderText("Dane edytowano pomyślnie");
-            globalAlert.setResizable(false);
-            globalAlert.show();
-            globalAlert = null;
-
-            manageProductsTableView.getItems().removeAll(productsList);
-            manageProductsTableView.getItems().addAll(server.getAllProducts());
-
-        }catch (NumberFormatException nfe){
+        }catch (Exception e){
             globalAlert = new Alert(Alert.AlertType.ERROR);
             globalAlert.dialogPaneProperty().get();
-            globalAlert.setTitle("Błąd danych");
-            globalAlert.setHeaderText("Podano niewłaściwe dane");
-            globalAlert.setResizable(false);
-            globalAlert.show();
-            globalAlert = null;
-        }catch (IllegalAccessError iae){
-            globalAlert = new Alert(Alert.AlertType.ERROR);
-            globalAlert.dialogPaneProperty().get();
-            globalAlert.setTitle("Błąd danych");
-            globalAlert.setHeaderText("Produkt o podanym danych już istnieje");
+            globalAlert.setTitle("Błąd");
+            globalAlert.setHeaderText("Nie można wysłać wiadomości");
             globalAlert.setResizable(false);
             globalAlert.show();
             globalAlert = null;
         }
 
+        Label lab = new Label("\t Wysłano maile do użytkowników");
+        lab.setPrefSize(dataSetActivityScrollPane.getPrefWidth()-10,50);
+        lab.setPadding(new Insets(0,0,0,20));
+        Rectangle rec = new Rectangle();
+        rec.setHeight(16); rec.setWidth(16); rec.setFill(Paint.valueOf("blue"));
+        lab.setGraphic(rec);
+
+        dataSetActivityInnerVBox.getChildren().add(lab);
+        dataSetActivityInnerVBox.getChildren().add(new Separator());
+        dataSetActivityScrollPane.setContent(null);
+        dataSetActivityScrollPane.setContent(dataSetActivityInnerVBox);
 
     }
 
+    /*
+     *
+     *  SEND MAILS TO CUSTOMERS CATEGORY FUNCTIONS END
+     *
+     *
+     */
 
-    public void initOrderTable()
-    {
 
-        OrderNumber.setCellValueFactory(new PropertyValueFactory<Orders, Integer>("orderNumber"));
-        ProductID.setCellValueFactory(new PropertyValueFactory<Orders, Integer>("productID"));
-        ProductName.setCellValueFactory(new PropertyValueFactory<Orders, String>("productName"));
-        Amount.setCellValueFactory(new PropertyValueFactory<Orders, Integer>("amount"));
-        Price.setCellValueFactory(new PropertyValueFactory<Orders, Integer>("price"));
-        Name.setCellValueFactory(new PropertyValueFactory<Orders, String>("name"));
-        Surname.setCellValueFactory(new PropertyValueFactory<Orders, String>("surname"));
-        OrderEmail.setCellValueFactory(new PropertyValueFactory<Orders, String>("email"));
-        Town.setCellValueFactory(new PropertyValueFactory<Orders, String>("town"));
-        TownCode.setCellValueFactory(new PropertyValueFactory<Orders, String>("townCode"));
-        Street.setCellValueFactory(new PropertyValueFactory<Orders, String>("street"));
-        HouseNumber.setCellValueFactory(new PropertyValueFactory<Orders, String>("houseNumber"));
-        //State.setCellValueFactory(new PropertyValueFactory<Orders, Integer>("state"));
-        orderDate.setCellValueFactory(new PropertyValueFactory<Orders, Date>("date"));
-        Action.setCellValueFactory(new PropertyValueFactory<Orders, String>("checkBox"));
-
-        ordersTableView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-
-        ordersTableView.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            public void handle(MouseEvent event) {
-                if (event.getClickCount() == 2) {
-                    System.out.println(event.getClickCount());
-                    Orders ord = (Orders) ordersTableView.getSelectionModel().getSelectedItem();
-                    System.out.println(ord.getProductName());
-                    ordersTableView.getItems().remove(ord);
-                }
-            }
-        });
-
-    }
+    /*
+     *
+     *  CREATE DATA SET CATEGORY FUNCTIONS
+     *
+     *
+     */
 
     @FXML
     private Label dataSetMainLabel, gauge1Label, gauge2Label, gauge3Label;
+    @FXML
+    ScrollPane dataSetActivityScrollPane;
+    VBox dataSetActivityInnerVBox = new VBox();;
 
     private int amountOfRegisteredUsers = 0;
     private LineChart<String, Number> dataSetLineChart;
@@ -1381,12 +1696,19 @@ public class Controller{
 
 
     public void setGuagesToZero(){
+        gauge.setValue(0);
         setGauge1.setValue(0);
         setGauge2.setValue(0);
         setGauge3.setValue(0);
     }
 
     public void dataSetRegisterUsersFunction(){
+
+        if (dataSetGaugesHBox.getChildren().get(0).getId() == null){
+               dataSetGaugesHBox.getChildren().remove(0);
+               dataSetGaugesHBox.getChildren().addAll(nodes);
+        }
+
 
 
         if (dataSetLock) {
@@ -1417,7 +1739,7 @@ public class Controller{
         maxYChartDataSet = 0;
         averageAmountOfRegisteredUsers = 0;
 
-        if (dataSetContentPane.getChildren().get(dataSetContentPane.getChildren().size()-1) instanceof LineChart || dataSetContentPane.getChildren().get(dataSetContentPane.getChildren().size()-1) instanceof Label)
+        if (dataSetContentPane.getChildren().get(dataSetContentPane.getChildren().size()-1) instanceof LineChart || dataSetContentPane.getChildren().get(dataSetContentPane.getChildren().size()-1) instanceof PieChart)
             dataSetContentPane.getChildren().remove(dataSetContentPane.getChildren().size()-1);
 
         averageAmountOfRegisteredUsers = 0;
@@ -1468,7 +1790,6 @@ public class Controller{
         allRegisteredUsers.forEach((ev, tw) ->{
             if (ev.toLowerCase().equals(LocalDate.now().getMonth().toString().toLowerCase().substring(0, 3))) lastRegistered = tw;
         });
-        System.out.println(lastRegistered+"   "+LocalDate.now().getMonth().toString().toLowerCase()+"  "+averageAmountOfRegisteredUsers);  //wypisuje aktualny miesiac
 
         setGauge1.setMaxValue(maxYChartDataSet+1);
         setGauge1.setValue(lastRegistered);
@@ -1484,6 +1805,11 @@ public class Controller{
     public void dataSetAverageSellmentFunction(){
 
         setGuagesToZero();
+
+        if (dataSetGaugesHBox.getChildren().get(0).getId() == null){
+            dataSetGaugesHBox.getChildren().remove(0);
+            dataSetGaugesHBox.getChildren().addAll(nodes);
+        }
 
         try {
             Thread.sleep(600);
@@ -1502,11 +1828,12 @@ public class Controller{
 
         dataSetSeries = null;
 
-        if (dataSetContentPane.getChildren().get(dataSetContentPane.getChildren().size()-1) instanceof LineChart || dataSetContentPane.getChildren().get(dataSetContentPane.getChildren().size()-1) instanceof Label)
+        if (dataSetContentPane.getChildren().get(dataSetContentPane.getChildren().size()-1) instanceof LineChart || dataSetContentPane.getChildren().get(dataSetContentPane.getChildren().size()-1) instanceof PieChart)
             dataSetContentPane.getChildren().remove(dataSetContentPane.getChildren().size()-1);
 
 
         maxYChartDataSet = 0;
+        averageAmountOfRegisteredUsers = 0;
         dataSetSeries = new XYChart.Series<>();
 
         setSaleLineChart();
@@ -1523,8 +1850,6 @@ public class Controller{
             else maxYChartDataSet = (int) e.getYValue();
             averageAmountOfRegisteredUsers += (int) e.getYValue();
         });
-
-        System.out.println(lastRegistered+"   "+LocalDate.now().getMonth().toString().toLowerCase()+"  "+averageAmountOfRegisteredUsers);
 
         xAxisDataSet = new CategoryAxis();
         yAxis2DataSet = new NumberAxis(0, maxYChartDataSet + 1, 1);
@@ -1603,36 +1928,118 @@ public class Controller{
         keys = null;
     }
 
-
-    Map<Integer, String> emailMapper;
+    private List<String> setMostPopularProductList;
+    private Map<String, Integer> popularProductsMap= new HashMap<>();
+    int am = 0;
     @FXML
-    TableView emailList;
-    @FXML
-    TableColumn Mail, mailTemplate;
-    public void dataSetPopularProductsFunction(){
+    HBox dataSetGaugesHBox;
+    private ObservableList<Node> nodes;
+    private Label mostPopularProductLabelHeader, mostPopularProductLabelContent;
+    private VBox innerVBox;
+    int hyperx = 1;
+    private List<String> mostPopularProductList;
+    public void dataSetPopularProductsFunction() throws Exception{ //dodac kolumne dostaw
 
-        emailMapper = new LinkedHashMap<>();
-        int tw;
+        dataSetMainLabel.setText("Produkty");
+        dataSetMainLabel.setStyle("-fx-background-color:   #14b512");
 
-        Mail.setCellValueFactory(new PropertyValueFactory<EmailList, String>("idUserMailUser"));
-        mailTemplate.setCellValueFactory(new PropertyValueFactory<EmailList, String>("comboBox"));
+        setGuagesToZero();
 
-        Iterator<Integer> itr = personalDetailsMapper.keySet().iterator();
-        while (itr.hasNext()){
-            tw = itr.next();
-            emailMapper.put(tw, personalDetailsMapper.get(tw).get(2));
+        setMostPopularProductList.forEach(e->{
+            if (!popularProductsMap.containsKey(e))
+                popularProductsMap.put(e, 1);
+            else {
+                am = popularProductsMap.get(e);
+                am++;
+                popularProductsMap.put(e, am);
+            }
+
+
+        });
+
+        popularProductsMap.forEach((e,e2)->System.out.println(e+"   "+e2));
+
+        popularProductsMap.forEach((e,e2)->{
+            if (e2 > hyperx){
+                hyperx = e2;
+            }
+        });
+
+        mostPopularProductList = new ArrayList<>();
+
+        for (Map.Entry<String, Integer> map : popularProductsMap.entrySet()){
+            if (map.getValue() == hyperx) mostPopularProductList.add(map.getKey());
         }
 
-        emailMapper.forEach((e,f) ->  emailList.getItems().add(e+"/"+f));
+        dataSetGaugesHBox.getChildren().removeAll(nodes);
 
+        mostPopularProductLabelHeader = new Label();
+        mostPopularProductLabelHeader.setAlignment(Pos.CENTER);
+        mostPopularProductLabelHeader.setPadding(new Insets(40,0,40,0));
+        mostPopularProductLabelHeader.setPrefSize(dataSetGaugesHBox.getPrefWidth(), 80);
+        mostPopularProductLabelHeader.setFont(Font.font("Arial", FontWeight.NORMAL, 26));
+        mostPopularProductLabelHeader.textFillProperty().setValue(Paint.valueOf("#fff"));
+
+        if (mostPopularProductList.size() > 1) mostPopularProductLabelHeader.setText("Najpopularniejsze przedmioty to:");
+        else mostPopularProductLabelHeader.setText("Najpopularniejszy przedmiot to:");
+
+        mostPopularProductLabelContent = new Label();
+        mostPopularProductLabelContent.setAlignment(Pos.CENTER);
+        mostPopularProductLabelContent.setPrefWidth(dataSetGaugesHBox.getPrefWidth());
+        mostPopularProductLabelContent.setFont(Font.font("Arial", FontWeight.NORMAL, 26));
+        mostPopularProductLabelContent.textFillProperty().setValue(Paint.valueOf("#fff"));
+
+        StringBuilder sb = new StringBuilder();
+        for (String str : mostPopularProductList){
+            sb.append(str+"\n\n");
+        }
+
+        mostPopularProductLabelContent.setText(sb.toString());
+
+
+
+        innerVBox = new VBox();
+        innerVBox.setStyle("-fx-background-color: #24cc5c;");
+        innerVBox.getChildren().add(mostPopularProductLabelHeader);
+        innerVBox.getChildren().add(mostPopularProductLabelContent);
+
+
+        dataSetGaugesHBox.getChildren().add(innerVBox);
+
+        ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList();
+
+        popularProductsMap.forEach((e,e2)->{
+            pieChartData.add(new PieChart.Data(e,e2));
+        });
+
+        if (dataSetContentPane.getChildren().get(dataSetContentPane.getChildren().size() - 1) instanceof LineChart || dataSetContentPane.getChildren().get(dataSetContentPane.getChildren().size() - 1) instanceof PieChart)
+            dataSetContentPane.getChildren().remove(dataSetContentPane.getChildren().size() - 1);
+        PieChart chart = new PieChart(pieChartData);
+        chart.setLegendVisible(false);
+        dataSetContentPane.add(chart, 0, 1);
+
+       // pieChartData.clear();
+
+        dateAndOrderNumberList.forEach(ev->System.out.println(ev.getOrderID()+" "+ev.getSupply()+"  "+ev.getLocalDate()));
     }
 
+    /*
+     *
+     *  CREATE DATA SET CATEGORY FUNCTIONS
+     *
+     *
+     */
 
 
-    // hide roll down sub bar lists
+
+
+    /*
+     *
+     *  SOFTWARE BASIC FUNCTIONS -----------------------------------------------------------
+     *
+     *
+     */
     boolean click = true;
-
-
     public void hideLists()
     {
         for (VBox boxes : panes) {
@@ -1671,6 +2078,12 @@ public class Controller{
     // hide roll down sub bar lists  END
 
 
+        /*
+         *
+         *  SWITCHING BETWEEN MENU CATEGORIES
+         *
+         *
+         */
     public ArrayList<Node> getAllNodes(VBox root) {
         ArrayList<Node> nodes = new ArrayList<Node>();
         addAllNodes(root, nodes);
@@ -1689,24 +2102,34 @@ public class Controller{
     }
 
     //ArrayList<Node> m = getAllNodes(menuVBox);
-    public void changeFocusedButtonBackgroundColor(Object object){
+    public void changeFocusedButtonBackgroundColor(Object object) {
 
-        for(Node node : getAllNodes(menuVBox)){
-            if (node == object){ node.getStyleClass().clear(); node.getStyleClass().add("selectedButton"); }
-            else{ node.getStyleClass().clear(); node.getStyleClass().add("subMenuHover"); }
+        for (Node node : getAllNodes(menuVBox)) {
+            if (node == object) {
+                node.getStyleClass().clear();
+                node.getStyleClass().add("selectedButton");
+            } else {
+                node.getStyleClass().clear();
+                node.getStyleClass().add("subMenuHover");
+            }
         }
     }
 
-    //switching between menu bar cards
 
     @FXML
     private void handleAction(MouseEvent event){
 
         changeFocusedButtonBackgroundColor(event.getSource());
-        gauge.setValue(0);
         setGuagesToZero();
-        dataSetLock = false;
+        dataSetLock = false; // set lock at gauges in data set category (first visit does not demand setting gauges in new threads )
 
+
+        /*
+         *
+         *  DELETING MESSAGES FROM MESSAGES TEMPLATES
+         *
+         *
+         */
         if (!deletedButtonsFileList.isEmpty()) {
             for (Iterator<File> it = deletedButtonsFileList.iterator(); it.hasNext(); ) {
                 File next = it.next();
@@ -1716,6 +2139,13 @@ public class Controller{
                 it.remove();
             }
         }
+        /*
+         *
+         *  DELETING MESSAGES FROM MESSAGES END
+         *
+         *
+         */
+
 
         manageNewID.setEditable(false);
         manageNewName.setEditable(false);
@@ -1731,39 +2161,12 @@ public class Controller{
         priceOldProduct.setText("");
         manageProductsTableView.getSelectionModel().clearSelection();
 
-//        dataSetSaleData = null;
-//        dateAndOrderNumberList = null;
-
         if (event.getSource() == orders){
             setOrderHeaderLabel(orders.getText());
             topLabel.textProperty().bind(orderHeaderLabelProperty());
             ordersContentPane.toFront();
             hideLists();
             click = true;
-
-//            UserOrderHibernate userOrderHibernate = new UserOrderHibernate();
-//            userOrderHibernate.setId(1);
-//            userOrderHibernate.setIlosc(6);
-//            EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("org.hibernate.tutorial.jpa");
-//            EntityManager entityManager = entityManagerFactory.createEntityManager();
-//            entityManager.persist(userOrderHibernate);
-//            entityManager.getTransaction().begin();
-//            entityManager.getTransaction().commit();
-//            entityManager.close();
-            //SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
-            //Session session = sessionFactory.getCurrentSession();
-            //session.getTransaction().begin();
-
-            String sql = "select id,ilosc from UserOrderHibernate";
-
-            //Query<UserOrderHibernate> query = session.createQuery(sql);
-
-            List<UserOrderHibernate> list=null;// = query.getResultList();
-
-            //session.getTransaction().commit();
-
-            //for (UserOrderHibernate us : list)
-              //  System.out.println(us);
 
         }
 
@@ -1792,6 +2195,10 @@ public class Controller{
         if (event.getSource() == sentProducts){
             setOrderHeaderLabel(sentProducts.getText());
             topLabel.textProperty().bind(orderHeaderLabelProperty());
+            setSavedTemplates();
+            dateAndOrderNumberList = server.getAllOrdersDate();
+            sendProductsCategory();
+            sendProductsMessageLabel.setText("Wiadomość");
             sentMerchandiseContentPane.toFront();
         }
 
@@ -1800,11 +2207,10 @@ public class Controller{
             topLabel.textProperty().bind(orderHeaderLabelProperty());
             hideLists();
             click = true;
+            dateAndOrderNumberList = server.getAllOrdersDate();
             dataSetContentPane.toFront();
             dataSetRegisterUsersFunction();
             dataSetSaleData = server.getAllOrdersDate();
-            //dataSetAverageSellmentFunction();
-
         }
 
         if (event.getSource() == users){
@@ -1823,12 +2229,23 @@ public class Controller{
             topLabel.textProperty().bind(orderHeaderLabelProperty());
             hideLists();
             click = true;
-            gauge.setValue(420);
+            gauge.setValue(server.setDashBoardGauge());
             dashBoardInformation.toFront();
         }
     }
+    /*
+     *
+     *  SWITCHING BETWEEN MENU CATEGORIES END
+     *
+     *
+     */
 
-    //switching between menu bar cards  END
+    /*
+     *
+     *  SOFTWARE BASIC FUNCTIONS -----------------------------------------------------------
+     *
+     *
+     */
 
 
     // procedure close all program

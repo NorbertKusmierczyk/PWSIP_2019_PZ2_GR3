@@ -11,18 +11,22 @@ import javafx.scene.control.ComboBox;
 
 public class EmailList {
 
-    private StringProperty idUserMailUser;
-    private ComboBox comboBox;
+    private StringProperty idUserMailUser, supply;
+    private ComboBox<String> comboBox;
 
-    ObservableList<String> tw = FXCollections.observableArrayList();
-
-    public EmailList(String idUserMailUser) {
-        tw.add("email1");
+    public EmailList(String idUserMailUser, String supply) {
         this.idUserMailUser = new SimpleStringProperty(idUserMailUser);
-        this.comboBox = new ComboBox(tw);
+        this.supply = new SimpleStringProperty(supply);
+        this.comboBox = new ComboBox();
     }
 
     public String getIdUserMailUser() { return idUserMailUser.get(); }
 
+    public String getSupply(){ return supply.get(); }
+
     public ComboBox getComboBox() { return comboBox; }
+
+//    public String toString(){
+//        return getIdUserMailUser()+"";
+//    }
 }

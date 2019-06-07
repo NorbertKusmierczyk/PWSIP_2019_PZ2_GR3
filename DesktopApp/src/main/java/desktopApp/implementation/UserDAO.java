@@ -22,6 +22,30 @@ public class UserDAO implements IUserDAO {
         return users;
     }
 
+    @Override
+    public int setDashBoardGauge() {
+        int pro = jdbcTemplate.queryForObject("select count(1) from products where amount > 0", Integer.class);
+        return pro;
+    }
+
+    @Override
+    public int countAllUsers() {
+        int users = jdbcTemplate.queryForObject("select count(log) from users", Integer.class);
+        return users;
+    }
+
+    @Override
+    public int countAllProducts() {
+        int products = jdbcTemplate.queryForObject("select count(1) from products", Integer.class);
+        return products;
+    }
+
+    @Override
+    public int countCurrentOrders() {
+        int orders = jdbcTemplate.queryForObject("select count(1) from `orders` where extract(month from `datazamowienia`) = (select extract(month from CURRENT_DATE()));", Integer.class);
+        return orders;
+    }
+
     public List<Orders> getAllOrders(){
         List<Orders> orders = jdbcTemplate.query("select * from `orders` where extract(month from `datazamowienia`) = (select extract(month from CURRENT_DATE()));", new OrdersMapper());
         return orders;
@@ -29,7 +53,7 @@ public class UserDAO implements IUserDAO {
 
     @Override
     public List<UserOrderDate> getAllOrdersDate() {
-        List<UserOrderDate> list = jdbcTemplate.query("select id, dataZamowienia, ilosc from orders", new UserOrderDateMapper());
+        List<UserOrderDate> list = jdbcTemplate.query("select id, dataZamowienia, dostawa, ilosc from orders", new UserOrderDateMapper());
         return list;
     }
 
@@ -54,6 +78,14 @@ public class UserDAO implements IUserDAO {
         });
     }
 
+    private  static class CountMapper implements RowMapper<Integer>{
+        @Override
+        public Integer mapRow(ResultSet resultSet, int i) throws SQLException {
+            int count = resultSet.getInt("id");
+            return count;
+        }
+    }
+
     private static class ProductsMapper implements RowMapper<Products>{
 
         @Override
@@ -75,6 +107,7 @@ public class UserDAO implements IUserDAO {
             UserOrderDate userOrderDate = new UserOrderDate(
                     resultSet.getInt("id"),
                     resultSet.getDate("dataZamowienia"),
+                    resultSet.getString("dostawa"),
                     resultSet.getInt("ilosc")
             );
             return userOrderDate;

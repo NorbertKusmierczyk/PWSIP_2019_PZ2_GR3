@@ -20,6 +20,18 @@ public class Server implements IServer {
     public List<User> getAllUsers() { return userDAO.setAllUsers(); }
 
     @Override
+    public int setDashBoardGauge() { return userDAO.setDashBoardGauge(); }
+
+    @Override
+    public int countAllUsers() { return userDAO.countAllUsers(); }
+
+    @Override
+    public int countAllProducts() { return userDAO.countAllProducts(); }
+
+    @Override
+    public int countCurrentOrders() { return userDAO.countCurrentOrders(); }
+
+    @Override
     public List<Orders> getAllOrders() { return userDAO.getAllOrders(); }
 
     @Override

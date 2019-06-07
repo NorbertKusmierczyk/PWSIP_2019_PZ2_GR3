@@ -48,9 +48,9 @@ public class LoginBarController {
 
        try{
 
-//            String pass = server.findUser(loginField.getText());
-//
-//            if (BCrypt.verifyer().verify(passwordField.getText().getBytes(), pass.getBytes()).verified){
+            String pass = server.findUser(loginField.getText());
+
+            if (BCrypt.verifyer().verify(passwordField.getText().getBytes(), pass.getBytes()).verified){
                 Platform.runLater(new Runnable() {
                     public void run() {
                         Parent root = null;
@@ -75,15 +75,15 @@ public class LoginBarController {
                         }
                     }
                 });
-//            }else {
-//                Alert globalAlert = new Alert(Alert.AlertType.ERROR);
-//                globalAlert.dialogPaneProperty().get();
-//                globalAlert.setTitle("Błąd");
-//                globalAlert.setHeaderText("Podano błędne hasło");
-//                globalAlert.setResizable(false);
-//                globalAlert.show();
-//                globalAlert = null;
-//            }
+            }else {
+                Alert globalAlert = new Alert(Alert.AlertType.ERROR);
+                globalAlert.dialogPaneProperty().get();
+                globalAlert.setTitle("Błąd");
+                globalAlert.setHeaderText("Podano błędne hasło");
+                globalAlert.setResizable(false);
+                globalAlert.show();
+                globalAlert = null;
+            }
         }catch (Exception e){
             Alert globalAlert = new Alert(Alert.AlertType.ERROR);
             globalAlert.dialogPaneProperty().get();

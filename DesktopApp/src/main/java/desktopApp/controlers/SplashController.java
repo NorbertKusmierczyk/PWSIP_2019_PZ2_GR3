@@ -66,7 +66,7 @@ public class SplashController implements Initializable {
 
             try {
 
-                Thread.sleep(1000);
+                Thread.sleep(5000);
 
                 Platform.runLater(new Runnable() {
                     public void run() {
@@ -129,12 +129,12 @@ public class SplashController implements Initializable {
                             splashMainPane.getScene().getWindow().hide();
 
                         }catch (Exception e){
-                            System.out.println(e.getMessage());
+                            e.printStackTrace();
                         }
                     }
                 });
             }catch (Exception ex){
-                System.out.println(ex.getMessage());
+                ex.printStackTrace();
             }
         }
     }

@@ -25,7 +25,7 @@ public class SendEmail {
 
     Properties properties = System.getProperties();
 
-    public void sendEmail(){
+    public void sendEmail(String sendTo, String subject, String mailText){
 
         properties.setProperty("mail.smtp.starttls.enable", "true");
         properties.setProperty("mail.smtp.host", host);
@@ -42,11 +42,11 @@ public class SendEmail {
 
             message.setFrom(new InternetAddress(from));
 
-            message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
+            message.addRecipient(Message.RecipientType.TO, new InternetAddress(sendTo));
 
-            message.setSubject("PreWare.cba.pl - sklep komputerowy");
+            message.setSubject(subject);
 
-            message.setText("Twoje zamówienie nr "+a+" zostało wysłane z magazynu");
+            message.setText(mailText);
 
             Transport transport = session.getTransport("smtp");
             transport.connect(user, password);
