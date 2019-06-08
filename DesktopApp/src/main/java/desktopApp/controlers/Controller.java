@@ -65,9 +65,11 @@ public class Controller{
 
     //kolor tla #558ae0
 
+    @FXML
+    ScrollPane mainPane;
 
     @FXML
-    AnchorPane mainPane, dashBoardInformation, subUsersContentPane, setPaneGuage1, setPaneGuage2, setPaneGuage3, sentMerchandiseContentPane;
+    AnchorPane dashBoardInformation, subUsersContentPane, setPaneGuage1, setPaneGuage2, setPaneGuage3, sentMerchandiseContentPane;
 
     @FXML
     Label topLabel, dashBoardUserCountLabel, dashBoardProductsCountLabel, dashBoardOrdersCountLabel; // tabs tilted label
@@ -2263,7 +2265,7 @@ public class Controller{
     @Autowired
     CloseWindowController closeWindowController;
 
-    public AnchorPane getMainPane(){ return mainPane;}
+    public ScrollPane getMainPane(){ return mainPane;}
 
     public void closeWindow() throws Exception{
         closeWindowController.closeWindow();

@@ -70,14 +70,14 @@
     <session id="-129971035">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="124" />
+          <entry key="project.closed" value="125" />
           <entry key="project.open.time.0" value="1" />
           <entry key="project.open.time.1" value="6" />
           <entry key="project.open.time.10" value="1" />
           <entry key="project.open.time.11" value="1" />
           <entry key="project.open.time.12" value="3" />
           <entry key="project.open.time.13" value="3" />
-          <entry key="project.open.time.14" value="12" />
+          <entry key="project.open.time.14" value="13" />
           <entry key="project.open.time.15" value="13" />
           <entry key="project.open.time.16" value="14" />
           <entry key="project.open.time.17" value="6" />
@@ -103,7 +103,7 @@
           <entry key="project.open.time.51" value="1" />
           <entry key="project.open.time.7" value="1" />
           <entry key="project.open.time.9" value="1" />
-          <entry key="project.opened" value="124" />
+          <entry key="project.opened" value="125" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -112,9 +112,9 @@
           <entry key="bat" value="1" />
           <entry key="class" value="1" />
           <entry key="css" value="19" />
-          <entry key="fxml" value="17" />
+          <entry key="fxml" value="18" />
           <entry key="iml" value="3" />
-          <entry key="java" value="176" />
+          <entry key="java" value="178" />
           <entry key="properties" value="6" />
           <entry key="txt" value="4" />
           <entry key="xml" value="17" />
@@ -125,11 +125,11 @@
           <entry key="CLASS" value="1" />
           <entry key="CSS" value="19" />
           <entry key="IDEA_MODULE" value="3" />
-          <entry key="JAVA" value="176" />
+          <entry key="JAVA" value="178" />
           <entry key="Manifest" value="7" />
           <entry key="PLAIN_TEXT" value="5" />
           <entry key="Properties" value="6" />
-          <entry key="XML" value="34" />
+          <entry key="XML" value="35" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
@@ -137,8 +137,8 @@
           <entry key="MF" value="56" />
           <entry key="css" value="1259" />
           <entry key="dummy" value="26" />
-          <entry key="fxml" value="508" />
-          <entry key="java" value="58956" />
+          <entry key="fxml" value="524" />
+          <entry key="java" value="59006" />
           <entry key="properties" value="167" />
           <entry key="txt" value="2" />
           <entry key="xml" value="372" />
@@ -147,11 +147,11 @@
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="CSS" value="1259" />
-          <entry key="JAVA" value="58956" />
+          <entry key="JAVA" value="59006" />
           <entry key="Manifest" value="56" />
           <entry key="PLAIN_TEXT" value="28" />
           <entry key="Properties" value="167" />
-          <entry key="XML" value="880" />
+          <entry key="XML" value="896" />
         </counts>
       </usages-collector>
     </session>
@@ -164,8 +164,27 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/desktopApp/controlers/Controller.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="108">
-              <caret line="768" column="8" selection-start-line="768" selection-start-column="8" selection-end-line="768" selection-end-column="8" />
+            <state relative-caret-position="-1106">
+              <caret line="68" column="15" selection-start-line="68" selection-start-column="15" selection-end-line="68" selection-end-column="15" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/sample.fxml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="119">
+              <caret line="30" selection-start-line="30" selection-end-line="30" />
+            </state>
+          </provider>
+          <provider editor-type-id="JavaFX-Scene-Builder" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/desktopApp/Main.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="221">
+              <caret line="78" column="55" lean-forward="true" selection-start-line="78" selection-start-column="55" selection-end-line="78" selection-end-column="55" />
             </state>
           </provider>
         </entry>
@@ -173,17 +192,26 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/desktopApp/controlers/SplashController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="140">
+            <state relative-caret-position="476">
               <caret line="68" column="30" selection-start-line="68" selection-start-column="30" selection-end-line="68" selection-end-column="30" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/desktopApp/controlers/LoginBarController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="118">
-              <caret line="68" column="50" lean-forward="true" selection-start-line="68" selection-start-column="50" selection-end-line="68" selection-end-column="50" />
+            <state relative-caret-position="-1309">
+              <caret line="4" column="45" selection-start-line="4" selection-start-column="45" selection-end-line="4" selection-end-column="45" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/desktopApp/controlers/CloseWindowController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="663">
+              <caret line="51" lean-forward="true" selection-start-line="51" selection-end-line="51" />
             </state>
           </provider>
         </entry>
@@ -200,9 +228,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>ol</find>
-      <find>Supp</find>
-      <find>dataSetM</find>
       <find>dateAndOrderNumberList</find>
       <find>sb</find>
       <find>Cursor</find>
@@ -230,6 +255,9 @@
       <find>deleteSele</find>
       <find>this.getClass().getResource(&quot;/style.css&quot;).getPath()</find>
       <find>setSavedT</find>
+      <find>ScrollPane</find>
+      <find>mainPane</find>
+      <find>main</find>
     </findStrings>
     <dirStrings>
       <dir>C:\Users\groun\.m2\repository\com\jfoenix\jfoenix\8.0.7\jfoenix-8.0.7.jar</dir>
@@ -280,7 +308,6 @@
         <option value="$PROJECT_DIR$/src/main/java/desktopApp/api/IUserOrderDate.java" />
         <option value="$PROJECT_DIR$/src/main/java/desktopApp/implementation/UserOrderDate.java" />
         <option value="$PROJECT_DIR$/src/main/java/desktopApp/implementation/EmailList.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/sample.fxml" />
         <option value="$PROJECT_DIR$/src/main/java/desktopApp/implementation/UserDAO.java" />
         <option value="$PROJECT_DIR$/src/main/java/desktopApp/implementation/Server.java" />
         <option value="$PROJECT_DIR$/src/main/java/desktopApp/api/IServer.java" />
@@ -289,11 +316,12 @@
         <option value="$PROJECT_DIR$/src/main/resources/META-INF/MANIFEST.MF" />
         <option value="$PROJECT_DIR$/src/connection/connection.properties" />
         <option value="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" />
-        <option value="$PROJECT_DIR$/src/main/java/desktopApp/Main.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/desktopApp/controlers/Controller.java" />
-        <option value="$PROJECT_DIR$/src/main/java/desktopApp/controlers/SplashController.java" />
         <option value="$PROJECT_DIR$/src/main/java/desktopApp/controlers/LoginBarController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/desktopApp/Main.java" />
+        <option value="$PROJECT_DIR$/src/main/java/desktopApp/controlers/Controller.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/sample.fxml" />
+        <option value="$PROJECT_DIR$/src/main/java/desktopApp/controlers/SplashController.java" />
       </list>
     </option>
   </component>
@@ -322,8 +350,8 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
-    <option name="x" value="46" />
-    <option name="y" value="11" />
+    <option name="x" value="2" />
+    <option name="y" value="21" />
     <option name="width" value="1840" />
     <option name="height" value="970" />
   </component>
@@ -335,6 +363,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -377,12 +407,17 @@
               <item name="desktopApp" type="462c0819:PsiDirectoryNode" />
               <item name="controlers" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="ElectraCodeSystem" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ElectraCodeSystem" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -528,9 +563,9 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="37" y="9" width="1472" height="776" extended-state="0" />
+    <frame x="2" y="17" width="1472" height="776" extended-state="0" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6703755" weight="0.20538244" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.20538244" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Favorites" order="2" />
       <window_info id="Designer" order="3" />
@@ -718,13 +753,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/desktopApp/controlers/CloseWindowController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="36" selection-start-line="36" selection-end-line="36" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/desktopApp/api/IOrders.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
@@ -809,14 +837,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/sample.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="13770">
-          <caret line="810" column="40" selection-start-line="810" selection-start-column="40" selection-end-line="810" selection-end-column="40" />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/out/artifacts/DesktopApp_jar/run.bat" />
     <entry file="file://$PROJECT_DIR$/target/classes/META-INF/MANIFEST.MF" />
     <entry file="file://$PROJECT_DIR$/src/main/java/META-INF/MANIFEST.MF" />
@@ -861,13 +881,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/desktopApp/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="35" column="8" selection-start-line="35" selection-start-column="8" selection-end-line="35" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/desktopApp/MailSender/SendEmail.java">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -878,24 +891,46 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/desktopApp/controlers/Controller.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/desktopApp/controlers/CloseWindowController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="768" column="8" selection-start-line="768" selection-start-column="8" selection-end-line="768" selection-end-column="8" />
+        <state relative-caret-position="663">
+          <caret line="51" lean-forward="true" selection-start-line="51" selection-end-line="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/sample.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="30" selection-start-line="30" selection-end-line="30" />
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/desktopApp/controlers/LoginBarController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1309">
+          <caret line="4" column="45" selection-start-line="4" selection-start-column="45" selection-end-line="4" selection-end-column="45" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/desktopApp/controlers/SplashController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="140">
+        <state relative-caret-position="476">
           <caret line="68" column="30" selection-start-line="68" selection-start-column="30" selection-end-line="68" selection-end-column="30" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/desktopApp/controlers/LoginBarController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/desktopApp/controlers/Controller.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="118">
-          <caret line="68" column="50" lean-forward="true" selection-start-line="68" selection-start-column="50" selection-end-line="68" selection-end-column="50" />
+        <state relative-caret-position="-1106">
+          <caret line="68" column="15" selection-start-line="68" selection-start-column="15" selection-end-line="68" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/desktopApp/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="78" column="55" lean-forward="true" selection-start-line="78" selection-start-column="55" selection-end-line="78" selection-end-column="55" />
         </state>
       </provider>
     </entry>

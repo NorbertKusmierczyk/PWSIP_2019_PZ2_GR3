@@ -28,1057 +28,1071 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="desktopApp.controlers.Controller">
-   <children>
-      <AnchorPane layoutY="43.0" prefHeight="757.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="43.0">
+
+<ScrollPane fx:id="mainPane" pannable="true" prefHeight="1010.0" prefWidth="1922.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="desktopApp.controlers.Controller">
+   <content>
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1009.0" prefWidth="1920.0">
          <children>
-            <VBox fx:id="menuVBox" layoutY="51.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="200.0" style="-fx-background-color: #3a3c5e;" styleClass="menuBar" stylesheets="@menuHover.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <AnchorPane layoutY="43.0" prefHeight="757.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="43.0">
                <children>
-                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="115.0" prefWidth="200.0" text="PreWare" textAlignment="CENTER">
+                  <VBox fx:id="menuVBox" layoutY="51.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="200.0" style="-fx-background-color: #3a3c5e;" styleClass="menuBar" stylesheets="@menuHover.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="115.0" prefWidth="200.0" text="PreWare" textAlignment="CENTER">
+                           <font>
+                              <Font name="Bell MT Bold" size="22.0" />
+                           </font>
+                        </Label>
+                        <Separator prefWidth="200.0" />
+                        <AnchorPane prefHeight="88.0" prefWidth="200.0" styleClass="subButton">
+                           <children>
+                              <JFXButton fx:id="dashBoard" alignment="CENTER" contentDisplay="RIGHT" graphicTextGap="10.0" onMouseClicked="#handleAction" styleClass="subMenuHover" text="Główna" textFill="#eae7e7" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <font>
+                                    <Font name="System Bold" size="15.0" />
+                                 </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </JFXButton>
+                           </children>
+                        </AnchorPane>
+                        <Separator prefWidth="200.0" />
+                        <AnchorPane prefHeight="88.0" prefWidth="200.0" styleClass="subButton">
+                           <children>
+                              <JFXButton fx:id="users" alignment="CENTER" contentDisplay="RIGHT" graphicTextGap="10.0" onMouseClicked="#handleAction" styleClass="subMenuHover" text="Użytkownicy" textFill="#eae7e7" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <font>
+                                    <Font name="System Bold" size="15.0" />
+                                 </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </JFXButton>
+                           </children>
+                        </AnchorPane>
+                        <Separator prefWidth="200.0" />
+                        <AnchorPane prefHeight="88.0" prefWidth="200.0">
+                           <children>
+                              <JFXButton fx:id="orders" alignment="CENTER" contentDisplay="RIGHT" graphicTextGap="10.0" onMouseClicked="#handleAction" styleClass="subMenuHover" text="Zamówienia" textFill="#eae7e7" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <font>
+                                    <Font name="System Bold" size="15.0" />
+                                 </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </JFXButton>
+                           </children>
+                        </AnchorPane>
+                        <Separator prefWidth="200.0" />
+                        <AnchorPane prefHeight="86.0" prefWidth="200.0">
+                           <children>
+                              <JFXButton alignment="CENTER" contentDisplay="RIGHT" graphicTextGap="10.0" onAction="#co" styleClass="subMenuHover" text="Magazyn" textFill="#eae7e7" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <font>
+                                    <Font name="System Bold" size="15.0" />
+                                 </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </JFXButton>
+                           </children>
+                        </AnchorPane>
+                        <VBox fx:id="vbox2" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="0.0" prefWidth="200.0" visible="false">
+                           <children>
+                              <Separator prefWidth="200.0" />
+                              <Button fx:id="availability" alignment="CENTER_RIGHT" mnemonicParsing="false" onMouseClicked="#handleAction" prefHeight="80.0" prefWidth="200.0" styleClass="subMenuHover" text="Dostępność" textFill="WHITE">
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                                 <font>
+                                    <Font name="System Bold" size="15.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets right="10.0" />
+                                 </padding>
+                              </Button>
+                              <Separator prefWidth="200.0" />
+                              <Button fx:id="manageProducts" alignment="CENTER_RIGHT" contentDisplay="CENTER" graphicTextGap="10.0" mnemonicParsing="false" onMouseClicked="#handleAction" prefHeight="80.0" prefWidth="200.0" styleClass="subMenuHover" text="Zarządzaj produktami" textAlignment="RIGHT" textFill="WHITE">
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                                 <font>
+                                    <Font name="System Bold" size="15.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets right="10.0" />
+                                 </padding>
+                              </Button>
+                           </children>
+                        </VBox>
+                        <Separator prefWidth="200.0" />
+                        <AnchorPane prefHeight="88.0" prefWidth="200.0">
+                           <children>
+                              <JFXButton fx:id="supply" alignment="CENTER" contentDisplay="RIGHT" graphicTextGap="10.0" onAction="#sy" styleClass="subMenuHover" text="Dostawa" textFill="#eae7e7" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <font>
+                                    <Font name="System Bold" size="15.0" />
+                                 </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </JFXButton>
+                           </children>
+                        </AnchorPane>
+                        <VBox fx:id="vbox3" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="0.0" prefWidth="200.0" visible="false">
+                           <children>
+                              <Separator prefWidth="200.0" />
+                              <Button fx:id="sentMessage" alignment="CENTER_RIGHT" mnemonicParsing="false" onMouseClicked="#handleAction" prefHeight="80.0" prefWidth="200.0" styleClass="subMenuHover" text="Szablony wiadomości" textFill="WHITE">
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                                 <font>
+                                    <Font name="System Bold" size="15.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets right="10.0" />
+                                 </padding>
+                              </Button>
+                              <Separator prefWidth="200.0" />
+                              <Button fx:id="sentProducts" alignment="CENTER_RIGHT" contentDisplay="CENTER" graphicTextGap="10.0" mnemonicParsing="false" onMouseClicked="#handleAction" prefHeight="80.0" prefWidth="200.0" styleClass="subMenuHover" text="Wyślij produkty" textAlignment="RIGHT" textFill="WHITE">
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                                 <font>
+                                    <Font name="System Bold" size="15.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets right="10.0" />
+                                 </padding>
+                              </Button>
+                           </children>
+                        </VBox>
+                        <Separator prefWidth="200.0" />
+                        <AnchorPane prefHeight="88.0" prefWidth="200.0">
+                           <children>
+                              <JFXButton fx:id="dataSet" alignment="CENTER" contentDisplay="RIGHT" graphicTextGap="10.0" onMouseClicked="#handleAction" styleClass="subMenuHover" text="Zestawienia" textFill="#eae7e7" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <font>
+                                    <Font name="System Bold" size="15.0" />
+                                 </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </JFXButton>
+                           </children>
+                        </AnchorPane>
+                        <Separator prefWidth="200.0" />
+                     </children>
+                  </VBox>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="201.0" layoutY="50.0" prefHeight="115.0" prefWidth="1082.0" AnchorPane.bottomAnchor="635.0" AnchorPane.leftAnchor="201.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
+               <children>
+                  <Label fx:id="topLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="-4.0" layoutY="-7.0" prefHeight="115.0" prefWidth="1082.0" style="-fx-background-color: #3a3c5e;" text="Users" textAlignment="CENTER" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                      <font>
-                        <Font name="Bell MT Bold" size="22.0" />
+                        <Font name="System Bold" size="42.0" />
                      </font>
                   </Label>
-                  <Separator prefWidth="200.0" />
-                  <AnchorPane prefHeight="88.0" prefWidth="200.0" styleClass="subButton">
-                     <children>
-                        <JFXButton fx:id="dashBoard" alignment="CENTER" contentDisplay="RIGHT" graphicTextGap="10.0" onMouseClicked="#handleAction" styleClass="subMenuHover" text="Główna" textFill="#eae7e7" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                           <font>
-                              <Font name="System Bold" size="15.0" />
-                           </font>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </JFXButton>
-                     </children>
-                  </AnchorPane>
-                  <Separator prefWidth="200.0" />
-                  <AnchorPane prefHeight="88.0" prefWidth="200.0" styleClass="subButton">
-                     <children>
-                        <JFXButton fx:id="users" alignment="CENTER" contentDisplay="RIGHT" graphicTextGap="10.0" onMouseClicked="#handleAction" styleClass="subMenuHover" text="Użytkownicy" textFill="#eae7e7" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                           <font>
-                              <Font name="System Bold" size="15.0" />
-                           </font>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor></JFXButton>
-                     </children>
-                  </AnchorPane>
-                  <Separator prefWidth="200.0" />
-                  <AnchorPane prefHeight="88.0" prefWidth="200.0">
-                     <children>
-                        <JFXButton fx:id="orders" alignment="CENTER" contentDisplay="RIGHT" graphicTextGap="10.0" onMouseClicked="#handleAction" styleClass="subMenuHover" text="Zamówienia" textFill="#eae7e7" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                           <font>
-                              <Font name="System Bold" size="15.0" />
-                           </font>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor></JFXButton>
-                     </children>
-                  </AnchorPane>
-                  <Separator prefWidth="200.0" />
-                  <AnchorPane prefHeight="86.0" prefWidth="200.0">
-                     <children>
-                        <JFXButton alignment="CENTER" contentDisplay="RIGHT" graphicTextGap="10.0" onAction="#co" styleClass="subMenuHover" text="Magazyn" textFill="#eae7e7" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                           <font>
-                              <Font name="System Bold" size="15.0" />
-                           </font>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor></JFXButton>
-                     </children>
-                  </AnchorPane>
-                  <VBox fx:id="vbox2" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="0.0" prefWidth="200.0" visible="false">
-                     <children>
-                        <Separator prefWidth="200.0" />
-                        <Button fx:id="availability" alignment="CENTER_RIGHT" mnemonicParsing="false" onMouseClicked="#handleAction" prefHeight="80.0" prefWidth="200.0" styleClass="subMenuHover" text="Dostępność" textFill="WHITE">
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                           <font>
-                              <Font name="System Bold" size="15.0" />
-                           </font>
-                           <padding>
-                              <Insets right="10.0" />
-                           </padding>
-                        </Button>
-                        <Separator prefWidth="200.0" />
-                        <Button fx:id="manageProducts" alignment="CENTER_RIGHT" contentDisplay="CENTER" graphicTextGap="10.0" mnemonicParsing="false" onMouseClicked="#handleAction" prefHeight="80.0" prefWidth="200.0" styleClass="subMenuHover" text="Zarządzaj produktami" textAlignment="RIGHT" textFill="WHITE">
-                           <VBox.margin>
-                              <Insets />
-                           </VBox.margin>
-                           <opaqueInsets>
-                              <Insets />
-                           </opaqueInsets>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                           <font>
-                              <Font name="System Bold" size="15.0" />
-                           </font>
-                           <padding>
-                              <Insets right="10.0" />
-                           </padding>
-                        </Button>
-                     </children>
-                  </VBox>
-                  <Separator prefWidth="200.0" />
-                  <AnchorPane prefHeight="88.0" prefWidth="200.0">
-                     <children>
-                        <JFXButton fx:id="supply" alignment="CENTER" contentDisplay="RIGHT" graphicTextGap="10.0" onAction="#sy" styleClass="subMenuHover" text="Dostawa" textFill="#eae7e7" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                           <font>
-                              <Font name="System Bold" size="15.0" />
-                           </font>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor></JFXButton>
-                     </children>
-                  </AnchorPane>
-                  <VBox fx:id="vbox3" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="0.0" prefWidth="200.0" visible="false">
-                     <children>
-                        <Separator prefWidth="200.0" />
-                        <Button fx:id="sentMessage" alignment="CENTER_RIGHT" mnemonicParsing="false" onMouseClicked="#handleAction" prefHeight="80.0" prefWidth="200.0" styleClass="subMenuHover" text="Szablony wiadomości" textFill="WHITE">
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                           <font>
-                              <Font name="System Bold" size="15.0" />
-                           </font>
-                           <padding>
-                              <Insets right="10.0" />
-                           </padding>
-                        </Button>
-                        <Separator prefWidth="200.0" />
-                        <Button fx:id="sentProducts" alignment="CENTER_RIGHT" contentDisplay="CENTER" graphicTextGap="10.0" mnemonicParsing="false" onMouseClicked="#handleAction" prefHeight="80.0" prefWidth="200.0" styleClass="subMenuHover" text="Wyślij produkty" textAlignment="RIGHT" textFill="WHITE">
-                           <VBox.margin>
-                              <Insets />
-                           </VBox.margin>
-                           <opaqueInsets>
-                              <Insets />
-                           </opaqueInsets>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                           <font>
-                              <Font name="System Bold" size="15.0" />
-                           </font>
-                           <padding>
-                              <Insets right="10.0" />
-                           </padding>
-                        </Button>
-                     </children>
-                  </VBox>
-                  <Separator prefWidth="200.0" />
-                  <AnchorPane prefHeight="88.0" prefWidth="200.0">
-                     <children>
-                        <JFXButton fx:id="dataSet" alignment="CENTER" contentDisplay="RIGHT" graphicTextGap="10.0" onMouseClicked="#handleAction" styleClass="subMenuHover" text="Zestawienia" textFill="#eae7e7" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                           <font>
-                              <Font name="System Bold" size="15.0" />
-                           </font>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor></JFXButton>
-                     </children>
-                  </AnchorPane>
-                  <Separator prefWidth="200.0" />
                </children>
-            </VBox>
-         </children>
-      </AnchorPane>
-      <AnchorPane layoutX="201.0" layoutY="50.0" prefHeight="115.0" prefWidth="1082.0" AnchorPane.bottomAnchor="635.0" AnchorPane.leftAnchor="201.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
-         <children>
-            <Label fx:id="topLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="-4.0" layoutY="-7.0" prefHeight="115.0" prefWidth="1082.0" style="-fx-background-color: #3a3c5e;" text="Users" textAlignment="CENTER" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-               <font>
-                  <Font name="System Bold" size="42.0" />
-               </font>
-            </Label>
-         </children>
-      </AnchorPane>
-      <AnchorPane fx:id="contentAnchorPane" layoutX="201.0" layoutY="161.0" prefHeight="639.0" prefWidth="1076.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="204.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="161.0">
-         <children>
-            <StackPane prefWidth="1064.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            </AnchorPane>
+            <AnchorPane fx:id="contentAnchorPane" layoutX="201.0" layoutY="161.0" prefHeight="639.0" prefWidth="1076.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="204.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="161.0">
                <children>
-                  <AnchorPane fx:id="subUsersContentPane" prefHeight="863.0" prefWidth="1716.0" style="-fx-background-color: #fff;">
+                  <StackPane prefWidth="1064.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <HBox alignment="CENTER" layoutX="11.0" prefHeight="64.0" prefWidth="727.0" style="-fx-background-color: #fff;">
+                        <AnchorPane fx:id="subUsersContentPane" prefHeight="863.0" prefWidth="1716.0" style="-fx-background-color: #fff;">
                            <children>
-                              <JFXTextField fx:id="usersSearchTextField" prefHeight="31.0" prefWidth="574.0" />
-                           </children>
-                        </HBox>
-                        <TableView fx:id="usersTableView" depthTest="ENABLE" layoutX="11.0" layoutY="61.0" prefHeight="777.0" prefWidth="727.0">
-                           <columns>
-                              <TableColumn fx:id="ID" prefWidth="75.0" text="ID" />
-                              <TableColumn fx:id="Username" prefWidth="172.0" text="Username" />
-                              <TableColumn fx:id="Email" prefWidth="75.0" text="E-mail" />
-                           </columns>
-                           <columnResizePolicy>
-                              <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-                           </columnResizePolicy>
-                        </TableView>
-                        <Label layoutX="806.0" layoutY="28.0" prefHeight="72.0" prefWidth="632.0" style="-fx-background-color: #24cc5c;" text="Dane personalne" textFill="WHITE">
-                           <font>
-                              <Font size="30.0" />
-                           </font>
-                           <padding>
-                              <Insets left="20.0" />
-                           </padding>
-                        </Label>
-                        <Pane layoutX="832.0" layoutY="154.0" prefHeight="80.0" prefWidth="445.0" style="-fx-background-color: #ae9090; -fx-background-radius: 15;">
-                           <children>
-                              <Pane layoutX="20.0" layoutY="-40.0" prefHeight="90.0" prefWidth="147.0" style="-fx-background-color: #e0372f; -fx-background-radius: 20;">
+                              <HBox alignment="CENTER" layoutX="11.0" prefHeight="64.0" prefWidth="727.0" style="-fx-background-color: #fff;">
                                  <children>
-                                    <Label alignment="CENTER" layoutX="13.0" layoutY="8.0" prefHeight="72.0" prefWidth="121.0" text="ID" textFill="#fcfcfc">
-                                       <font>
-                                          <Font name="System Bold" size="26.0" />
-                                       </font>
-                                    </Label>
+                                    <JFXTextField fx:id="usersSearchTextField" prefHeight="31.0" prefWidth="574.0" />
                                  </children>
-                              </Pane>
-                              <Label fx:id="userLabelID" alignment="CENTER" layoutX="205.0" layoutY="12.0" prefHeight="56.0" prefWidth="209.0" textFill="WHITE">
-                                 <font>
-                                    <Font size="25.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </Pane>
-                        <Pane layoutX="832.0" layoutY="290.0" prefHeight="80.0" prefWidth="445.0" style="-fx-background-color: #ae9090; -fx-background-radius: 15;">
-                           <children>
-                              <Pane layoutX="20.0" layoutY="-40.0" prefHeight="90.0" prefWidth="147.0" style="-fx-background-color: #1978a8; -fx-background-radius: 20;">
-                                 <children>
-                                    <Label layoutX="9.0" layoutY="6.0" prefHeight="80.0" prefWidth="129.0" text="Username" textFill="WHITE">
-                                       <font>
-                                          <Font name="System Bold" size="26.0" />
-                                       </font>
-                                    </Label>
-                                 </children>
-                              </Pane>
-                              <Label fx:id="userLabelUsername" alignment="CENTER" layoutX="205.0" layoutY="12.0" prefHeight="56.0" prefWidth="209.0" textFill="WHITE">
-                                 <font>
-                                    <Font size="25.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </Pane>
-                        <Label layoutX="813.0" layoutY="530.0" prefHeight="72.0" prefWidth="799.0" style="-fx-background-color: #24cc5c;" text="Dane sprzedaży" textFill="WHITE">
-                           <font>
-                              <Font size="30.0" />
-                           </font>
-                           <padding>
-                              <Insets left="20.0" />
-                           </padding>
-                        </Label>
-                        <Pane layoutX="832.0" layoutY="426.0" prefHeight="80.0" prefWidth="445.0" style="-fx-background-color: #ae9090; -fx-background-radius: 15;">
-                           <children>
-                              <Pane layoutX="20.0" layoutY="-40.0" prefHeight="90.0" prefWidth="147.0" style="-fx-background-color: #14b512; -fx-background-radius: 20;">
-                                 <children>
-                                    <Label alignment="CENTER" layoutX="9.0" layoutY="6.0" prefHeight="80.0" prefWidth="129.0" text="Email" textFill="WHITE">
-                                       <font>
-                                          <Font name="System Bold" size="26.0" />
-                                       </font>
-                                    </Label>
-                                 </children>
-                              </Pane>
-                              <Label fx:id="userLabelEmail" alignment="CENTER" layoutX="205.0" layoutY="12.0" prefHeight="56.0" prefWidth="209.0" textFill="WHITE">
-                                 <font>
-                                    <Font size="25.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </Pane>
-                     </children>
-                  </AnchorPane>
-                  <GridPane fx:id="availabilityContentPane" prefHeight="919.0" prefWidth="1551.0" style="-fx-background-color: #fff;">
-                     <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
-                     </columnConstraints>
-                     <rowConstraints>
-                        <RowConstraints maxHeight="80.0" minHeight="10.0" prefHeight="80.0" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="815.0" vgrow="ALWAYS" />
-                        <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="29.0" vgrow="ALWAYS" />
-                     </rowConstraints>
-                     <children>
-                        <HBox alignment="CENTER" prefHeight="64.0" prefWidth="1076.0">
-                           <children>
-                              <JFXTextField fx:id="availabilityTextField" prefHeight="31.0" prefWidth="862.0" />
-                           </children>
-                        </HBox>
-                        <TableView fx:id="productsTableView" depthTest="ENABLE" prefHeight="721.0" prefWidth="1716.0" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS">
-                           <columns>
-                              <TableColumn fx:id="IDProduct" prefWidth="75.0" text="ID" />
-                              <TableColumn fx:id="ProductNameAv" prefWidth="172.0" text="ProductName" />
-                              <TableColumn fx:id="AmountAv" prefWidth="75.0" text="Amount" />
-                           </columns>
-                           <columnResizePolicy>
-                              <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-                           </columnResizePolicy>
-                        </TableView>
-                     </children>
-                  </GridPane>
-                  <ScrollPane fx:id="ordersContentPane" fitToWidth="true" hvalue="1.0" pannable="true" vbarPolicy="ALWAYS" vmax="2.0">
-                     <content>
-                        <VBox fillWidth="false" prefHeight="2126.0" prefWidth="1738.0" style="-fx-background-color: #fff;">
-                           <children>
-                              <HBox fillHeight="false" prefHeight="937.0" prefWidth="1697.0" style="-fx-background-color: #fff;">
-                                 <children>
-                                    <VBox prefHeight="741.0" prefWidth="1697.0" style="-fx-background-color: #fff;">
-                                       <children>
-                                          <Label alignment="CENTER" prefHeight="161.0" prefWidth="1697.0" style="-fx-background-color: #24cc5c;" text="Tabela zamówień" textFill="WHITE">
-                                             <VBox.margin>
-                                                <Insets />
-                                             </VBox.margin>
-                                             <font>
-                                                <Font size="28.0" />
-                                             </font>
-                                          </Label>
-                                          <GridPane prefHeight="674.0" prefWidth="766.0">
-                                             <columnConstraints>
-                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0" />
-                                             </columnConstraints>
-                                             <rowConstraints>
-                                                <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="568.0" vgrow="SOMETIMES" />
-                                             </rowConstraints>
-                                             <children>
-                                                <TableView fx:id="ordersTableView" depthTest="ENABLE" prefHeight="747.0" prefWidth="671.0" tableMenuButtonVisible="true" GridPane.hgrow="ALWAYS" GridPane.vgrow="SOMETIMES">
-                                                   <columns>
-                                                      <TableColumn fx:id="OrderNumber" prefWidth="75.0" text="OrderNumber" />
-                                                      <TableColumn fx:id="ProductID" prefWidth="91.0" resizable="false" text="ProductID" />
-                                                      <TableColumn fx:id="ProductName" prefWidth="187.0" resizable="false" text="ProductName" />
-                                                      <TableColumn fx:id="Amount" minWidth="20.0" prefWidth="82.0" resizable="false" text="Amount" />
-                                                      <TableColumn fx:id="Price" prefWidth="101.0" text="Price" />
-                                                      <TableColumn fx:id="Name" prefWidth="159.0" resizable="false" text="Name" />
-                                                      <TableColumn fx:id="Surname" prefWidth="181.0" resizable="false" text="Surname" />
-                                                      <TableColumn fx:id="OrderEmail" prefWidth="75.0" text="E-mail" />
-                                                      <TableColumn fx:id="Town" prefWidth="118.0" resizable="false" text="Miasto" />
-                                                      <TableColumn fx:id="TownCode" prefWidth="162.0" text="KodPocztowy" />
-                                                      <TableColumn fx:id="Street" prefWidth="75.0" text="Ulica" />
-                                                      <TableColumn fx:id="HouseNumber" prefWidth="104.0" resizable="false" text="NumerDomu" />
-                                                      <TableColumn fx:id="orderDate" minWidth="0.0" prefWidth="143.0" resizable="false" text="DataZamowienia" />
-                                                      <TableColumn fx:id="Action" prefWidth="90.0" resizable="false" text="+" />
-                                                   </columns>
-                                                   <columnResizePolicy>
-                                                      <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-                                                   </columnResizePolicy>
-                                                </TableView>
-                                             </children>
-                                          </GridPane>
-                                          <HBox prefHeight="34.0" prefWidth="343.0" style="-fx-background-color: #618acc;">
-                                             <VBox.margin>
-                                                <Insets top="10.0" />
-                                             </VBox.margin>
-                                             <children>
-                                                <JFXButton buttonType="RAISED" onAction="#addRecord" prefHeight="31.0" prefWidth="860.0" ripplerFill="#46183e" style="-fx-background-color: #618acc;" styleClass="tw" text="Sprawdź" textFill="WHITE">
-                                                   <cursor>
-                                                      <Cursor fx:constant="HAND" />
-                                                   </cursor></JFXButton>
-                                                <Separator orientation="VERTICAL" prefHeight="200.0" />
-                                                <JFXButton onAction="#selectAll" prefHeight="31.0" prefWidth="860.0" style="-fx-background-color: #618acc;" styleClass="tw" text="Wybierz wszystkie" textFill="WHITE">
-                                                   <cursor>
-                                                      <Cursor fx:constant="HAND" />
-                                                   </cursor>
-                                                </JFXButton>
-                                                <Separator orientation="VERTICAL" prefHeight="200.0" />
-                                                <JFXButton onAction="#generateRecipe" prefHeight="31.0" prefWidth="860.0" style="-fx-background-color: #618acc;" styleClass="tw" text="Generuj rachunek" textFill="WHITE">
-                                                   <cursor>
-                                                      <Cursor fx:constant="HAND" />
-                                                   </cursor></JFXButton>
-                                             </children>
-                                          </HBox>
-                                       </children>
-                                    </VBox>
-                                 </children>
-                                 <padding>
-                                    <Insets top="5.0" />
-                                 </padding>
                               </HBox>
-                              <AnchorPane prefHeight="1513.0" prefWidth="1697.0" style="-fx-background-color: #d0bdbd;">
+                              <TableView fx:id="usersTableView" depthTest="ENABLE" layoutX="11.0" layoutY="61.0" prefHeight="777.0" prefWidth="727.0">
+                                 <columns>
+                                    <TableColumn fx:id="ID" prefWidth="75.0" text="ID" />
+                                    <TableColumn fx:id="Username" prefWidth="172.0" text="Username" />
+                                    <TableColumn fx:id="Email" prefWidth="75.0" text="E-mail" />
+                                 </columns>
+                                 <columnResizePolicy>
+                                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                 </columnResizePolicy>
+                              </TableView>
+                              <Label layoutX="806.0" layoutY="28.0" prefHeight="72.0" prefWidth="632.0" style="-fx-background-color: #24cc5c;" text="Dane personalne" textFill="WHITE">
+                                 <font>
+                                    <Font size="30.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets left="20.0" />
+                                 </padding>
+                              </Label>
+                              <Pane layoutX="832.0" layoutY="154.0" prefHeight="80.0" prefWidth="445.0" style="-fx-background-color: #ae9090; -fx-background-radius: 15;">
                                  <children>
-                                    <VBox layoutX="1006.0" layoutY="44.0" prefHeight="664.0" prefWidth="600.0">
+                                    <Pane layoutX="20.0" layoutY="-40.0" prefHeight="90.0" prefWidth="147.0" style="-fx-background-color: #e0372f; -fx-background-radius: 20;">
                                        <children>
-                                          <Label alignment="CENTER" prefHeight="80.0" prefWidth="830.0" style="-fx-background-color: #24cc5c;" text="Detale zamówień" textFill="WHITE">
+                                          <Label alignment="CENTER" layoutX="13.0" layoutY="8.0" prefHeight="72.0" prefWidth="121.0" text="ID" textFill="#fcfcfc">
                                              <font>
-                                                <Font name="Ebrima" size="28.0" />
+                                                <Font name="System Bold" size="26.0" />
                                              </font>
                                           </Label>
-                                          <ScrollPane hbarPolicy="NEVER" prefHeight="537.0" prefWidth="613.0">
-                                             <content>
-                                                <ListView fx:id="orderDetailListView" prefHeight="535.0" prefWidth="600.0" />
-                                             </content>
-                                          </ScrollPane>
-                                          <HBox prefHeight="34.0" prefWidth="343.0" style="-fx-background-color: #618acc;">
-                                             <children>
-                                                <JFXButton buttonType="RAISED" onAction="#loadDataFromFile" prefHeight="34.0" prefWidth="319.0" ripplerFill="#46183e" style="-fx-background-color: #618acc;" styleClass="tw" text="Load">
-                                                   <cursor>
-                                                      <Cursor fx:constant="HAND" />
-                                                   </cursor>
-                                                </JFXButton>
-                                                <Separator orientation="VERTICAL" prefHeight="200.0" />
-                                                <JFXButton onAction="#writeDataToFile" prefHeight="31.0" prefWidth="341.0" style="-fx-background-color: #618acc;" styleClass="tw" text="Write">
-                                                   <cursor>
-                                                      <Cursor fx:constant="HAND" />
-                                                   </cursor>
-                                                </JFXButton>
-                                             </children>
-                                          </HBox>
                                        </children>
-                                    </VBox>
-                                    <VBox layoutX="31.0" layoutY="37.0" prefHeight="787.0" prefWidth="813.0" style="-fx-background-color: #fff;">
+                                    </Pane>
+                                    <Label fx:id="userLabelID" alignment="CENTER" layoutX="205.0" layoutY="12.0" prefHeight="56.0" prefWidth="209.0" textFill="WHITE">
+                                       <font>
+                                          <Font size="25.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </Pane>
+                              <Pane layoutX="832.0" layoutY="290.0" prefHeight="80.0" prefWidth="445.0" style="-fx-background-color: #ae9090; -fx-background-radius: 15;">
+                                 <children>
+                                    <Pane layoutX="20.0" layoutY="-40.0" prefHeight="90.0" prefWidth="147.0" style="-fx-background-color: #1978a8; -fx-background-radius: 20;">
                                        <children>
-                                          <Label minHeight="117.0" prefHeight="117.0" prefWidth="815.0" text="    Rachunek klienta">
+                                          <Label layoutX="9.0" layoutY="6.0" prefHeight="80.0" prefWidth="129.0" text="Username" textFill="WHITE">
                                              <font>
-                                                <Font name="System Bold" size="30.0" />
+                                                <Font name="System Bold" size="26.0" />
                                              </font>
                                           </Label>
-                                          <AnchorPane prefHeight="218.0" prefWidth="815.0" style="-fx-background-color: #fff;">
+                                       </children>
+                                    </Pane>
+                                    <Label fx:id="userLabelUsername" alignment="CENTER" layoutX="205.0" layoutY="12.0" prefHeight="56.0" prefWidth="209.0" textFill="WHITE">
+                                       <font>
+                                          <Font size="25.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </Pane>
+                              <Label layoutX="813.0" layoutY="530.0" prefHeight="72.0" prefWidth="799.0" style="-fx-background-color: #24cc5c;" text="Dane sprzedaży" textFill="WHITE">
+                                 <font>
+                                    <Font size="30.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets left="20.0" />
+                                 </padding>
+                              </Label>
+                              <Pane layoutX="832.0" layoutY="426.0" prefHeight="80.0" prefWidth="445.0" style="-fx-background-color: #ae9090; -fx-background-radius: 15;">
+                                 <children>
+                                    <Pane layoutX="20.0" layoutY="-40.0" prefHeight="90.0" prefWidth="147.0" style="-fx-background-color: #14b512; -fx-background-radius: 20;">
+                                       <children>
+                                          <Label alignment="CENTER" layoutX="9.0" layoutY="6.0" prefHeight="80.0" prefWidth="129.0" text="Email" textFill="WHITE">
+                                             <font>
+                                                <Font name="System Bold" size="26.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </Pane>
+                                    <Label fx:id="userLabelEmail" alignment="CENTER" layoutX="205.0" layoutY="12.0" prefHeight="56.0" prefWidth="209.0" textFill="WHITE">
+                                       <font>
+                                          <Font size="25.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </Pane>
+                           </children>
+                        </AnchorPane>
+                        <GridPane fx:id="availabilityContentPane" prefHeight="919.0" prefWidth="1551.0" style="-fx-background-color: #fff;">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints maxHeight="80.0" minHeight="10.0" prefHeight="80.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="815.0" vgrow="ALWAYS" />
+                              <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="29.0" vgrow="ALWAYS" />
+                           </rowConstraints>
+                           <children>
+                              <HBox alignment="CENTER" prefHeight="64.0" prefWidth="1076.0">
+                                 <children>
+                                    <JFXTextField fx:id="availabilityTextField" prefHeight="31.0" prefWidth="862.0" />
+                                 </children>
+                              </HBox>
+                              <TableView fx:id="productsTableView" depthTest="ENABLE" prefHeight="721.0" prefWidth="1716.0" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS">
+                                 <columns>
+                                    <TableColumn fx:id="IDProduct" prefWidth="75.0" text="ID" />
+                                    <TableColumn fx:id="ProductNameAv" prefWidth="172.0" text="ProductName" />
+                                    <TableColumn fx:id="AmountAv" prefWidth="75.0" text="Amount" />
+                                 </columns>
+                                 <columnResizePolicy>
+                                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                 </columnResizePolicy>
+                              </TableView>
+                           </children>
+                        </GridPane>
+                        <ScrollPane fx:id="ordersContentPane" fitToWidth="true" hvalue="1.0" pannable="true" vbarPolicy="ALWAYS" vmax="2.0">
+                           <content>
+                              <VBox fillWidth="false" prefHeight="2126.0" prefWidth="1738.0" style="-fx-background-color: #fff;">
+                                 <children>
+                                    <HBox fillHeight="false" prefHeight="937.0" prefWidth="1697.0" style="-fx-background-color: #fff;">
+                                       <children>
+                                          <VBox prefHeight="741.0" prefWidth="1697.0" style="-fx-background-color: #fff;">
                                              <children>
-                                                <GridPane fx:id="gridRecipe" layoutX="1.0" minHeight="222.0" prefHeight="222.0" prefWidth="814.0">
+                                                <Label alignment="CENTER" prefHeight="161.0" prefWidth="1697.0" style="-fx-background-color: #24cc5c;" text="Tabela zamówień" textFill="WHITE">
+                                                   <VBox.margin>
+                                                      <Insets />
+                                                   </VBox.margin>
+                                                   <font>
+                                                      <Font size="28.0" />
+                                                   </font>
+                                                </Label>
+                                                <GridPane prefHeight="674.0" prefWidth="766.0">
+                                                   <columnConstraints>
+                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0" />
+                                                   </columnConstraints>
+                                                   <rowConstraints>
+                                                      <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="568.0" vgrow="SOMETIMES" />
+                                                   </rowConstraints>
+                                                   <children>
+                                                      <TableView fx:id="ordersTableView" depthTest="ENABLE" prefHeight="747.0" prefWidth="671.0" tableMenuButtonVisible="true" GridPane.hgrow="ALWAYS" GridPane.vgrow="SOMETIMES">
+                                                         <columns>
+                                                            <TableColumn fx:id="OrderNumber" prefWidth="75.0" text="OrderNumber" />
+                                                            <TableColumn fx:id="ProductID" prefWidth="91.0" resizable="false" text="ProductID" />
+                                                            <TableColumn fx:id="ProductName" prefWidth="187.0" resizable="false" text="ProductName" />
+                                                            <TableColumn fx:id="Amount" minWidth="20.0" prefWidth="82.0" resizable="false" text="Amount" />
+                                                            <TableColumn fx:id="Price" prefWidth="101.0" text="Price" />
+                                                            <TableColumn fx:id="Name" prefWidth="159.0" resizable="false" text="Name" />
+                                                            <TableColumn fx:id="Surname" prefWidth="181.0" resizable="false" text="Surname" />
+                                                            <TableColumn fx:id="OrderEmail" prefWidth="75.0" text="E-mail" />
+                                                            <TableColumn fx:id="Town" prefWidth="118.0" resizable="false" text="Miasto" />
+                                                            <TableColumn fx:id="TownCode" prefWidth="162.0" text="KodPocztowy" />
+                                                            <TableColumn fx:id="Street" prefWidth="75.0" text="Ulica" />
+                                                            <TableColumn fx:id="HouseNumber" prefWidth="104.0" resizable="false" text="NumerDomu" />
+                                                            <TableColumn fx:id="orderDate" minWidth="0.0" prefWidth="143.0" resizable="false" text="DataZamowienia" />
+                                                            <TableColumn fx:id="Action" prefWidth="90.0" resizable="false" text="+" />
+                                                         </columns>
+                                                         <columnResizePolicy>
+                                                            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                                         </columnResizePolicy>
+                                                      </TableView>
+                                                   </children>
+                                                </GridPane>
+                                                <HBox prefHeight="34.0" prefWidth="343.0" style="-fx-background-color: #618acc;">
+                                                   <VBox.margin>
+                                                      <Insets top="10.0" />
+                                                   </VBox.margin>
+                                                   <children>
+                                                      <JFXButton buttonType="RAISED" onAction="#addRecord" prefHeight="31.0" prefWidth="860.0" ripplerFill="#46183e" style="-fx-background-color: #618acc;" styleClass="tw" text="Sprawdź" textFill="WHITE">
+                                                         <cursor>
+                                                            <Cursor fx:constant="HAND" />
+                                                         </cursor>
+                                                      </JFXButton>
+                                                      <Separator orientation="VERTICAL" prefHeight="200.0" />
+                                                      <JFXButton onAction="#selectAll" prefHeight="31.0" prefWidth="860.0" style="-fx-background-color: #618acc;" styleClass="tw" text="Wybierz wszystkie" textFill="WHITE">
+                                                         <cursor>
+                                                            <Cursor fx:constant="HAND" />
+                                                         </cursor>
+                                                      </JFXButton>
+                                                      <Separator orientation="VERTICAL" prefHeight="200.0" />
+                                                      <JFXButton onAction="#generateRecipe" prefHeight="31.0" prefWidth="860.0" style="-fx-background-color: #618acc;" styleClass="tw" text="Generuj rachunek" textFill="WHITE">
+                                                         <cursor>
+                                                            <Cursor fx:constant="HAND" />
+                                                         </cursor>
+                                                      </JFXButton>
+                                                   </children>
+                                                </HBox>
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                       <padding>
+                                          <Insets top="5.0" />
+                                       </padding>
+                                    </HBox>
+                                    <AnchorPane prefHeight="1513.0" prefWidth="1697.0" style="-fx-background-color: #d0bdbd;">
+                                       <children>
+                                          <VBox layoutX="1006.0" layoutY="44.0" prefHeight="664.0" prefWidth="600.0">
+                                             <children>
+                                                <Label alignment="CENTER" prefHeight="80.0" prefWidth="830.0" style="-fx-background-color: #24cc5c;" text="Detale zamówień" textFill="WHITE">
+                                                   <font>
+                                                      <Font name="Ebrima" size="28.0" />
+                                                   </font>
+                                                </Label>
+                                                <ScrollPane hbarPolicy="NEVER" prefHeight="537.0" prefWidth="613.0">
+                                                   <content>
+                                                      <ListView fx:id="orderDetailListView" prefHeight="535.0" prefWidth="600.0" />
+                                                   </content>
+                                                </ScrollPane>
+                                                <HBox prefHeight="34.0" prefWidth="343.0" style="-fx-background-color: #618acc;">
+                                                   <children>
+                                                      <JFXButton buttonType="RAISED" onAction="#loadDataFromFile" prefHeight="34.0" prefWidth="319.0" ripplerFill="#46183e" style="-fx-background-color: #618acc;" styleClass="tw" text="Load">
+                                                         <cursor>
+                                                            <Cursor fx:constant="HAND" />
+                                                         </cursor>
+                                                      </JFXButton>
+                                                      <Separator orientation="VERTICAL" prefHeight="200.0" />
+                                                      <JFXButton onAction="#writeDataToFile" prefHeight="31.0" prefWidth="341.0" style="-fx-background-color: #618acc;" styleClass="tw" text="Write">
+                                                         <cursor>
+                                                            <Cursor fx:constant="HAND" />
+                                                         </cursor>
+                                                      </JFXButton>
+                                                   </children>
+                                                </HBox>
+                                             </children>
+                                          </VBox>
+                                          <VBox layoutX="31.0" layoutY="37.0" prefHeight="787.0" prefWidth="813.0" style="-fx-background-color: #fff;">
+                                             <children>
+                                                <Label minHeight="117.0" prefHeight="117.0" prefWidth="815.0" text="    Rachunek klienta">
+                                                   <font>
+                                                      <Font name="System Bold" size="30.0" />
+                                                   </font>
+                                                </Label>
+                                                <AnchorPane prefHeight="218.0" prefWidth="815.0" style="-fx-background-color: #fff;">
+                                                   <children>
+                                                      <GridPane fx:id="gridRecipe" layoutX="1.0" minHeight="222.0" prefHeight="222.0" prefWidth="814.0">
+                                                        <columnConstraints>
+                                                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="700.0" minWidth="10.0" prefWidth="51.0" />
+                                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="700.0" minWidth="10.0" prefWidth="211.0" />
+                                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="558.0" minWidth="10.0" prefWidth="558.0" />
+                                                        </columnConstraints>
+                                                        <rowConstraints>
+                                                          <RowConstraints maxHeight="106.0" minHeight="10.0" prefHeight="106.0" vgrow="SOMETIMES" />
+                                                          <RowConstraints maxHeight="114.0" minHeight="10.0" prefHeight="88.0" vgrow="SOMETIMES" />
+                                                        </rowConstraints>
+                                                         <children>
+                                                            <Pane fx:id="innerGridPaneTiltedPanel" prefHeight="106.0" prefWidth="299.0" GridPane.columnIndex="1">
+                                                               <children>
+                                                                  <Label layoutX="14.0" layoutY="32.0" text="PRE S.A" />
+                                                                  <Label layoutX="14.0" layoutY="64.0" prefHeight="21.0" prefWidth="113.0" text="preware.cba.pl" />
+                                                               </children>
+                                                            </Pane>
+                                                            <VBox prefHeight="135.0" prefWidth="209.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                                               <children>
+                                                                  <Label prefHeight="33.0" prefWidth="138.0" text="Buyer:">
+                                                                     <font>
+                                                                        <Font name="System Bold" size="15.0" />
+                                                                     </font>
+                                                                  </Label>
+                                                                  <Label fx:id="nameSurnameLabel" text="Michal Nowak" />
+                                                                  <Label fx:id="addressLabel" text="18-400 Kielce" />
+                                                                  <Label fx:id="streetLabel" text="Aniola 23a" />
+                                                               </children>
+                                                            </VBox>
+                                                         </children>
+                                                      </GridPane>
+                                                   </children>
+                                                </AnchorPane>
+                                                <GridPane fx:id="recipeProductsGridPane" prefHeight="51.0" prefWidth="815.0">
                                                   <columnConstraints>
-                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="700.0" minWidth="10.0" prefWidth="51.0" />
-                                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="700.0" minWidth="10.0" prefWidth="211.0" />
-                                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="558.0" minWidth="10.0" prefWidth="558.0" />
+                                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="258.0" minWidth="10.0" prefWidth="44.0" />
+                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="325.0" minWidth="10.0" prefWidth="47.0" />
+                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="415.0" minWidth="10.0" prefWidth="360.0" />
+                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="217.0" minWidth="10.0" prefWidth="182.0" />
+                                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                                   </columnConstraints>
                                                   <rowConstraints>
-                                                    <RowConstraints maxHeight="106.0" minHeight="10.0" prefHeight="106.0" vgrow="SOMETIMES" />
-                                                    <RowConstraints maxHeight="114.0" minHeight="10.0" prefHeight="88.0" vgrow="SOMETIMES" />
+                                                    <RowConstraints maxHeight="116.0" minHeight="62.0" prefHeight="62.0" vgrow="SOMETIMES" />
                                                   </rowConstraints>
                                                    <children>
-                                                      <Pane fx:id="innerGridPaneTiltedPanel" prefHeight="106.0" prefWidth="299.0" GridPane.columnIndex="1">
+                                                      <VBox prefHeight="200.0" prefWidth="100.0">
                                                          <children>
-                                                            <Label layoutX="14.0" layoutY="32.0" text="PRE S.A" />
-                                                            <Label layoutX="14.0" layoutY="64.0" prefHeight="21.0" prefWidth="113.0" text="preware.cba.pl" />
+                                                            <Separator prefHeight="35.0" prefWidth="163.0" />
+                                                            <Label alignment="CENTER" prefHeight="98.0" prefWidth="165.0" text="Lp." />
+                                                            <Separator prefHeight="31.0" prefWidth="163.0" />
                                                          </children>
-                                                      </Pane>
-                                                      <VBox prefHeight="135.0" prefWidth="209.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                                      </VBox>
+                                                      <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
                                                          <children>
-                                                            <Label prefHeight="33.0" prefWidth="138.0" text="Buyer:">
-                                                               <font>
-                                                                  <Font name="System Bold" size="15.0" />
-                                                               </font>
-                                                            </Label>
-                                                            <Label fx:id="nameSurnameLabel" text="Michal Nowak" />
-                                                            <Label fx:id="addressLabel" text="18-400 Kielce" />
-                                                            <Label fx:id="streetLabel" text="Aniola 23a" />
+                                                            <Separator prefHeight="35.0" prefWidth="163.0" />
+                                                            <Label alignment="CENTER" prefHeight="98.0" prefWidth="165.0" text="ID" />
+                                                            <Separator prefHeight="31.0" prefWidth="163.0" />
+                                                         </children>
+                                                      </VBox>
+                                                      <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2">
+                                                         <children>
+                                                            <Separator prefHeight="35.0" prefWidth="163.0" />
+                                                            <Label alignment="CENTER" prefHeight="98.0" prefWidth="165.0" text="Nazwa" />
+                                                            <Separator prefHeight="31.0" prefWidth="163.0" />
+                                                         </children>
+                                                      </VBox>
+                                                      <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="3">
+                                                         <children>
+                                                            <Separator prefHeight="35.0" prefWidth="163.0" />
+                                                            <Label alignment="CENTER" prefHeight="98.0" prefWidth="203.0" text="Ilosc" />
+                                                            <Separator prefHeight="31.0" prefWidth="163.0" />
+                                                         </children>
+                                                      </VBox>
+                                                      <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="4">
+                                                         <children>
+                                                            <Separator prefHeight="35.0" prefWidth="163.0" />
+                                                            <Label alignment="CENTER" prefHeight="98.0" prefWidth="165.0" text="Cena brutto" />
+                                                            <Separator prefHeight="31.0" prefWidth="163.0" />
                                                          </children>
                                                       </VBox>
                                                    </children>
                                                 </GridPane>
+                                                <HBox style="-fx-background-color: #d6d0d0;">
+                                                   <VBox.margin>
+                                                      <Insets top="20.0" />
+                                                   </VBox.margin>
+                                                   <children>
+                                                      <Label prefHeight="30.0" prefWidth="816.0" text="              Utter coast:" />
+                                                      <Label fx:id="utterCoast" prefHeight="30.0" prefWidth="1266.0" />
+                                                   </children>
+                                                </HBox>
                                              </children>
-                                          </AnchorPane>
-                                          <GridPane fx:id="recipeProductsGridPane" prefHeight="51.0" prefWidth="815.0">
-                                            <columnConstraints>
-                                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="258.0" minWidth="10.0" prefWidth="44.0" />
-                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="325.0" minWidth="10.0" prefWidth="47.0" />
-                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="415.0" minWidth="10.0" prefWidth="360.0" />
-                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="217.0" minWidth="10.0" prefWidth="182.0" />
-                                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                            </columnConstraints>
-                                            <rowConstraints>
-                                              <RowConstraints maxHeight="116.0" minHeight="62.0" prefHeight="62.0" vgrow="SOMETIMES" />
-                                            </rowConstraints>
+                                          </VBox>
+                                       </children>
+                                    </AnchorPane>
+                                 </children>
+                              </VBox>
+                           </content>
+                        </ScrollPane>
+                        <GridPane fx:id="sentMessageContentPane" prefHeight="843.0" prefWidth="1656.0" style="-fx-background-color: #fff;">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints maxHeight="246.0" minHeight="10.0" prefHeight="246.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="673.0" vgrow="ALWAYS" />
+                           </rowConstraints>
+                           <children>
+                              <HBox alignment="CENTER" prefHeight="240.0" prefWidth="1716.0" spacing="20.0" fx:id="xBoxMessageFormSet">
+                                 <children>
+                                    <JFXButton alignment="CENTER" onAction="#addNewMailForm" prefHeight="163.0" prefWidth="135.0" style="-fx-background-radius: 60;" styleClass="emailPressed" stylesheets="@style.css" text=" ">
+                                       <graphic>
+                                          <ImageView fitHeight="141.0" fitWidth="140.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@addNewMailTemplate.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                       <padding>
+                                          <Insets left="4.0" />
+                                       </padding>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </JFXButton>
+                                    <JFXButton alignment="CENTER" onAction="#deleteSelectedScheme" prefHeight="163.0" prefWidth="135.0" style="-fx-background-radius: 60;" styleClass="emailPressed" stylesheets="@style.css" text=" ">
+                                       <graphic>
+                                          <ImageView fitHeight="141.0" fitWidth="140.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@deleteMessage.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                       <padding>
+                                          <Insets left="4.0" />
+                                       </padding>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </JFXButton>
+                                 </children>
+                              </HBox>
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
+                                 <children>
+                                    <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                       <children>
+                                          <Separator prefHeight="11.0" prefWidth="1716.0" style="-fx-border-width: 2;" stylesheets="@style.css" />
+                                          <HBox alignment="CENTER" prefHeight="151.0" prefWidth="1716.0">
                                              <children>
-                                                <VBox prefHeight="200.0" prefWidth="100.0">
-                                                   <children>
-                                                      <Separator prefHeight="35.0" prefWidth="163.0" />
-                                                      <Label alignment="CENTER" prefHeight="98.0" prefWidth="165.0" text="Lp." />
-                                                      <Separator prefHeight="31.0" prefWidth="163.0" />
-                                                   </children>
-                                                </VBox>
-                                                <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
-                                                   <children>
-                                                      <Separator prefHeight="35.0" prefWidth="163.0" />
-                                                      <Label alignment="CENTER" prefHeight="98.0" prefWidth="165.0" text="ID" />
-                                                      <Separator prefHeight="31.0" prefWidth="163.0" />
-                                                   </children>
-                                                </VBox>
-                                                <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2">
-                                                   <children>
-                                                      <Separator prefHeight="35.0" prefWidth="163.0" />
-                                                      <Label alignment="CENTER" prefHeight="98.0" prefWidth="165.0" text="Nazwa" />
-                                                      <Separator prefHeight="31.0" prefWidth="163.0" />
-                                                   </children>
-                                                </VBox>
-                                                <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="3">
-                                                   <children>
-                                                      <Separator prefHeight="35.0" prefWidth="163.0" />
-                                                      <Label alignment="CENTER" prefHeight="98.0" prefWidth="203.0" text="Ilosc" />
-                                                      <Separator prefHeight="31.0" prefWidth="163.0" />
-                                                   </children>
-                                                </VBox>
-                                                <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="4">
-                                                   <children>
-                                                      <Separator prefHeight="35.0" prefWidth="163.0" />
-                                                      <Label alignment="CENTER" prefHeight="98.0" prefWidth="165.0" text="Cena brutto" />
-                                                      <Separator prefHeight="31.0" prefWidth="163.0" />
-                                                   </children>
-                                                </VBox>
+                                                <Label prefHeight="21.0" prefWidth="87.0" text="Temat:">
+                                                   <HBox.margin>
+                                                      <Insets right="110.0" />
+                                                   </HBox.margin>
+                                                </Label>
+                                                <TextField fx:id="subject_textField" prefHeight="31.0" prefWidth="414.0">
+                                                   <HBox.margin>
+                                                      <Insets left="-110.0" />
+                                                   </HBox.margin>
+                                                </TextField>
                                              </children>
-                                          </GridPane>
-                                          <HBox style="-fx-background-color: #d6d0d0;">
-                                             <VBox.margin>
-                                                <Insets top="20.0" />
-                                             </VBox.margin>
+                                             <padding>
+                                                <Insets right="300.0" />
+                                             </padding>
+                                          </HBox>
+                                          <HBox alignment="CENTER" prefHeight="341.0" prefWidth="1716.0">
                                              <children>
-                                                <Label prefHeight="30.0" prefWidth="816.0" text="              Utter coast:" />
-                                                <Label fx:id="utterCoast" prefHeight="30.0" prefWidth="1266.0" />
+                                                <Label prefHeight="21.0" prefWidth="85.0" text="Treść:">
+                                                   <HBox.margin>
+                                                      <Insets top="-270.0" />
+                                                   </HBox.margin>
+                                                </Label>
+                                                <TextArea fx:id="content_areaField" prefHeight="324.0" prefWidth="703.0" />
                                              </children>
                                           </HBox>
+                                          <JFXButton alignment="CENTER" onAction="#saveNewEmail" prefHeight="41.0" prefWidth="701.0" style="-fx-background-color: #618acc;" text="Zapisz" textFill="WHITE">
+                                             <VBox.margin>
+                                                <Insets left="550.0" />
+                                             </VBox.margin>
+                                             <font>
+                                                <Font size="17.0" />
+                                             </font>
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
+                                          </JFXButton>
                                        </children>
                                     </VBox>
                                  </children>
                               </AnchorPane>
                            </children>
-                        </VBox>
-                     </content>
-                  </ScrollPane>
-                  <GridPane fx:id="sentMessageContentPane" prefHeight="843.0" prefWidth="1656.0" style="-fx-background-color: #fff;">
-                     <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
-                     </columnConstraints>
-                     <rowConstraints>
-                        <RowConstraints maxHeight="246.0" minHeight="10.0" prefHeight="246.0" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="673.0" vgrow="ALWAYS" />
-                     </rowConstraints>
-                     <children>
-                        <HBox alignment="CENTER" prefHeight="240.0" prefWidth="1716.0" spacing="20.0" fx:id="xBoxMessageFormSet">
+                        </GridPane>
+                        <GridPane fx:id="dataSetContentPane" prefHeight="861.0" prefWidth="1716.0" style="-fx-background-color: #fff;">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints maxHeight="226.0" minHeight="10.0" prefHeight="123.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="361.0" vgrow="ALWAYS" />
+                              <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="436.0" vgrow="ALWAYS" />
+                           </rowConstraints>
                            <children>
-                              <JFXButton alignment="CENTER" onAction="#addNewMailForm" prefHeight="163.0" prefWidth="135.0" style="-fx-background-radius: 60;" styleClass="emailPressed" stylesheets="@style.css" text=" ">
-                                 <graphic>
-                                    <ImageView fitHeight="141.0" fitWidth="140.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@addNewMailTemplate.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                                 <padding>
-                                    <Insets left="4.0" />
-                                 </padding>
-                                 <cursor>
-                                    <Cursor fx:constant="HAND" />
-                                 </cursor>
-                              </JFXButton>
-                              <JFXButton alignment="CENTER" onAction="#deleteSelectedScheme" prefHeight="163.0" prefWidth="135.0" style="-fx-background-radius: 60;" styleClass="emailPressed" stylesheets="@style.css" text=" ">
-                                 <graphic>
-                                    <ImageView fitHeight="141.0" fitWidth="140.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@deleteMessage.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                                 <padding>
-                                    <Insets left="4.0" />
-                                 </padding>
-                                 <cursor>
-                                    <Cursor fx:constant="HAND" />
-                                 </cursor>
-                              </JFXButton>
-                           </children>
-                        </HBox>
-                        <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
-                           <children>
-                              <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                              <HBox alignment="CENTER" prefHeight="122.0" prefWidth="1720.0" spacing="20.0" style="-fx-background-color: #e7d1d1;">
                                  <children>
-                                    <Separator prefHeight="11.0" prefWidth="1716.0" style="-fx-border-width: 2;" stylesheets="@style.css" />
-                                    <HBox alignment="CENTER" prefHeight="151.0" prefWidth="1716.0">
-                                       <children>
-                                          <Label prefHeight="21.0" prefWidth="87.0" text="Temat:">
-                                             <HBox.margin>
-                                                <Insets right="110.0" />
-                                             </HBox.margin>
-                                          </Label>
-                                          <TextField fx:id="subject_textField" prefHeight="31.0" prefWidth="414.0">
-                                             <HBox.margin>
-                                                <Insets left="-110.0" />
-                                             </HBox.margin>
-                                          </TextField>
-                                       </children>
-                                       <padding>
-                                          <Insets right="300.0" />
-                                       </padding>
-                                    </HBox>
-                                    <HBox alignment="CENTER" prefHeight="341.0" prefWidth="1716.0">
-                                       <children>
-                                          <Label prefHeight="21.0" prefWidth="85.0" text="Treść:">
-                                             <HBox.margin>
-                                                <Insets top="-270.0" />
-                                             </HBox.margin>
-                                          </Label>
-                                          <TextArea fx:id="content_areaField" prefHeight="324.0" prefWidth="703.0" />
-                                       </children>
-                                    </HBox>
-                                    <JFXButton alignment="CENTER" onAction="#saveNewEmail" prefHeight="41.0" prefWidth="701.0" style="-fx-background-color: #618acc;" text="Zapisz" textFill="WHITE">
-                                       <VBox.margin>
-                                          <Insets left="550.0" />
-                                       </VBox.margin>
+                                    <Label fx:id="dataSetMainLabel" alignment="CENTER" prefHeight="121.0" prefWidth="721.0" style="-fx-background-color: #6192da;" text="Użytkownicy" textFill="WHITE">
                                        <font>
-                                          <Font size="17.0" />
+                                          <Font size="29.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets left="-155.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                    <JFXButton onAction="#dataSetRegisterUsersFunction" ripplerFill="WHITE" style="-fx-background-color: #1978a8;" text="Zarejestrowani użytkownicy" textFill="WHITE">
+                                       <font>
+                                          <Font size="20.0" />
+                                       </font>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                       <HBox.margin>
+                                          <Insets left="50.0" />
+                                       </HBox.margin>
+                                    </JFXButton>
+                                    <JFXButton onAction="#dataSetAverageSellmentFunction" style="-fx-background-color: #e0372f;" text="Średnia sprzedaży" textFill="WHITE">
+                                       <font>
+                                          <Font size="20.0" />
+                                       </font>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </JFXButton>
+                                    <JFXButton onAction="#dataSetPopularProductsFunction" style="-fx-background-color: #14b512;" text="Najpopularniejsze produkty" textFill="WHITE">
+                                       <font>
+                                          <Font size="20.0" />
                                        </font>
                                        <cursor>
                                           <Cursor fx:constant="HAND" />
                                        </cursor>
                                     </JFXButton>
                                  </children>
-                              </VBox>
-                           </children></AnchorPane>
-                     </children>
-                  </GridPane>
-                  <GridPane fx:id="dataSetContentPane" prefHeight="861.0" prefWidth="1716.0" style="-fx-background-color: #fff;">
-                     <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
-                     </columnConstraints>
-                     <rowConstraints>
-                        <RowConstraints maxHeight="226.0" minHeight="10.0" prefHeight="123.0" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="361.0" vgrow="ALWAYS" />
-                        <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="436.0" vgrow="ALWAYS" />
-                     </rowConstraints>
-                     <children>
-                        <HBox alignment="CENTER" prefHeight="122.0" prefWidth="1720.0" spacing="20.0" style="-fx-background-color: #e7d1d1;">
-                           <children>
-                              <Label fx:id="dataSetMainLabel" alignment="CENTER" prefHeight="121.0" prefWidth="721.0" style="-fx-background-color: #6192da;" text="Użytkownicy" textFill="WHITE">
-                                 <font>
-                                    <Font size="29.0" />
-                                 </font>
-                                 <HBox.margin>
-                                    <Insets left="-155.0" />
-                                 </HBox.margin>
-                              </Label>
-                              <JFXButton onAction="#dataSetRegisterUsersFunction" ripplerFill="WHITE" style="-fx-background-color: #1978a8;" text="Zarejestrowani użytkownicy" textFill="WHITE">
-                                 <font>
-                                    <Font size="20.0" />
-                                 </font>
-                                 <cursor>
-                                    <Cursor fx:constant="HAND" />
-                                 </cursor>
-                                 <HBox.margin>
-                                    <Insets left="50.0" />
-                                 </HBox.margin>
-                              </JFXButton>
-                              <JFXButton onAction="#dataSetAverageSellmentFunction" style="-fx-background-color: #e0372f;" text="Średnia sprzedaży" textFill="WHITE">
-                                 <font>
-                                    <Font size="20.0" />
-                                 </font>
-                                 <cursor>
-                                    <Cursor fx:constant="HAND" />
-                                 </cursor>
-                              </JFXButton>
-                              <JFXButton onAction="#dataSetPopularProductsFunction" style="-fx-background-color: #14b512;" text="Najpopularniejsze produkty" textFill="WHITE">
-                                 <font>
-                                    <Font size="20.0" />
-                                 </font>
-                                 <cursor>
-                                    <Cursor fx:constant="HAND" />
-                                 </cursor>
-                              </JFXButton>
-                           </children>
-                           <GridPane.margin>
-                              <Insets />
-                           </GridPane.margin>
-                        </HBox>
-                        <AnchorPane prefHeight="351.0" prefWidth="1716.0" GridPane.rowIndex="2">
-                           <children>
-                              <VBox layoutX="1005.0" prefHeight="412.0" prefWidth="701.0" AnchorPane.bottomAnchor="24.0" AnchorPane.leftAnchor="1005.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="0.0">
+                                 <GridPane.margin>
+                                    <Insets />
+                                 </GridPane.margin>
+                              </HBox>
+                              <AnchorPane prefHeight="351.0" prefWidth="1716.0" GridPane.rowIndex="2">
                                  <children>
-                                    <Label prefHeight="130.0" prefWidth="701.0" style="-fx-background-color: #f8e7e7;" text="Ostatnie aktywności">
+                                    <VBox layoutX="1005.0" prefHeight="412.0" prefWidth="701.0" AnchorPane.bottomAnchor="24.0" AnchorPane.leftAnchor="1005.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="0.0">
+                                       <children>
+                                          <Label prefHeight="130.0" prefWidth="701.0" style="-fx-background-color: #f8e7e7;" text="Ostatnie aktywności">
+                                             <font>
+                                                <Font size="20.0" />
+                                             </font>
+                                             <padding>
+                                                <Insets left="20.0" />
+                                             </padding>
+                                          </Label>
+                                          <Separator prefHeight="21.0" prefWidth="711.0" />
+                                          <ScrollPane fx:id="dataSetActivityScrollPane" prefHeight="381.0" prefWidth="696.0" vbarPolicy="NEVER">
+                                            <content>
+                                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
+                                            </content>
+                                          </ScrollPane>
+                                       </children>
+                                    </VBox>
+                                    <HBox fx:id="dataSetGaugesHBox" layoutX="14.0" prefHeight="412.0" prefWidth="991.0" AnchorPane.bottomAnchor="24.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="0.0">
+                                       <children>
+                                          <AnchorPane fx:id="setPaneGuage1" prefHeight="412.0" prefWidth="330.0" style="-fx-background-color: #dac7c7;">
+                                             <children>
+                                                <Label fx:id="gauge1Label" alignment="CENTER" layoutX="7.0" layoutY="2.0" prefHeight="72.0" style="-fx-background-color: #1978a8;" text="Ostatnio zarejestrowani" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                             </children>
+                                          </AnchorPane>
+                                          <Pane>
+                                             <children>
+                                                <Separator orientation="VERTICAL" prefHeight="72.0" prefWidth="3.0" style="-fx-background-color: #fff;" />
+                                             </children>
+                                          </Pane>
+                                          <AnchorPane fx:id="setPaneGuage2" prefWidth="330.0" style="-fx-background-color: #dac7c7;">
+                                             <children>
+                                                <Label fx:id="gauge2Label" alignment="CENTER" prefHeight="72.0" style="-fx-background-color: #e0372f;" text="Wszystkich zarejestrowanych" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                             </children>
+                                          </AnchorPane>
+                                          <Pane>
+                                             <children>
+                                                <Separator orientation="VERTICAL" prefHeight="72.0" prefWidth="6.0" />
+                                             </children>
+                                          </Pane>
+                                          <AnchorPane fx:id="setPaneGuage3" prefWidth="330.0" style="-fx-background-color: #dac7c7;">
+                                             <children>
+                                                <Label fx:id="gauge3Label" alignment="CENTER" prefHeight="72.0" style="-fx-background-color: #14b512;" text="Średnia rejestracji" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                             </children>
+                                          </AnchorPane>
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </AnchorPane>
+                              <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #ccb3b3;" GridPane.rowIndex="1" />
+                           </children>
+                        </GridPane>
+                        <AnchorPane fx:id="dashBoardInformation" style="-fx-background-color: #fff;">
+                           <children>
+                              <GridPane layoutY="7.0" prefHeight="341.0" prefWidth="1716.0" style="-fx-background-color: #fff;" AnchorPane.bottomAnchor="60.0">
+                                 <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="1175.0" minWidth="10.0" prefWidth="850.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="1175.0" minWidth="10.0" prefWidth="850.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="859.0" minWidth="10.0" prefWidth="850.0" />
+                                 </columnConstraints>
+                                 <rowConstraints>
+                                    <RowConstraints maxHeight="586.0" minHeight="10.0" prefHeight="353.0" vgrow="SOMETIMES" />
+                                 </rowConstraints>
+                                 <children>
+                                    <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                                       <children>
+                                          <AnchorPane layoutX="98.0" layoutY="14.0" prefHeight="222.0" prefWidth="376.0" style="-fx-background-color: #e0372f; -fx-background-radius: 30;" AnchorPane.bottomAnchor="34.0" AnchorPane.leftAnchor="71.0" AnchorPane.rightAnchor="20.0">
+                                             <children>
+                                                <Label fx:id="dashBoardUserCountLabel" layoutX="118.0" layoutY="150.0" prefHeight="115.0" prefWidth="106.0" text="16" textFill="#f5f5f5" AnchorPane.bottomAnchor="37.0" AnchorPane.leftAnchor="86.0">
+                                                   <font>
+                                                      <Font name="System Bold" size="45.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label layoutY="-1.0" prefHeight="151.0" prefWidth="481.0" text="Liczba użytkowników" textFill="WHITE" AnchorPane.bottomAnchor="126.0" AnchorPane.leftAnchor="0.0">
+                                                   <font>
+                                                      <Font name="System Bold" size="37.0" />
+                                                   </font>
+                                                   <padding>
+                                                      <Insets left="20.0" />
+                                                   </padding>
+                                                </Label>
+                                             </children>
+                                          </AnchorPane>
+                                       </children>
+                                    </AnchorPane>
+                                    <AnchorPane prefHeight="301.0" prefWidth="572.0" GridPane.columnIndex="2">
+                                       <children>
+                                          <AnchorPane layoutX="14.0" layoutY="14.0" prefHeight="270.0" prefWidth="302.0" style="-fx-background-color: #14b512; -fx-background-radius: 30;" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="20.0">
+                                             <children>
+                                                <Label layoutX="1.0" prefHeight="144.0" prefWidth="481.0" text="Oczekujące zamówienia" textFill="WHITE" AnchorPane.bottomAnchor="126.0" AnchorPane.leftAnchor="0.0">
+                                                   <font>
+                                                      <Font name="System Bold" size="37.0" />
+                                                   </font>
+                                                   <padding>
+                                                      <Insets left="20.0" />
+                                                   </padding>
+                                                </Label>
+                                                <Label fx:id="dashBoardOrdersCountLabel" layoutX="86.0" layoutY="125.0" prefHeight="115.0" prefWidth="121.0" text="6" textFill="WHITE" AnchorPane.bottomAnchor="37.0" AnchorPane.leftAnchor="86.0">
+                                                   <font>
+                                                      <Font name="System Bold" size="45.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </AnchorPane>
+                                       </children>
+                                    </AnchorPane>
+                                    <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
+                                       <children>
+                                          <AnchorPane layoutX="9.0" layoutY="36.0" prefHeight="276.0" prefWidth="554.0" style="-fx-background-color: #1978a8; -fx-background-radius: 30;">
+                                             <children>
+                                                <Label layoutX="1.0" prefHeight="144.0" prefWidth="554.0" text="Całkowita ilość produktów" textFill="WHITE" AnchorPane.bottomAnchor="126.0" AnchorPane.leftAnchor="0.0">
+                                                   <font>
+                                                      <Font name="System Bold" size="37.0" />
+                                                   </font>
+                                                   <padding>
+                                                      <Insets left="20.0" />
+                                                   </padding>
+                                                </Label>
+                                                <Label fx:id="dashBoardProductsCountLabel" layoutX="86.0" layoutY="125.0" prefHeight="115.0" prefWidth="121.0" text="304" textFill="WHITE" AnchorPane.bottomAnchor="37.0" AnchorPane.leftAnchor="86.0">
+                                                   <font>
+                                                      <Font name="System Bold" size="45.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </AnchorPane>
+                                       </children>
+                                    </AnchorPane>
+                                 </children>
+                              </GridPane>
+                              <Pane fx:id="dashBoardGaugePane" layoutX="803.0" layoutY="61.0" prefHeight="395.0" prefWidth="799.0" style="-fx-background-color: #a4d2e8;">
+                                 <children>
+                                    <Label prefHeight="86.0" prefWidth="799.0" style="-fx-background-color: #1978a8;" text="Liczba dostępnych produktów" textFill="WHITE">
                                        <font>
-                                          <Font size="20.0" />
+                                          <Font name="System Bold" size="27.0" />
                                        </font>
                                        <padding>
                                           <Insets left="20.0" />
                                        </padding>
                                     </Label>
-                                    <Separator prefHeight="21.0" prefWidth="711.0" />
-                                    <ScrollPane fx:id="dataSetActivityScrollPane" prefHeight="381.0" prefWidth="696.0" vbarPolicy="NEVER">
-                                      <content>
-                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
-                                      </content>
-                                    </ScrollPane>
                                  </children>
-                              </VBox>
-                              <HBox fx:id="dataSetGaugesHBox" layoutX="14.0" prefHeight="412.0" prefWidth="991.0" AnchorPane.bottomAnchor="24.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="0.0">
+                              </Pane>
+                              <AnchorPane layoutX="109.0" layoutY="430.0" prefHeight="324.0" prefWidth="512.0" />
+                              <AnchorPane layoutX="59.0" layoutY="45.0" prefHeight="426.0" prefWidth="642.0">
                                  <children>
-                                    <AnchorPane fx:id="setPaneGuage1" prefHeight="412.0" prefWidth="330.0" style="-fx-background-color: #dac7c7;">
-                                       <children>
-                                          <Label fx:id="gauge1Label" alignment="CENTER" layoutX="7.0" layoutY="2.0" prefHeight="72.0" style="-fx-background-color: #1978a8;" text="Ostatnio zarejestrowani" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                                       </children>
-                                    </AnchorPane>
-                                    <Pane>
-                                       <children>
-                                          <Separator orientation="VERTICAL" prefHeight="72.0" prefWidth="3.0" style="-fx-background-color: #fff;" />
-                                       </children>
-                                    </Pane>
-                                    <AnchorPane fx:id="setPaneGuage2" prefWidth="330.0" style="-fx-background-color: #dac7c7;">
-                                       <children>
-                                          <Label fx:id="gauge2Label" alignment="CENTER" prefHeight="72.0" style="-fx-background-color: #e0372f;" text="Wszystkich zarejestrowanych" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                                       </children>
-                                    </AnchorPane>
-                                    <Pane>
-                                       <children>
-                                          <Separator orientation="VERTICAL" prefHeight="72.0" prefWidth="6.0" />
-                                       </children>
-                                    </Pane>
-                                    <AnchorPane fx:id="setPaneGuage3" prefWidth="330.0" style="-fx-background-color: #dac7c7;">
-                                       <children>
-                                          <Label fx:id="gauge3Label" alignment="CENTER" prefHeight="72.0" style="-fx-background-color: #14b512;" text="Średnia rejestracji" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                                       </children>
-                                    </AnchorPane>
+                                    <Label layoutX="49.0" layoutY="47.0" prefHeight="64.0" prefWidth="537.0" text="Witaj użytkowniku">
+                                       <font>
+                                          <Font size="23.0" />
+                                       </font>
+                                    </Label>
+                                    <Separator layoutX="41.0" layoutY="101.0" prefHeight="21.0" prefWidth="581.0" />
+                                    <Label layoutX="72.0" layoutY="147.0" prefHeight="41.0" prefWidth="249.0" text="Przyjmij zamówienia" />
+                                    <Label layoutX="72.0" layoutY="205.0" prefHeight="41.0" prefWidth="249.0" text="Sprawdź magazyn" />
+                                    <Label layoutX="72.0" layoutY="260.0" prefHeight="41.0" prefWidth="249.0" text="Zrób zestawienie" />
+                                    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="20.0" layoutX="40.0" layoutY="157.0" stroke="BLACK" strokeType="INSIDE" width="20.0" />
+                                    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#37e12e" height="20.0" layoutX="40.0" layoutY="216.0" stroke="BLACK" strokeType="INSIDE" width="20.0" />
+                                    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d33f25" height="20.0" layoutX="40.0" layoutY="271.0" stroke="BLACK" strokeType="INSIDE" width="20.0" />
                                  </children>
-                              </HBox>
+                              </AnchorPane>
                            </children>
                         </AnchorPane>
-                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #ccb3b3;" GridPane.rowIndex="1" />
-                     </children>
-                  </GridPane>
-                  <AnchorPane fx:id="dashBoardInformation" style="-fx-background-color: #fff;">
-                     <children>
-                        <GridPane layoutY="7.0" prefHeight="341.0" prefWidth="1716.0" style="-fx-background-color: #fff;" AnchorPane.bottomAnchor="60.0">
+                        <GridPane fx:id="takeSupplyContentPane" prefHeight="843.0" prefWidth="1656.0" style="-fx-background-color: #fff;">
                            <columnConstraints>
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="1175.0" minWidth="10.0" prefWidth="850.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="1175.0" minWidth="10.0" prefWidth="850.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="859.0" minWidth="10.0" prefWidth="850.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
                            </columnConstraints>
                            <rowConstraints>
-                              <RowConstraints maxHeight="586.0" minHeight="10.0" prefHeight="353.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="503.0" vgrow="ALWAYS" />
                            </rowConstraints>
                            <children>
-                              <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                              <AnchorPane prefHeight="639.0" prefWidth="955.0">
                                  <children>
-                                    <AnchorPane layoutX="98.0" layoutY="14.0" prefHeight="222.0" prefWidth="376.0" style="-fx-background-color: #e0372f; -fx-background-radius: 30;" AnchorPane.bottomAnchor="34.0" AnchorPane.leftAnchor="71.0" AnchorPane.rightAnchor="20.0">
+                                    <TableView fx:id="manageProductsTableView" depthTest="ENABLE" layoutY="10.0" prefHeight="890.0" prefWidth="654.0" AnchorPane.bottomAnchor="19.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="10.0">
+                                       <columns>
+                                          <TableColumn fx:id="manageID" minWidth="-Infinity" prefWidth="105.99996948242188" text="ID" />
+                                          <TableColumn fx:id="manageProductName" prefWidth="284.0" text="ProductName" />
+                                          <TableColumn fx:id="manageAmount" minWidth="0.0" prefWidth="124.0" text="Amount" />
+                                          <TableColumn fx:id="managePrice" prefWidth="138.0" text="Price" />
+                                       </columns>
+                                       <columnResizePolicy>
+                                          <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                       </columnResizePolicy>
+                                    </TableView>
+                                    <Label layoutX="693.0" layoutY="42.0" prefHeight="80.0" prefWidth="302.0" style="-fx-background-color: #24cc5c;" text="Wybrany produkt" textFill="WHITE">
+                                       <font>
+                                          <Font size="24.0" />
+                                       </font>
+                                       <padding>
+                                          <Insets left="20.0" />
+                                       </padding>
+                                    </Label>
+                                    <Label layoutX="1062.0" layoutY="42.0" prefHeight="80.0" prefWidth="569.0" style="-fx-background-color: #24cc5c;" text="Edytuj dane wybranego produktu" textFill="WHITE">
+                                       <font>
+                                          <Font size="24.0" />
+                                       </font>
+                                       <padding>
+                                          <Insets left="20.0" />
+                                       </padding>
+                                    </Label>
+                                    <VBox layoutX="740.0" layoutY="132.0" prefHeight="293.0" prefWidth="209.0">
                                        <children>
-                                          <Label fx:id="dashBoardUserCountLabel" layoutX="118.0" layoutY="150.0" prefHeight="115.0" prefWidth="106.0" text="16" textFill="#f5f5f5" AnchorPane.bottomAnchor="37.0" AnchorPane.leftAnchor="86.0">
-                                             <font>
-                                                <Font name="System Bold" size="45.0" />
-                                             </font>
-                                          </Label>
-                                          <Label layoutY="-1.0" prefHeight="151.0" prefWidth="481.0" text="Liczba użytkowników" textFill="WHITE" AnchorPane.bottomAnchor="126.0" AnchorPane.leftAnchor="0.0">
-                                             <font>
-                                                <Font name="System Bold" size="37.0" />
-                                             </font>
-                                             <padding>
-                                                <Insets left="20.0" />
-                                             </padding>
-                                          </Label>
+                                          <Pane fx:id="manegeProductIDPane" prefHeight="60.0" prefWidth="209.0">
+                                             <children>
+                                                <Label fx:id="manegeProductIDLabel" alignment="CENTER" layoutX="1.0" layoutY="20.0" prefHeight="21.0" prefWidth="209.0" text="ID" />
+                                             </children>
+                                             <VBox.margin>
+                                                <Insets top="30.0" />
+                                             </VBox.margin>
+                                          </Pane>
+                                          <Pane fx:id="manegeProductNamePane" prefHeight="60.0" prefWidth="209.0">
+                                             <children>
+                                                <Label fx:id="manegeProductNameLabel" alignment="CENTER" layoutX="1.0" layoutY="20.0" prefHeight="21.0" prefWidth="209.0" text="Nazwa" />
+                                             </children>
+                                             <VBox.margin>
+                                                <Insets top="30.0" />
+                                             </VBox.margin>
+                                          </Pane>
+                                          <Pane fx:id="manegeProductPricePane" prefHeight="60.0" prefWidth="209.0">
+                                             <children>
+                                                <Label fx:id="manegeProductPriceLabel" alignment="CENTER" layoutX="1.0" layoutY="20.0" prefHeight="21.0" prefWidth="209.0" text="Cena" />
+                                             </children>
+                                             <VBox.margin>
+                                                <Insets top="30.0" />
+                                             </VBox.margin>
+                                          </Pane>
                                        </children>
-                                    </AnchorPane>
-                                 </children>
-                              </AnchorPane>
-                              <AnchorPane prefHeight="301.0" prefWidth="572.0" GridPane.columnIndex="2">
-                                 <children>
-                                    <AnchorPane layoutX="14.0" layoutY="14.0" prefHeight="270.0" prefWidth="302.0" style="-fx-background-color: #14b512; -fx-background-radius: 30;" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="20.0">
+                                    </VBox>
+                                    <VBox layoutX="1094.0" layoutY="127.0" prefHeight="333.0" prefWidth="537.0" style="-fx-background-color: #fff;">
+                                       <opaqueInsets>
+                                          <Insets />
+                                       </opaqueInsets>
                                        <children>
-                                          <Label layoutX="1.0" prefHeight="144.0" prefWidth="481.0" text="Oczekujące zamówienia" textFill="WHITE" AnchorPane.bottomAnchor="126.0" AnchorPane.leftAnchor="0.0">
-                                             <font>
-                                                <Font name="System Bold" size="37.0" />
-                                             </font>
+                                          <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #fff;">
+                                             <children>
+                                                <Label text="ID:">
+                                                   <HBox.margin>
+                                                      <Insets right="20.0" />
+                                                   </HBox.margin>
+                                                </Label>
+                                                <TextField fx:id="manageNewID" prefHeight="31.0" prefWidth="264.0" />
+                                             </children>
+                                             <VBox.margin>
+                                                <Insets top="30.0" />
+                                             </VBox.margin>
+                                             <opaqueInsets>
+                                                <Insets />
+                                             </opaqueInsets>
                                              <padding>
-                                                <Insets left="20.0" />
+                                                <Insets left="100.0" />
                                              </padding>
-                                          </Label>
-                                          <Label fx:id="dashBoardOrdersCountLabel" layoutX="86.0" layoutY="125.0" prefHeight="115.0" prefWidth="121.0" text="6" textFill="WHITE" AnchorPane.bottomAnchor="37.0" AnchorPane.leftAnchor="86.0">
-                                             <font>
-                                                <Font name="System Bold" size="45.0" />
-                                             </font>
-                                          </Label>
-                                       </children>
-                                    </AnchorPane>
-                                 </children>
-                              </AnchorPane>
-                              <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
-                                 <children>
-                                    <AnchorPane layoutX="9.0" layoutY="36.0" prefHeight="276.0" prefWidth="554.0" style="-fx-background-color: #1978a8; -fx-background-radius: 30;">
-                                       <children>
-                                          <Label layoutX="1.0" prefHeight="144.0" prefWidth="554.0" text="Całkowita ilość produktów" textFill="WHITE" AnchorPane.bottomAnchor="126.0" AnchorPane.leftAnchor="0.0">
-                                             <font>
-                                                <Font name="System Bold" size="37.0" />
-                                             </font>
+                                          </HBox>
+                                          <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #fff;">
+                                             <children>
+                                                <Label prefHeight="21.0" prefWidth="140.0" text="Nazwa produktu:">
+                                                   <HBox.margin>
+                                                      <Insets />
+                                                   </HBox.margin>
+                                                </Label>
+                                                <TextField fx:id="manageNewName" prefHeight="31.0" prefWidth="264.0" />
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #fff;">
+                                             <children>
+                                                <Label prefHeight="21.0" prefWidth="48.0" text="Cena:">
+                                                   <HBox.margin>
+                                                      <Insets right="20.0" />
+                                                   </HBox.margin>
+                                                </Label>
+                                                <TextField fx:id="manageNewPrice" prefHeight="31.0" prefWidth="264.0" />
+                                             </children>
                                              <padding>
-                                                <Insets left="20.0" />
+                                                <Insets left="72.0" />
                                              </padding>
-                                          </Label>
-                                          <Label fx:id="dashBoardProductsCountLabel" layoutX="86.0" layoutY="125.0" prefHeight="115.0" prefWidth="121.0" text="304" textFill="WHITE" AnchorPane.bottomAnchor="37.0" AnchorPane.leftAnchor="86.0">
-                                             <font>
-                                                <Font name="System Bold" size="45.0" />
-                                             </font>
-                                          </Label>
+                                          </HBox>
+                                          <Pane prefHeight="66.0" prefWidth="437.0">
+                                             <VBox.margin>
+                                                <Insets left="100.0" />
+                                             </VBox.margin>
+                                                <Button layoutY="7.0" mnemonicParsing="false" onAction="#submitEditProductData" prefHeight="31.0" prefWidth="335.0" style="-fx-background-color: #eadada;" text="Zatwierdź">
+                                                   <cursor>
+                                                      <Cursor fx:constant="HAND" />
+                                                   </cursor>
+                                             </Button>
+                                          </Pane>
                                        </children>
-                                    </AnchorPane>
+                                    </VBox>
+                                    <Label layoutX="694.0" layoutY="486.0" prefHeight="80.0" prefWidth="437.0" style="-fx-background-color: #24cc5c;" text="Stare dane" textFill="WHITE">
+                                       <font>
+                                          <Font size="24.0" />
+                                       </font>
+                                       <padding>
+                                          <Insets left="20.0" />
+                                       </padding>
+                                    </Label>
+                                    <Label layoutX="1192.0" layoutY="486.0" prefHeight="80.0" prefWidth="445.0" style="-fx-background-color: #24cc5c;" text="Nowe dane" textFill="WHITE">
+                                       <font>
+                                          <Font size="24.0" />
+                                       </font>
+                                       <padding>
+                                          <Insets left="20.0" />
+                                       </padding>
+                                    </Label>
+                                    <Label fx:id="idOldProduct" alignment="CENTER" layoutX="761.0" layoutY="583.0" prefHeight="72.0" prefWidth="302.0" style="-fx-background-radius: 20; -fx-background-color: #ae9090;" textFill="WHITE">
+                                       <font>
+                                          <Font size="24.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="nameOldProduct" alignment="CENTER" layoutX="762.0" layoutY="675.0" prefHeight="72.0" prefWidth="302.0" style="-fx-background-radius: 20; -fx-background-color: #ae9090;" textFill="WHITE">
+                                       <font>
+                                          <Font size="24.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="priceOldProduct" alignment="CENTER" layoutX="762.0" layoutY="767.0" prefHeight="72.0" prefWidth="302.0" style="-fx-background-radius: 20; -fx-background-color: #ae9090;" textFill="WHITE">
+                                       <font>
+                                          <Font size="24.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="idNewProduct" alignment="CENTER" layoutX="1254.0" layoutY="583.0" prefHeight="72.0" prefWidth="302.0" style="-fx-background-radius: 20; -fx-background-color: #ae9090;" textFill="WHITE">
+                                       <font>
+                                          <Font size="24.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="nameNewProduct" alignment="CENTER" layoutX="1254.0" layoutY="675.0" prefHeight="72.0" prefWidth="302.0" style="-fx-background-radius: 20; -fx-background-color: #ae9090;" textFill="WHITE">
+                                       <font>
+                                          <Font size="24.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="priceNewProduct" alignment="CENTER" layoutX="1254.0" layoutY="767.0" prefHeight="72.0" prefWidth="302.0" style="-fx-background-radius: 20; -fx-background-color: #ae9090;" textFill="WHITE">
+                                       <font>
+                                          <Font size="24.0" />
+                                       </font>
+                                    </Label>
                                  </children>
                               </AnchorPane>
                            </children>
                         </GridPane>
-                        <Pane fx:id="dashBoardGaugePane" layoutX="803.0" layoutY="61.0" prefHeight="395.0" prefWidth="799.0" style="-fx-background-color: #a4d2e8;">
+                        <AnchorPane fx:id="sentMerchandiseContentPane" style="-fx-background-color: #fff;">
                            <children>
-                              <Label prefHeight="86.0" prefWidth="799.0" style="-fx-background-color: #1978a8;" text="Liczba dostępnych produktów" textFill="WHITE">
+                              <Label layoutX="50.0" layoutY="31.0" prefHeight="80.0" prefWidth="617.0" style="-fx-background-color: #24cc5c;" text="Spis zamówień" textFill="WHITE">
                                  <font>
-                                    <Font name="System Bold" size="27.0" />
+                                    <Font size="24.0" />
                                  </font>
                                  <padding>
                                     <Insets left="20.0" />
                                  </padding>
                               </Label>
-                           </children>
-                        </Pane>
-                        <AnchorPane layoutX="109.0" layoutY="430.0" prefHeight="324.0" prefWidth="512.0" />
-                        <AnchorPane layoutX="59.0" layoutY="45.0" prefHeight="426.0" prefWidth="642.0">
-                           <children>
-                              <Label layoutX="49.0" layoutY="47.0" prefHeight="64.0" prefWidth="537.0" text="Witaj użytkowniku">
+                              <Label layoutX="772.0" layoutY="354.0" prefHeight="80.0" prefWidth="851.0" style="-fx-background-color: #24cc5c;" text="Konfiguracja" textFill="WHITE">
                                  <font>
-                                    <Font size="23.0" />
+                                    <Font size="24.0" />
                                  </font>
+                                 <padding>
+                                    <Insets left="20.0" />
+                                 </padding>
                               </Label>
-                              <Separator layoutX="41.0" layoutY="101.0" prefHeight="21.0" prefWidth="581.0" />
-                              <Label layoutX="72.0" layoutY="147.0" prefHeight="41.0" prefWidth="249.0" text="Przyjmij zamówienia" />
-                              <Label layoutX="72.0" layoutY="205.0" prefHeight="41.0" prefWidth="249.0" text="Sprawdź magazyn" />
-                              <Label layoutX="72.0" layoutY="260.0" prefHeight="41.0" prefWidth="249.0" text="Zrób zestawienie" />
-                              <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="20.0" layoutX="40.0" layoutY="157.0" stroke="BLACK" strokeType="INSIDE" width="20.0" />
-                              <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#37e12e" height="20.0" layoutX="40.0" layoutY="216.0" stroke="BLACK" strokeType="INSIDE" width="20.0" />
-                              <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d33f25" height="20.0" layoutX="40.0" layoutY="271.0" stroke="BLACK" strokeType="INSIDE" width="20.0" />
-                           </children>
-                        </AnchorPane>
-                     </children>
-                  </AnchorPane>
-                  <GridPane fx:id="takeSupplyContentPane" prefHeight="843.0" prefWidth="1656.0" style="-fx-background-color: #fff;">
-                     <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
-                     </columnConstraints>
-                     <rowConstraints>
-                        <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="503.0" vgrow="ALWAYS" />
-                     </rowConstraints>
-                     <children>
-                        <AnchorPane prefHeight="639.0" prefWidth="955.0">
-                           <children>
-                              <TableView fx:id="manageProductsTableView" depthTest="ENABLE" layoutY="10.0" prefHeight="890.0" prefWidth="654.0" AnchorPane.bottomAnchor="19.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="10.0">
-                                 <columns>
-                                    <TableColumn fx:id="manageID" minWidth="-Infinity" prefWidth="105.99996948242188" text="ID" />
-                                    <TableColumn fx:id="manageProductName" prefWidth="284.0" text="ProductName" />
-                                    <TableColumn fx:id="manageAmount" minWidth="0.0" prefWidth="124.0" text="Amount" />
-                                    <TableColumn fx:id="managePrice" prefWidth="138.0" text="Price" />
-                                 </columns>
-                                 <columnResizePolicy>
-                                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-                                 </columnResizePolicy>
+                              <Label layoutX="772.0" layoutY="31.0" prefHeight="80.0" prefWidth="851.0" style="-fx-background-color: #24cc5c;" text="Podgląd treści wiadomości" textFill="WHITE">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets left="20.0" />
+                                 </padding>
+                              </Label>
+                              <TableView fx:id="emailList" layoutX="50.0" layoutY="138.0" prefHeight="683.0" prefWidth="617.0">
+                                <columns>
+                                  <TableColumn fx:id="Mail" prefWidth="200.0" text="Mail" />
+                                    <TableColumn fx:id="Supply" prefWidth="240.0" text="Dostawa" />
+                                  <TableColumn fx:id="mailTemplate" prefWidth="176.0" text="Szablon maila" />
+                                </columns>
                               </TableView>
-                              <Label layoutX="693.0" layoutY="42.0" prefHeight="80.0" prefWidth="302.0" style="-fx-background-color: #24cc5c;" text="Wybrany produkt" textFill="WHITE">
+                              <Label fx:id="sendProductsMessageLabel" alignment="CENTER" layoutX="772.0" layoutY="138.0" prefHeight="188.0" prefWidth="851.0" text="Wiadomość">
                                  <font>
-                                    <Font size="24.0" />
+                                    <Font size="33.0" />
+                                 </font>
+                              </Label>
+                              <Separator layoutX="772.0" layoutY="316.0" prefHeight="21.0" prefWidth="851.0" />
+                              <JFXComboBox fx:id="chooseMailComboBox" layoutX="887.0" layoutY="550.0" onAction="#setDisableSetEnable" prefHeight="31.0" prefWidth="209.0" />
+                              <JFXButton layoutX="1051.0" layoutY="678.0" onAction="#sendMessages" prefHeight="43.0" prefWidth="335.0" style="-fx-background-color: #618acc;" text="Wyślij" textFill="WHITE">
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </JFXButton>
+                              <Label layoutX="849.0" layoutY="480.0" prefHeight="41.0" prefWidth="285.0" style="-fx-background-color: #24cc5c;" text="Wspólna wiadomość" textFill="WHITE">
+                                 <font>
+                                    <Font size="19.0" />
                                  </font>
                                  <padding>
                                     <Insets left="20.0" />
                                  </padding>
                               </Label>
-                              <Label layoutX="1062.0" layoutY="42.0" prefHeight="80.0" prefWidth="569.0" style="-fx-background-color: #24cc5c;" text="Edytuj dane wybranego produktu" textFill="WHITE">
+                              <Label layoutX="1274.0" layoutY="480.0" prefHeight="41.0" prefWidth="285.0" style="-fx-background-color: #24cc5c;" text="Podaj date" textFill="WHITE">
                                  <font>
-                                    <Font size="24.0" />
+                                    <Font size="19.0" />
                                  </font>
                                  <padding>
                                     <Insets left="20.0" />
                                  </padding>
                               </Label>
-                              <VBox layoutX="740.0" layoutY="132.0" prefHeight="293.0" prefWidth="209.0">
-                                 <children>
-                                    <Pane fx:id="manegeProductIDPane" prefHeight="60.0" prefWidth="209.0">
-                                       <children>
-                                          <Label fx:id="manegeProductIDLabel" alignment="CENTER" layoutX="1.0" layoutY="20.0" prefHeight="21.0" prefWidth="209.0" text="ID" />
-                                       </children>
-                                       <VBox.margin>
-                                          <Insets top="30.0" />
-                                       </VBox.margin>
-                                    </Pane>
-                                    <Pane fx:id="manegeProductNamePane" prefHeight="60.0" prefWidth="209.0">
-                                       <children>
-                                          <Label fx:id="manegeProductNameLabel" alignment="CENTER" layoutX="1.0" layoutY="20.0" prefHeight="21.0" prefWidth="209.0" text="Nazwa" />
-                                       </children>
-                                       <VBox.margin>
-                                          <Insets top="30.0" />
-                                       </VBox.margin>
-                                    </Pane>
-                                    <Pane fx:id="manegeProductPricePane" prefHeight="60.0" prefWidth="209.0">
-                                       <children>
-                                          <Label fx:id="manegeProductPriceLabel" alignment="CENTER" layoutX="1.0" layoutY="20.0" prefHeight="21.0" prefWidth="209.0" text="Cena" />
-                                       </children>
-                                       <VBox.margin>
-                                          <Insets top="30.0" />
-                                       </VBox.margin>
-                                    </Pane>
-                                 </children>
-                              </VBox>
-                              <VBox layoutX="1094.0" layoutY="127.0" prefHeight="333.0" prefWidth="537.0" style="-fx-background-color: #fff;">
-                                 <opaqueInsets>
-                                    <Insets />
-                                 </opaqueInsets>
-                                 <children>
-                                    <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #fff;">
-                                       <children>
-                                          <Label text="ID:">
-                                             <HBox.margin>
-                                                <Insets right="20.0" />
-                                             </HBox.margin>
-                                          </Label>
-                                          <TextField fx:id="manageNewID" prefHeight="31.0" prefWidth="264.0" />
-                                       </children>
-                                       <VBox.margin>
-                                          <Insets top="30.0" />
-                                       </VBox.margin>
-                                       <opaqueInsets>
-                                          <Insets />
-                                       </opaqueInsets>
-                                       <padding>
-                                          <Insets left="100.0" />
-                                       </padding>
-                                    </HBox>
-                                    <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #fff;">
-                                       <children>
-                                          <Label prefHeight="21.0" prefWidth="140.0" text="Nazwa produktu:">
-                                             <HBox.margin>
-                                                <Insets />
-                                             </HBox.margin>
-                                          </Label>
-                                          <TextField fx:id="manageNewName" prefHeight="31.0" prefWidth="264.0" />
-                                       </children>
-                                    </HBox>
-                                    <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #fff;">
-                                       <children>
-                                          <Label prefHeight="21.0" prefWidth="48.0" text="Cena:">
-                                             <HBox.margin>
-                                                <Insets right="20.0" />
-                                             </HBox.margin>
-                                          </Label>
-                                          <TextField fx:id="manageNewPrice" prefHeight="31.0" prefWidth="264.0" />
-                                       </children>
-                                       <padding>
-                                          <Insets left="72.0" />
-                                       </padding>
-                                    </HBox>
-                                    <Pane prefHeight="66.0" prefWidth="437.0">
-                                       <VBox.margin>
-                                          <Insets left="100.0" />
-                                       </VBox.margin>
-                                          <Button layoutY="7.0" mnemonicParsing="false" onAction="#submitEditProductData" prefHeight="31.0" prefWidth="335.0" style="-fx-background-color: #eadada;" text="Zatwierdź">
-                                             <cursor>
-                                                <Cursor fx:constant="HAND" />
-                                             </cursor></Button>
-                                    </Pane>
-                                 </children>
-                              </VBox>
-                              <Label layoutX="694.0" layoutY="486.0" prefHeight="80.0" prefWidth="437.0" style="-fx-background-color: #24cc5c;" text="Stare dane" textFill="WHITE">
-                                 <font>
-                                    <Font size="24.0" />
-                                 </font>
-                                 <padding>
-                                    <Insets left="20.0" />
-                                 </padding>
-                              </Label>
-                              <Label layoutX="1192.0" layoutY="486.0" prefHeight="80.0" prefWidth="445.0" style="-fx-background-color: #24cc5c;" text="Nowe dane" textFill="WHITE">
-                                 <font>
-                                    <Font size="24.0" />
-                                 </font>
-                                 <padding>
-                                    <Insets left="20.0" />
-                                 </padding>
-                              </Label>
-                              <Label fx:id="idOldProduct" alignment="CENTER" layoutX="761.0" layoutY="583.0" prefHeight="72.0" prefWidth="302.0" style="-fx-background-radius: 20; -fx-background-color: #ae9090;" textFill="WHITE">
-                                 <font>
-                                    <Font size="24.0" />
-                                 </font>
-                              </Label>
-                              <Label fx:id="nameOldProduct" alignment="CENTER" layoutX="762.0" layoutY="675.0" prefHeight="72.0" prefWidth="302.0" style="-fx-background-radius: 20; -fx-background-color: #ae9090;" textFill="WHITE">
-                                 <font>
-                                    <Font size="24.0" />
-                                 </font>
-                              </Label>
-                              <Label fx:id="priceOldProduct" alignment="CENTER" layoutX="762.0" layoutY="767.0" prefHeight="72.0" prefWidth="302.0" style="-fx-background-radius: 20; -fx-background-color: #ae9090;" textFill="WHITE">
-                                 <font>
-                                    <Font size="24.0" />
-                                 </font>
-                              </Label>
-                              <Label fx:id="idNewProduct" alignment="CENTER" layoutX="1254.0" layoutY="583.0" prefHeight="72.0" prefWidth="302.0" style="-fx-background-radius: 20; -fx-background-color: #ae9090;" textFill="WHITE">
-                                 <font>
-                                    <Font size="24.0" />
-                                 </font>
-                              </Label>
-                              <Label fx:id="nameNewProduct" alignment="CENTER" layoutX="1254.0" layoutY="675.0" prefHeight="72.0" prefWidth="302.0" style="-fx-background-radius: 20; -fx-background-color: #ae9090;" textFill="WHITE">
-                                 <font>
-                                    <Font size="24.0" />
-                                 </font>
-                              </Label>
-                              <Label fx:id="priceNewProduct" alignment="CENTER" layoutX="1254.0" layoutY="767.0" prefHeight="72.0" prefWidth="302.0" style="-fx-background-radius: 20; -fx-background-color: #ae9090;" textFill="WHITE">
-                                 <font>
-                                    <Font size="24.0" />
-                                 </font>
-                              </Label>
+                              <JFXDatePicker fx:id="sendProductDataPicker" layoutX="1297.0" layoutY="550.0" onAction="#changeDate" prefHeight="31.0" prefWidth="238.0" />
                            </children>
                         </AnchorPane>
                      </children>
-                  </GridPane>
-                  <AnchorPane fx:id="sentMerchandiseContentPane" style="-fx-background-color: #fff;">
-                     <children>
-                        <Label layoutX="50.0" layoutY="31.0" prefHeight="80.0" prefWidth="617.0" style="-fx-background-color: #24cc5c;" text="Spis zamówień" textFill="WHITE">
-                           <font>
-                              <Font size="24.0" />
-                           </font>
-                           <padding>
-                              <Insets left="20.0" />
-                           </padding>
-                        </Label>
-                        <Label layoutX="772.0" layoutY="354.0" prefHeight="80.0" prefWidth="851.0" style="-fx-background-color: #24cc5c;" text="Konfiguracja" textFill="WHITE">
-                           <font>
-                              <Font size="24.0" />
-                           </font>
-                           <padding>
-                              <Insets left="20.0" />
-                           </padding>
-                        </Label>
-                        <Label layoutX="772.0" layoutY="31.0" prefHeight="80.0" prefWidth="851.0" style="-fx-background-color: #24cc5c;" text="Podgląd treści wiadomości" textFill="WHITE">
-                           <font>
-                              <Font size="24.0" />
-                           </font>
-                           <padding>
-                              <Insets left="20.0" />
-                           </padding>
-                        </Label>
-                        <TableView fx:id="emailList" layoutX="50.0" layoutY="138.0" prefHeight="683.0" prefWidth="617.0">
-                          <columns>
-                            <TableColumn fx:id="Mail" prefWidth="200.0" text="Mail" />
-                              <TableColumn fx:id="Supply" prefWidth="240.0" text="Dostawa" />
-                            <TableColumn fx:id="mailTemplate" prefWidth="176.0" text="Szablon maila" />
-                          </columns>
-                        </TableView>
-                        <Label fx:id="sendProductsMessageLabel" alignment="CENTER" layoutX="772.0" layoutY="138.0" prefHeight="188.0" prefWidth="851.0" text="Wiadomość">
-                           <font>
-                              <Font size="33.0" />
-                           </font>
-                        </Label>
-                        <Separator layoutX="772.0" layoutY="316.0" prefHeight="21.0" prefWidth="851.0" />
-                        <JFXComboBox fx:id="chooseMailComboBox" layoutX="887.0" layoutY="550.0" onAction="#setDisableSetEnable" prefHeight="31.0" prefWidth="209.0" />
-                        <JFXButton layoutX="1051.0" layoutY="678.0" onAction="#sendMessages" prefHeight="43.0" prefWidth="335.0" style="-fx-background-color: #618acc;" text="Wyślij" textFill="WHITE">
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </JFXButton>
-                        <Label layoutX="849.0" layoutY="480.0" prefHeight="41.0" prefWidth="285.0" style="-fx-background-color: #24cc5c;" text="Wspólna wiadomość" textFill="WHITE">
-                           <font>
-                              <Font size="19.0" />
-                           </font>
-                           <padding>
-                              <Insets left="20.0" />
-                           </padding>
-                        </Label>
-                        <Label layoutX="1274.0" layoutY="480.0" prefHeight="41.0" prefWidth="285.0" style="-fx-background-color: #24cc5c;" text="Podaj date" textFill="WHITE">
-                           <font>
-                              <Font size="19.0" />
-                           </font>
-                           <padding>
-                              <Insets left="20.0" />
-                           </padding>
-                        </Label>
-                        <JFXDatePicker fx:id="sendProductDataPicker" layoutX="1297.0" layoutY="550.0" onAction="#changeDate" prefHeight="31.0" prefWidth="238.0" />
-                     </children>
-                  </AnchorPane>
+                  </StackPane>
                </children>
-            </StackPane>
+            </AnchorPane>
+            <HBox AnchorPane.rightAnchor="20.0">
+               <children>
+                  <JFXButton onAction="#closeWindow" prefHeight="43.0" prefWidth="42.0" text="X" />
+               </children>
+            </HBox>
          </children>
       </AnchorPane>
-      <HBox alignment="CENTER_RIGHT" prefHeight="43.0" prefWidth="1280.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <children>
-            <JFXButton onAction="#closeWindow" prefHeight="43.0" prefWidth="42.0" text="X" />
-         </children>
-      </HBox>
-   </children>
-</AnchorPane>
+   </content>
+</ScrollPane>
