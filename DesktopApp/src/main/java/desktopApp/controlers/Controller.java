@@ -602,6 +602,10 @@ public class Controller{
 
         emailContentFinder = new LinkedHashMap<>();
 
+        File f = new File("C:\\Mails");
+        if(!f.exists()) f.mkdir();
+        f = null;
+
     }
     /*
      *
@@ -694,7 +698,7 @@ public class Controller{
                 if (bt.getStyleClass().contains("emailPressedBack")) {
                     tes = (JFXButton) bt;
                     //file = new File(this.getClass().getResource("/style.css").getPath().substring(0, this.getClass().getResource("/style.css").getPath().lastIndexOf("/") + 1) + "/email_version" + bt.getId().substring(bt.getId().length() - 1) + ".txt");
-                    file = new File("C:\\TEMP\\email_version" + bt.getId().substring(bt.getId().length() - 1) + ".txt");
+                    file = new File("C:\\Mails\\email_version" + bt.getId().substring(bt.getId().length() - 1) + ".txt");
                     deletedButtonsFileList.add(file);
                     removeButton(file.getName().substring(file.getName().indexOf(".")-1, file.getName().indexOf(".")));
                     file = null;
@@ -742,7 +746,7 @@ public class Controller{
 
                         try {
                             //file = new File(this.getClass().getResource("/style.css").getPath().substring(0, this.getClass().getResource("/style.css").getPath().lastIndexOf("/") + 1) + "/email_version" + b.getId().substring(b.getId().length() - 1) + ".txt");
-                            file = new File("C:\\TEMP\\email_version" + b.getId().substring(b.getId().length() - 1) + ".txt");
+                            file = new File("C:\\Mails\\email_version" + b.getId().substring(b.getId().length() - 1) + ".txt");
                             path = file.getAbsolutePath();
                             if (!file.exists()) file.createNewFile();
                             else {
@@ -824,7 +828,7 @@ public class Controller{
     public void setSavedTemplates(){
         if (lock) {
             //File file = new File(this.getClass().getResource("/style.css").getPath().substring(0, this.getClass().getResource("/style.css").getPath().lastIndexOf("/")));
-            File file = new File("C:\\TEMP\\");
+            File file = new File("C:\\Mails\\");
             File[] nam = file.listFiles();
             for (File b : nam) {
                 if (b.getName().contains("email")) {
@@ -1566,7 +1570,7 @@ public class Controller{
         //file = new File(this.getClass().getResource("/style.css").getPath().substring(0, this.getClass().getResource("/style.css").getPath().lastIndexOf(
           //      "/") + 1) + "/email_version"+ emailList.getSelectionModel().getSelectedItem().getComboBox().getSelectionModel().getSelectedItem().toString().substring(5)+
             //    ".txt");
-        file = new File("C:\\TEMP\\email_version" + emailList.getSelectionModel().getSelectedItem().getComboBox().getSelectionModel().getSelectedItem().toString().
+        file = new File("C:\\Mails\\email_version" + emailList.getSelectionModel().getSelectedItem().getComboBox().getSelectionModel().getSelectedItem().toString().
                 substring(5)+ ".txt");
         try {
             scannerRead = new Scanner(new BufferedReader(new FileReader(file)));
