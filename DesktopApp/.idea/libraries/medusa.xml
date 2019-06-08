@@ -1,8 +1,6 @@
 <component name="libraryTable">
   <library name="medusa">
-    <CLASSES>
-      <root url="file://$PROJECT_DIR$/MedusaGuage/Medusa-master/Medusa-master/src/main/java/eu/hansolo/medusa" />
-    </CLASSES>
+    <CLASSES />
     <JAVADOC />
     <SOURCES />
   </library>

@@ -12,8 +12,6 @@ import java.util.Properties;
 @Component
 public class SendEmail {
 
-    String to = "norbert.kusmierczyk@gmail.com";
-
     String from = "prewarecompany@gamil.com";
 
     String user = "prewarecompany@gmail.com";

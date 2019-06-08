@@ -691,7 +691,8 @@ public class Controller{
             if (xBoxMessageFormSet.getChildren().size() > 3) {
                 if (bt.getStyleClass().contains("emailPressedBack")) {
                     tes = (JFXButton) bt;
-                    file = new File(this.getClass().getResource("/style.css").getPath().substring(0, this.getClass().getResource("/style.css").getPath().lastIndexOf("/") + 1) + "/email_version" + bt.getId().substring(bt.getId().length() - 1) + ".txt");
+                    //file = new File(this.getClass().getResource("/style.css").getPath().substring(0, this.getClass().getResource("/style.css").getPath().lastIndexOf("/") + 1) + "/email_version" + bt.getId().substring(bt.getId().length() - 1) + ".txt");
+                    file = new File("C:\\TEMP\\email_version" + bt.getId().substring(bt.getId().length() - 1) + ".txt");
                     deletedButtonsFileList.add(file);
                     removeButton(file.getName().substring(file.getName().indexOf(".")-1, file.getName().indexOf(".")));
                     file = null;
@@ -721,6 +722,9 @@ public class Controller{
     @FXML
     public void sendMessage(MouseEvent event) {
 
+        // E:\InteliJ\ElectraCodeSystem\target\file:\E:\InteliJ\ElectraCodeSystem\target\ElectraCodeSystem-1.0-SNAPSHOT-jar-with-dependencies.jar!\email_version1.txt
+        System.out.println(this.getClass().getResource("/style.css").getPath());
+
             subject_textField.setText("");
             content_areaField.setText("");
             file = null;
@@ -735,7 +739,8 @@ public class Controller{
                         b.getStyleClass().add("emailPressedBack");
 
                         try {
-                            file = new File(this.getClass().getResource("/style.css").getPath().substring(0, this.getClass().getResource("/style.css").getPath().lastIndexOf("/") + 1) + "/email_version" + b.getId().substring(b.getId().length() - 1) + ".txt");
+                            //file = new File(this.getClass().getResource("/style.css").getPath().substring(0, this.getClass().getResource("/style.css").getPath().lastIndexOf("/") + 1) + "/email_version" + b.getId().substring(b.getId().length() - 1) + ".txt");
+                            file = new File("C:\\TEMP\\email_version" + b.getId().substring(b.getId().length() - 1) + ".txt");
                             path = file.getAbsolutePath();
                             if (!file.exists()) file.createNewFile();
                             else {
@@ -816,7 +821,8 @@ public class Controller{
     boolean lock = true;
     public void setSavedTemplates(){
         if (lock) {
-            File file = new File(this.getClass().getResource("/style.css").getPath().substring(0, this.getClass().getResource("/style.css").getPath().lastIndexOf("/")));
+            //File file = new File(this.getClass().getResource("/style.css").getPath().substring(0, this.getClass().getResource("/style.css").getPath().lastIndexOf("/")));
+            File file = new File("C:\\TEMP\\");
             File[] nam = file.listFiles();
             for (File b : nam) {
                 if (b.getName().contains("email")) {
@@ -1555,9 +1561,11 @@ public class Controller{
 
         sb = null;
         System.out.println(emailList.getSelectionModel().getSelectedItem().getComboBox().getSelectionModel().getSelectedItem());
-        file = new File(this.getClass().getResource("/style.css").getPath().substring(0, this.getClass().getResource("/style.css").getPath().lastIndexOf(
-                "/") + 1) + "/email_version"+ emailList.getSelectionModel().getSelectedItem().getComboBox().getSelectionModel().getSelectedItem().toString().substring(5)+
-                ".txt");
+        //file = new File(this.getClass().getResource("/style.css").getPath().substring(0, this.getClass().getResource("/style.css").getPath().lastIndexOf(
+          //      "/") + 1) + "/email_version"+ emailList.getSelectionModel().getSelectedItem().getComboBox().getSelectionModel().getSelectedItem().toString().substring(5)+
+            //    ".txt");
+        file = new File("C:\\TEMP\\email_version" + emailList.getSelectionModel().getSelectedItem().getComboBox().getSelectionModel().getSelectedItem().toString().
+                substring(5)+ ".txt");
         try {
             scannerRead = new Scanner(new BufferedReader(new FileReader(file)));
             sb = new StringBuilder();
@@ -2133,9 +2141,10 @@ public class Controller{
         if (!deletedButtonsFileList.isEmpty()) {
             for (Iterator<File> it = deletedButtonsFileList.iterator(); it.hasNext(); ) {
                 File next = it.next();
-                if (next.exists()) {
+                System.out.println(next.getAbsolutePath());
+                //if (next.exists()) {
                     next.delete();
-                }
+                //}
                 it.remove();
             }
         }
