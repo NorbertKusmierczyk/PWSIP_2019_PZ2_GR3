@@ -310,20 +310,7 @@ public class Controller{
         //serwer.getAllUsers();
         dashBoardInformation.toFront();
         topLabel.setText(dashBoard.getText());
-        try {
-            loadUsers(); //add users to user tab to userTableView and check if connection with database is settled down
-        }catch (Exception e){
-            globalAlert = new Alert(Alert.AlertType.ERROR);
-            globalAlert.dialogPaneProperty().get();
-            globalAlert.setTitle("Błąd");
-            globalAlert.setHeaderText("Nie można nawiązać połączenia z bazą danych");
-            globalAlert.setResizable(false);
-            globalAlert.showAndWait();
-            if (globalAlert.getResult() == ButtonType.OK){
-                globalAlert = null;
-                System.exit(0);
-            }
-        }
+        loadUsers(); //add users to user ab to userTableView and check if connection with database is settled down
         addProducts(); //add products to warehouse tab to availability to productsTableView
         addManageProducts(); ////add products to warehouse tab to manage products to manageproductsTableView
         initOrderTable(); //initialize orderTableView
@@ -392,7 +379,9 @@ public class Controller{
 
         usersTableView.setOnMouseClicked(event -> {
 
-            if (subUsersContentPane.getChildren().get(subUsersContentPane.getChildren().size()-1) instanceof LineChart || subUsersContentPane.getChildren().get(subUsersContentPane.getChildren().size()-1) instanceof Label)
+            if (subUsersContentPane.getChildren().get(subUsersContentPane.getChildren().size()-1) instanceof LineChart ||
+                    subUsersContentPane.getChildren().get(subUsersContentPane.getChildren().size()-1) instanceof Label)
+
                 subUsersContentPane.getChildren().remove(subUsersContentPane.getChildren().size()-1);
 
             userLineChart = null;
@@ -504,7 +493,8 @@ public class Controller{
 
             }else{
 
-                if (subUsersContentPane.getChildren().get(subUsersContentPane.getChildren().size()-1) instanceof LineChart || subUsersContentPane.getChildren().get(subUsersContentPane.getChildren().size()-1) instanceof Label)
+                if (subUsersContentPane.getChildren().get(subUsersContentPane.getChildren().size()-1) instanceof LineChart ||
+                        subUsersContentPane.getChildren().get(subUsersContentPane.getChildren().size()-1) instanceof Label)
                     subUsersContentPane.getChildren().remove(subUsersContentPane.getChildren().size()-1);
 
                 subUsersContentPane.getChildren().add(new Label("Brak danych"));
@@ -587,7 +577,6 @@ public class Controller{
 
         emailList.setOnMouseClicked(event ->{
 
-            // do testow nie usuwac
             setMessage();
 
         });
@@ -727,9 +716,6 @@ public class Controller{
 
     @FXML
     public void sendMessage(MouseEvent event) {
-
-        // E:\InteliJ\ElectraCodeSystem\target\file:\E:\InteliJ\ElectraCodeSystem\target\ElectraCodeSystem-1.0-SNAPSHOT-jar-with-dependencies.jar!\email_version1.txt
-        System.out.println(this.getClass().getResource("/style.css").getPath());
 
             subject_textField.setText("");
             content_areaField.setText("");
@@ -1543,8 +1529,6 @@ public class Controller{
             set.put(e.getOrderID(), e.getSupply());
         });
 
-        set.forEach((e1,e2)-> System.out.println(e1+"   "+e2));
-
         emailMapper.forEach((e,f) -> {
             emailListObservableList.add(new EmailList(e+"/"+f, set.get(e)));
         });
@@ -2181,6 +2165,9 @@ public class Controller{
             topLabel.textProperty().bind(orderHeaderLabelProperty());
             ordersContentPane.toFront();
             hideLists();
+            orderDetailListView.getItems().clear();
+            ordersTableView.getItems().clear();
+
             click = true;
 
         }
@@ -2210,7 +2197,17 @@ public class Controller{
         if (event.getSource() == sentProducts){
             setOrderHeaderLabel(sentProducts.getText());
             topLabel.textProperty().bind(orderHeaderLabelProperty());
-            setSavedTemplates();
+            try {
+                setSavedTemplates();
+            }catch (Exception e){
+                globalAlert = new Alert(Alert.AlertType.ERROR);
+                globalAlert.dialogPaneProperty().get();
+                globalAlert.setTitle("Błąd danych");
+                globalAlert.setHeaderText("Podano niewłaściwe dane");
+                globalAlert.setResizable(false);
+                globalAlert.show();
+                globalAlert = null;
+            }
             dateAndOrderNumberList = server.getAllOrdersDate();
             sendProductsCategory();
             sendProductsMessageLabel.setText("Wiadomość");

@@ -33,8 +33,6 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
 
-        System.out.println(primaryStage.getOwner());
-
         context = new AnnotationConfigApplicationContext(Config.class);
 
         setLoginBoard(primaryStage);
@@ -57,9 +55,6 @@ public class Main extends Application {
             }
         });
     }
-
-    //@Autowired
-    //LoaderFXML loaderFXML;
 
     public void setLoginBoard(final Stage primaryStage) throws Exception {
 

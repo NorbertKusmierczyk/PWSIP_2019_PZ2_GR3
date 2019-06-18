@@ -6,6 +6,7 @@ import at.favre.lib.crypto.bcrypt.BCryptFormatter;
 import at.favre.lib.crypto.bcrypt.BCryptParser;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
+import com.mysql.jdbc.exceptions.jdbc4.CommunicationsException;
 import desktopApp.LoaderFXML;
 import desktopApp.api.IServer;
 import desktopApp.implementation.User;
@@ -21,8 +22,10 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.jdbc.CannotGetJdbcConnectionException;
 import org.springframework.stereotype.Component;
 
+import java.net.ConnectException;
 import java.util.List;
 
 @Component
@@ -84,11 +87,16 @@ public class LoginBarController {
                 globalAlert.show();
                 globalAlert = null;
             }
-        }catch (Exception e){
+       }
+       catch (Exception e){
+
             Alert globalAlert = new Alert(Alert.AlertType.ERROR);
             globalAlert.dialogPaneProperty().get();
             globalAlert.setTitle("Błąd");
-            globalAlert.setHeaderText("Użytkownik nie istnieje");
+
+            if (e instanceof CannotGetJdbcConnectionException) globalAlert.setHeaderText("Brak połączenia z bazą danych");
+            else globalAlert.setHeaderText("Użytkownik nie istnieje");
+
             globalAlert.setResizable(false);
             globalAlert.show();
             globalAlert = null;
