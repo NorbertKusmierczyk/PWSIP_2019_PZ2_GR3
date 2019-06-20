@@ -12,11 +12,11 @@ import java.util.Properties;
 @Component
 public class SendEmail {
 
-    String from = "prewarecompany@gamil.com";
+    String from = "type email here";
 
-    String user = "prewarecompany@gmail.com";
+    String user = "type user password here";
 
-    String password = "Qwerty12345zz";
+    String password = "type password here";
 
     String host = "smtp.gmail.com";
 
@@ -32,7 +32,6 @@ public class SendEmail {
         properties.setProperty("mail.smtp.starttls.required", "true");
 
         Session session = Session.getDefaultInstance(properties);
-        int a = 420495;
 
         try {
 

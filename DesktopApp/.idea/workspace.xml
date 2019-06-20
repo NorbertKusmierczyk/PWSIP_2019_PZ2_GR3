@@ -70,7 +70,7 @@
     <session id="-129971035">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="138" />
+          <entry key="project.closed" value="139" />
           <entry key="project.open.time.0" value="1" />
           <entry key="project.open.time.1" value="7" />
           <entry key="project.open.time.10" value="1" />
@@ -86,7 +86,7 @@
           <entry key="project.open.time.2" value="5" />
           <entry key="project.open.time.20" value="5" />
           <entry key="project.open.time.21" value="3" />
-          <entry key="project.open.time.22" value="4" />
+          <entry key="project.open.time.22" value="5" />
           <entry key="project.open.time.23" value="2" />
           <entry key="project.open.time.24" value="7" />
           <entry key="project.open.time.25" value="5" />
@@ -106,7 +106,7 @@
           <entry key="project.open.time.7" value="1" />
           <entry key="project.open.time.8" value="1" />
           <entry key="project.open.time.9" value="1" />
-          <entry key="project.opened" value="139" />
+          <entry key="project.opened" value="140" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -117,7 +117,7 @@
           <entry key="css" value="19" />
           <entry key="fxml" value="18" />
           <entry key="iml" value="3" />
-          <entry key="java" value="209" />
+          <entry key="java" value="210" />
           <entry key="properties" value="6" />
           <entry key="txt" value="4" />
           <entry key="xml" value="18" />
@@ -128,7 +128,7 @@
           <entry key="CLASS" value="2" />
           <entry key="CSS" value="19" />
           <entry key="IDEA_MODULE" value="3" />
-          <entry key="JAVA" value="209" />
+          <entry key="JAVA" value="210" />
           <entry key="Manifest" value="7" />
           <entry key="PLAIN_TEXT" value="5" />
           <entry key="Properties" value="6" />
@@ -141,7 +141,7 @@
           <entry key="css" value="1259" />
           <entry key="dummy" value="26" />
           <entry key="fxml" value="524" />
-          <entry key="java" value="59421" />
+          <entry key="java" value="59477" />
           <entry key="properties" value="167" />
           <entry key="txt" value="2" />
           <entry key="xml" value="372" />
@@ -150,7 +150,7 @@
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="CSS" value="1259" />
-          <entry key="JAVA" value="59421" />
+          <entry key="JAVA" value="59477" />
           <entry key="Manifest" value="56" />
           <entry key="PLAIN_TEXT" value="28" />
           <entry key="Properties" value="167" />
@@ -166,12 +166,12 @@
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/sample.fxml">
+          <provider editor-type-id="JavaFX-Scene-Builder" />
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="114">
+            <state relative-caret-position="7021">
               <caret line="413" column="90" selection-start-line="413" selection-start-column="71" selection-end-line="413" selection-end-column="90" />
             </state>
           </provider>
-          <provider editor-type-id="JavaFX-Scene-Builder" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
@@ -189,7 +189,7 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/desktopApp/controlers/Controller.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="265">
+            <state relative-caret-position="367">
               <caret line="2168" column="47" selection-start-line="2168" selection-start-column="47" selection-end-line="2168" selection-end-column="47" />
             </state>
           </provider>
@@ -200,6 +200,15 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="340">
               <caret line="27" selection-start-line="27" selection-end-line="27" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/desktopApp/MailSender/SendEmail.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="136">
+              <caret line="33" column="65" selection-start-line="33" selection-start-column="65" selection-end-line="33" selection-end-column="65" />
             </state>
           </provider>
         </entry>
@@ -216,7 +225,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="589">
+            <state relative-caret-position="1717">
               <caret line="101" selection-start-line="101" selection-end-line="101" />
             </state>
           </provider>
@@ -317,7 +326,6 @@
         <option value="$PROJECT_DIR$/src/main/java/desktopApp/implementation/Server.java" />
         <option value="$PROJECT_DIR$/src/main/java/desktopApp/api/IServer.java" />
         <option value="$PROJECT_DIR$/src/main/java/desktopApp/api/IUserDAO.java" />
-        <option value="$PROJECT_DIR$/src/main/java/desktopApp/MailSender/SendEmail.java" />
         <option value="$PROJECT_DIR$/src/main/resources/META-INF/MANIFEST.MF" />
         <option value="$PROJECT_DIR$/src/connection/connection.properties" />
         <option value="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" />
@@ -328,6 +336,7 @@
         <option value="$PROJECT_DIR$/src/main/java/desktopApp/controlers/LoginBarController.java" />
         <option value="$PROJECT_DIR$/src/main/java/desktopApp/LoaderFXML.java" />
         <option value="$PROJECT_DIR$/src/main/java/desktopApp/controlers/Controller.java" />
+        <option value="$PROJECT_DIR$/src/main/java/desktopApp/MailSender/SendEmail.java" />
       </list>
     </option>
   </component>
@@ -370,6 +379,7 @@
     </navigator>
     <panes>
       <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -412,11 +422,19 @@
               <item name="desktopApp" type="462c0819:PsiDirectoryNode" />
               <item name="implementation" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="ElectraCodeSystem" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ElectraCodeSystem" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="desktopApp" type="462c0819:PsiDirectoryNode" />
+              <item name="MailSender" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -562,17 +580,17 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <frame x="24" y="32" width="1472" height="776" extended-state="1" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.23557048" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.25212464" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Favorites" order="2" />
       <window_info id="Designer" order="3" />
       <window_info id="UI Designer" order="4" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.31707317" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.37304965" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3716952" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.38569206" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -593,7 +611,7 @@
       <window_info anchor="right" id="Palette" order="5" />
       <window_info anchor="right" id="Palette&#9;" order="6" />
       <window_info anchor="right" id="Coverage" order="7" side_tool="true" weight="0.3293201" />
-      <window_info anchor="right" id="Maven Projects" order="8" weight="0.32751676" />
+      <window_info anchor="right" id="Maven Projects" order="8" weight="0.32719547" />
     </layout>
     <layout-to-restore>
       <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.19617563" />
@@ -774,29 +792,22 @@
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/target/classes/LoginFolder/LoginBar.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="129">
           <caret line="12" column="203" selection-start-line="12" selection-start-column="203" selection-end-line="12" selection-end-column="203" />
         </state>
       </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/LoginFolder/LoginBar.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="595">
           <caret line="35" column="178" selection-start-line="35" selection-start-column="178" selection-end-line="35" selection-end-column="178" />
         </state>
       </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/META-INF/MANIFEST.MF" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/desktopApp/MailSender/SendEmail.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret line="12" column="24" selection-start-line="12" selection-start-column="24" selection-end-line="12" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/desktopApp/implementation/UserOrderHibernate.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="159">
@@ -888,6 +899,14 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/sample.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="7021">
+          <caret line="413" column="90" selection-start-line="413" selection-start-column="71" selection-end-line="413" selection-end-column="90" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/desktopApp/implementation/UserDAO.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1547">
@@ -895,13 +914,6 @@
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/desktopApp/implementation/EmailList.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="27" selection-start-line="27" selection-end-line="27" />
         </state>
       </provider>
     </entry>
@@ -914,22 +926,28 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="589">
+        <state relative-caret-position="1717">
           <caret line="101" selection-start-line="101" selection-end-line="101" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/sample.fxml">
+    <entry file="file://$PROJECT_DIR$/src/main/java/desktopApp/implementation/EmailList.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="413" column="90" selection-start-line="413" selection-start-column="71" selection-end-line="413" selection-end-column="90" />
+        <state relative-caret-position="340">
+          <caret line="27" selection-start-line="27" selection-end-line="27" />
         </state>
       </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/desktopApp/MailSender/SendEmail.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="33" column="65" selection-start-line="33" selection-start-column="65" selection-end-line="33" selection-end-column="65" />
+        </state>
+      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/desktopApp/controlers/Controller.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="265">
+        <state relative-caret-position="367">
           <caret line="2168" column="47" selection-start-line="2168" selection-start-column="47" selection-end-line="2168" selection-end-column="47" />
         </state>
       </provider>
